@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work In Progress</title>
+  </head>
+
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Montserrat|Open+Sans);
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #3498db url(http://ambix.io/images/ambix-maint-bg.png);
+      color: #3a3a3a;
+      padding: 0;
+      margin: 0;
+    }
+
+    .wrapper {
+      width: 80%;
+      transform: translate3d(-50%, -50%, 0);
+      left: 50%;
+      top: 50%;
+      position: absolute;
+    }
+
+    h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 1.8em;
+    }
+
+    p {
+      font-family: "Open Sans", sans-serif;
+    }
+
+    .bubble {
+      text-align: center;
+      position: absolute;
+      padding: 20px;
+      top: 50%;
+      left: 40%;
+      transform: translate3d(-49%, -49%, 0);
+      width: 50%;
+      background: #ffffff;
+      border-radius: 10px;
+      transform-origin: center left;
+      box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .bubble:after {
+      content: "";
+      position: absolute;
+      border-style: solid;
+      border-width: 15px 0 15px 15px;
+      border-color: transparent #ffffff;
+      display: block;
+      width: 0;
+      z-index: 1;
+      margin-top: -15px;
+      right: -15px;
+      top: 30%;
+    }
+
+    .ambix-logo {
+      width: 180px;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .client-bar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 15px;
+      text-align: center;
+    }
+
+    .client-logo {
+      height: 60px;
+    }
+
+    #ninja {
+      position: absolute;
+      top: 60%;
+      left: 80%;
+      transform: translate3d(-50%, -50%, 0);
+      max-width: 50vw;
+      max-height: 80vh;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    #hand {
+      transform-origin: center left;
+      animation: hand_bounce 0.6s ease-in-out 0s infinite alternate;
+    }
+
+    #laptop {
+      transform-origin: center left;
+      animation: laptop_bounce 0.6s ease-in-out 0s infinite alternate;
+    }
+
+    #left-eye,
+    #right-eye {
+      transform-origin: center center;
+      animation: eyes_blink 2s ease-out 0s infinite alternate;
+    }
+
+    #shadow {
+      transform-origin: center center;
+      animation: shadow 0.6s ease-in-out 0s infinite alternate;
+    }
+
+    #body {
+      animation: hover 0.6s ease-in-out 0s infinite alternate;
+    }
+
+    @keyframes hover {
+      0% {
+        transform: translate3d(0, 20px, 0);
+      }
+      100% {
+        transform: translate3d(0, 30px, 0);
+      }
+    }
+    @keyframes eyes_blink {
+      0% {
+        transform: scale(1, 1);
+      }
+      90% {
+        transform: scale(1, 1);
+      }
+      95% {
+        transform: scale(0.8, 0);
+      }
+      100% {
+        transform: scale(1, 1);
+      }
+    }
+    @keyframes hand_bounce {
+      0% {
+        transform: translate3d(0px, -5px, 20px) rotate(0deg);
+      }
+      100% {
+        transform: translate3d(0, 5px, 20px) rotate(10deg);
+      }
+    }
+    @keyframes laptop_bounce {
+      0% {
+        transform: translate3d(0px, 0px, 20px) rotate(0deg);
+      }
+      100% {
+        transform: translate3d(0, 2px, 20px) rotate(2deg);
+      }
+    }
+    @keyframes shadow {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1, 1);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translate3d(0, 0, 0) scale(1.2, 1.1);
+        opacity: 0.4;
+      }
+    } /*# sourceMappingURL=wip.css.map */
+  </style>
+  <body>
+    <!--<div class="client-bar"> <a href="http://ambix.io" target="_blank">
+  <img class="client-logo" src="[CLIENT-LOGO HERE]"></a></div>-->
+    <div class="wrapper">
+      <div class="bubble">
+        <h1>
+          Karya sedang digubah dengan penuh ketelitian, ibarat benih ditanam
+          menanti hujan dan mentari
+        </h1>
+        <p>
+          Sekejap lagi, hasil tinta dan kod ini akan tersingkap untuk tatapan
+          umum, menjadi bukti bahawa kesabaran dan usaha tidak pernah
+          menghampakan.
+        </p>
+      </div>
+      <svg
+        version="1.1"
+        id="ninja"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        width="264.103px"
+        height="329px"
+        viewBox="0 0 264.103 329"
+        enable-background="new 0 0 264.103 329"
+        xml:space="preserve"
+      >
+        <ellipse
+          id="shadow"
+          opacity="0.6"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          cx="129.443"
+          cy="275.263"
+          rx="64.443"
+          ry="14.062"
+        />
+        <g id="body">
+          <ellipse
+            id="body-circle"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            fill="#3A3A3A"
+            cx="129.383"
+            cy="182.842"
+            rx="77.421"
+            ry="65.874"
+          />
+          <path
+            id="head-shaddow"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            fill="#262626"
+            d="M190.161,142.061c-14.051-16.649-34.849-25.094-60.777-25.094
+		c-19.375,0-35.28,4.792-48.859,14.8c12.184,19.494,33.274,33.913,59.516,33.913C160.748,165.68,177.238,155.089,190.161,142.061z"
+          />
+          <g>
+            <g>
+              <ellipse
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                fill="#3A3A3A"
+                cx="140.04"
+                cy="90.836"
+                rx="70.648"
+                ry="64.844"
+              />
+            </g>
+
+            <ellipse
+              transform="matrix(0.9833 0.1822 -0.1822 0.9833 17.9525 -24.0558)"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#FFFFFF"
+              cx="139.889"
+              cy="85.67"
+              rx="51.345"
+              ry="23.656"
+            />
+
+            <ellipse
+              id="left-eye"
+              transform="matrix(0.9958 0.0915 -0.0915 0.9958 8.2313 -10.1398)"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#3A3A3A"
+              cx="114.686"
+              cy="84.689"
+              rx="6.333"
+              ry="11.977"
+            />
+
+            <ellipse
+              id="right-eye"
+              transform="matrix(0.9958 0.0915 -0.0915 0.9958 9.2354 -14.0371)"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#3A3A3A"
+              cx="157.686"
+              cy="93.689"
+              rx="6.333"
+              ry="11.977"
+            />
+            <polygon
+              fill="#3A3A3A"
+              points="197.409,126.901 204.597,135.631 207.187,127.615 213.661,126.205 199.89,113.819 		"
+            />
+          </g>
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            fill="#262626"
+            d="M199.867,155.631c-1.236,2.203-1.948,4.741-1.948,7.447
+		c0,6.005,3.479,11.185,8.524,13.673C205.637,169.278,203.359,162.171,199.867,155.631z"
+          />
+          <g id="laptop">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#262626"
+              d="M180.684,174H145.07l-7.719-31.898l-72.121,3.854
+			c-8.375,10.524-13.268,23.219-13.268,36.886c0,17.788,8.301,33.918,21.77,45.771l78.952-6.614l3.875-0.516l0.126,0.184
+			L180.684,174z"
+            />
+            <polyline
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#4C4C4C"
+              points="155.686,218.666 183.684,171 123.02,171 		"
+            />
+            <polygon
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#636363"
+              points="27.018,144.361 45.684,226.998 155.685,218.998 
+			136.351,139.102 		"
+            />
+            <g>
+              <g>
+                <rect
+                  x="82.184"
+                  y="172.939"
+                  transform="matrix(-0.9971 0.0766 -0.0766 -0.9971 185.2094 346.3204)"
+                  fill="#E6E6E6"
+                  width="7.55"
+                  height="7.55"
+                />
+              </g>
+              <g>
+                <rect
+                  x="75.236"
+                  y="181.046"
+                  transform="matrix(-0.9971 0.0766 -0.0766 -0.9971 171.9551 363.0419)"
+                  fill="#E6E6E6"
+                  width="7.55"
+                  height="7.55"
+                />
+              </g>
+              <g>
+                <rect
+                  x="90.869"
+                  y="187.415"
+                  transform="matrix(-0.9971 0.0767 -0.0767 -0.9971 203.6747 374.5563)"
+                  fill="#E6E6E6"
+                  width="7.55"
+                  height="7.549"
+                />
+              </g>
+            </g>
+          </g>
+
+          <g id="hand">
+            <circle
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#3A3A3A"
+              cx="213.192"
+              cy="161.078"
+              r="15.254"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#C1272D"
+              d="M241.068,121.617c-0.417-0.326-0.868-0.594-1.374-0.763
+			c-0.139-0.047-0.248-0.019-0.351,0.097c-0.659,0.738-1.324,1.471-1.985,2.207c-0.66,0.734-1.318,1.472-1.986,2.22
+			c-0.075-0.046-0.147-0.092-0.221-0.133c-0.342-0.191-0.353-0.187-0.549,0.152c-0.166,0.286-0.334,0.57-0.5,0.854
+			c-0.292-0.077-0.292-0.077-0.443,0.192c-0.005,0.01-0.012,0.02-0.018,0.029c-1.095,1.984-2.188,3.969-3.283,5.953
+			c-1.682,3.047-3.366,6.094-5.048,9.141c-0.761,1.379-1.519,2.759-2.28,4.137c-1.645,2.981-3.291,5.961-4.937,8.942
+			c-0.232,0.421-0.459,0.845-0.693,1.264c-0.084,0.15-0.08,0.266,0.086,0.354c0.074,0.04,0.139,0.097,0.216,0.15
+			c-0.031,0.061-0.059,0.115-0.088,0.171c-0.187,0.348-0.376,0.694-0.559,1.044c-0.132,0.253-0.123,0.314,0.114,0.466
+			c0.4,0.256,0.799,0.516,1.216,0.741c0.987,0.532,1.982,1.049,2.979,1.563c0.292,0.151,0.318,0.122,0.49-0.168
+			c0.218-0.369,0.45-0.729,0.676-1.093c-0.022-0.016-0.044-0.03-0.066-0.045c0.047,0.02,0.094,0.039,0.14,0.06
+			c0.298,0.141,0.326,0.132,0.482-0.151c0.265-0.48,0.528-0.963,0.792-1.444c1.596-2.9,3.192-5.802,4.788-8.702
+			c1.78-3.232,3.56-6.465,5.339-9.697c1.761-3.199,3.522-6.397,5.282-9.596c0.153-0.278,0.153-0.278-0.091-0.474
+			c-0.008-0.007-0.009-0.021-0.016-0.036c0.016-0.032,0.031-0.069,0.051-0.104c0.166-0.288,0.333-0.574,0.496-0.863
+			c0.114-0.201,0.1-0.249-0.106-0.358c-0.1-0.055-0.206-0.095-0.303-0.138c0.046-0.128,0.079-0.213,0.106-0.299
+			c0.258-0.795,0.515-1.589,0.772-2.384c0.317-0.979,0.636-1.958,0.956-2.937C241.203,121.828,241.189,121.712,241.068,121.617z"
+            />
+            <polygon
+              points="218.972,153.058 224.567,156.311 225.863,153.954 220.083,151.046 		"
+            />
+            <polygon
+              points="231.039,131.195 236.614,134.422 237.962,131.974 232.193,129.102 		"
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
+  </body>
+</html>

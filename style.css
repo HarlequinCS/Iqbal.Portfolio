@@ -139,10 +139,24 @@
 }
 
 /* form control */
-.form-control:focus {
-  border-color: #ccc;
-  box-shadow: 0 0 0 0.25rem rgba(200, 200, 200, .25);
+/* Text color in input and textarea */
+.form-control {
+    color: #000; /* hitam supaya nampak */
+    background-color: #fff; /* putih atau ikut tema */
 }
+
+/* Placeholder color */
+.form-control::placeholder {
+    color: #888; /* kelabu supaya nampak placeholder */
+}
+
+/* Optional: focus style */
+.form-control:focus {
+    border-color: #ccc;
+    box-shadow: 0 0 0 0.25rem rgba(200, 200, 200, .25);
+    color: #000; /* pastikan tulisan tetap hitam semasa focus */
+}
+
 
 /* dark theme */
 [data-bs-theme=dark] {
