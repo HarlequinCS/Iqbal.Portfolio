@@ -29,6 +29,154 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="optimize.css">
 
+  <style>
+:root{
+  --popup-bg: rgba(0,0,0,0.55);
+  --card-grad-1: #0f0f12;
+  --card-grad-2: #1a1a22;
+  --accent: #4ade80; /* soft green */
+  --accent-2: #22c55e;
+  --text: #f8fafc;
+}
+
+/* Backdrop */
+.popup{
+  position: fixed; inset: 0;
+  display: grid; place-items: center;
+  background: var(--popup-bg);
+  opacity: 0; visibility: hidden;
+  transition: opacity .28s ease, visibility .28s ease;
+  z-index: 9999;
+}
+.popup.show{ opacity: 1; visibility: visible; }
+
+.hidden{ display: none; }
+
+/* Card */
+.popup-content{
+  position: relative;
+  background: linear-gradient(135deg, var(--card-grad-1), var(--card-grad-2));
+  color: var(--text);
+  padding: 28px 30px 26px;
+  border-radius: 22px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
+  transform: translateY(6px) scale(.94);
+  opacity: 0;
+  animation: cardIn .42s cubic-bezier(.2,.8,.2,1) .08s forwards;
+  max-width: 380px;
+  width: min(92vw, 380px);
+  text-align: center;
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* Close */
+.close-btn{
+  position: absolute; top: 10px; right: 12px;
+  font-size: 26px; line-height: 1;
+  background: transparent; border: 0; color: #cbd5e1;
+  cursor: pointer; padding: 6px; border-radius: 10px;
+  transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+.close-btn:hover{ transform: rotate(90deg); background: rgba(255,255,255,.06); color: #fff; }
+
+/* Animated icon wrapper */
+.icon-wrap{
+  position: relative;
+  width: 96px; height: 96px;
+  margin: 8px auto 12px;
+}
+
+/* SVG */
+.success-svg{
+  width: 100%; height: 100%;
+  display: block;
+  filter: drop-shadow(0 6px 14px rgba(34,197,94,.3));
+}
+.success-circle,
+.success-check{
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Stroke animation setup */
+.success-circle{
+  stroke-dasharray: 176; /* ~2πr with r=28 is ~175.9 */
+  stroke-dashoffset: 176;
+  animation: drawCircle .6s ease-out .15s forwards;
+}
+.success-check{
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: drawCheck .45s ease-out .45s forwards;
+}
+
+/* Little success burst */
+.burst{
+  position: absolute; inset: 0; pointer-events: none;
+}
+.burst span{
+  position: absolute; top: 50%; left: 50%;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-2);
+  transform: translate(-50%, -50%) scale(0);
+  animation: burst .6s ease-out .46s forwards;
+}
+.burst span:nth-child(odd){ background: #86efac; }
+.burst span:nth-child(1){ --tx: -38px; --ty: -4px; }
+.burst span:nth-child(2){ --tx: 36px; --ty: 6px; }
+.burst span:nth-child(3){ --tx: -10px; --ty: -34px; }
+.burst span:nth-child(4){ --tx: 12px; --ty: 34px; }
+.burst span:nth-child(5){ --tx: -30px; --ty: 22px; }
+.burst span:nth-child(6){ --tx: 30px; --ty: -22px; }
+.burst span:nth-child(7){ --tx: -22px; --ty: -26px; }
+.burst span:nth-child(8){ --tx: 24px; --ty: 24px; }
+.burst span:nth-child(9){ --tx: -2px; --ty: 40px; }
+.burst span:nth-child(10){ --tx: 4px; --ty: -40px; }
+
+/* Text */
+h3{ font-size: 22px; margin: 6px 0 8px; }
+p{ margin: 0 0 14px; opacity: .9; }
+
+/* Actions */
+.actions{ display: flex; justify-content: center; gap: 10px; margin-top: 6px; }
+.btn-ok{
+  padding: 10px 16px; border-radius: 12px; border: 0; cursor: pointer;
+  background: linear-gradient(180deg, #16a34a, #15803d);
+  color: white; font-weight: 600;
+  box-shadow: 0 6px 16px rgba(34,197,94,.35), inset 0 1px 0 rgba(255,255,255,.2);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+.btn-ok:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+.btn-ok:active{ transform: translateY(0); box-shadow: 0 3px 10px rgba(34,197,94,.25); }
+
+/* Animations */
+@keyframes cardIn{
+  to{ transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes drawCircle{
+  0%{ stroke-dashoffset: 176; }
+  100%{ stroke-dashoffset: 0; }
+}
+@keyframes drawCheck{
+  0%{ stroke-dashoffset: 48; }
+  100%{ stroke-dashoffset: 0; }
+}
+@keyframes burst{
+  0%{ transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  80%{ opacity: 1; }
+  100%{ transform: translate(calc(-50% + var(--tx,0)), calc(-50% + var(--ty,0))) scale(1); opacity: 0; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .popup, .popup-content, .success-circle, .success-check, .burst span{
+    animation: none !important; transition: none !important;
+  }
+}
+
+  </style>
+
 </head>
 
   <body data-bs-theme="dark">
@@ -41,9 +189,10 @@
           <div class="sidebar p-4 p-lg-5 vh-100 d-flex flex-column position-relative">
             <a href="index.html" class="logo mb-0 text-decoration-none">SAIFUL IQBAL.</a>
             <p class="bio mt-4" style="max-width: 200px;">
-              I’m Muhammad Saiful Iqbal, a Web Developer and Ethical Hacker with a background in Computer Science from UiTM. 
-              Alongside my studies, I’ve earned certifications in networking, cybersecurity, and web development
-              skills I now apply in front-end development and as the Founder of ChendAwan, a young team creating secure and impactful digital projects.
+              I’m Muhammad Saiful Iqbal, a Web Developer with a passion for front-end  
+              (and a curious Ethical Hacker who sometimes breaks things first).  
+              With a Computer Science background from UiTM and certs in networking, cybersecurity, and web,  
+              I now lead ChendAwan a young, creative team set on building secure projects and a future success story.
             </p>
 
             <p style="max-width: 200px;">
@@ -67,7 +216,7 @@
             </div>
 
             <div class="personal-info">
-              <p class="job-title mb-2">Web Developer / Ethical Hacker / Front-End Developer</p>
+              <p class="job-title mb-2">Web Developer & Front-End Engineer | Ethical Hacking Practitioner </p>
               <p class="location">Johor, Malaysia</p>
             </div>
           </div>
@@ -178,25 +327,19 @@
                 <div class="skill" data-aos="fade-up" data-aos-delay="200">
                   <span class="skill-number d-block">01</span>
                   <h3>Web Development</h3>
-                  <p>Building responsive, scalable, and high-performance websites using modern frameworks and technologies.</p>
+                  <p>I turn ideas into clean, responsive, and scalable websites less bugs, more wow factor, and just the right touch of magic.</p>
                 </div>
 
                 <div class="skill" data-aos="fade-up" data-aos-delay="400">
                   <span class="skill-number d-block">02</span>
                   <h3>Cybersecurity Awareness</h3>
-                  <p>Applying best practices and certified ethical hacking knowledge to ensure secure digital solutions.</p>
+                  <p>Certified ethical hacker mindset I secure systems before hackers even think about it, like locking the door before they find the house.</p>
                 </div>
 
                 <div class="skill" data-aos="fade-up" data-aos-delay="600">
                   <span class="skill-number d-block">03</span>
-                  <h3>UI/UX Design</h3>
-                  <p>Designing intuitive and user-friendly interfaces with a focus on accessibility and modern standards.</p>
-                </div>
-
-                <div class="skill" data-aos="fade-up" data-aos-delay="800">
-                  <span class="skill-number d-block">04</span>
-                  <h3>Client Communication</h3>
-                  <p>Experienced in handling client discussions, project requirements, and delivering tailored solutions.</p>
+                  <h3>Problem Solving</h3>
+                  <p>I debug, adapt, and create smart solutions sometimes faster than my coffee cools down, but with twice the energy boost.</p>
                 </div>
 
                 
@@ -377,57 +520,58 @@
               </div>
 
               <!-- Skill Chart -->
-              <div class="col-lg-6">
-                <div class="skill-chart py-4" data-aos="fade-up">
-                  <ul class="skill-chart-list list-unstyled">
-                    <li>
-                      <div class="chart-header d-flex justify-content-between">
-                        <span class="skill-title">Web Development (HTML, CSS, JS)</span>
-                        <span class="percentage">90%</span>
-                      </div>
-                      <div class="chart-border">
-                        <div class="chart-percentage ninety-percent"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="chart-header d-flex justify-content-between">
-                        <span class="skill-title">UI/UX Design (Figma)</span>
-                        <span class="percentage">80%</span>
-                      </div>
-                      <div class="chart-border">
-                        <div class="chart-percentage eighty-percent"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="chart-header d-flex justify-content-between">
-                        <span class="skill-title">Networking & Cybersecurity</span>
-                        <span class="percentage">80%</span>
-                      </div>
-                      <div class="chart-border">
-                        <div class="chart-percentage eighty-percent"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="chart-header d-flex justify-content-between">
-                        <span class="skill-title">Leadership & Project Management</span>
-                        <span class="percentage">90%</span>
-                      </div>
-                      <div class="chart-border">
-                        <div class="chart-percentage ninety-percent"></div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="chart-header d-flex justify-content-between">
-                        <span class="skill-title">Creative Content & Branding</span>
-                        <span class="percentage">80%</span>
-                      </div>
-                      <div class="chart-border">
-                        <div class="chart-percentage eighty-percent"></div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+<div class="col-lg-6">
+  <div class="skill-chart py-4" data-aos="fade-up">
+    <ul class="skill-chart-list list-unstyled">
+      <li>
+        <div class="chart-header d-flex justify-content-between">
+          <span class="skill-title">Web Development (I make code look good)</span>
+          <span class="percentage">95%</span>
+        </div>
+        <div class="chart-border">
+          <div class="chart-percentage ninety-five-percent"></div>
+        </div>
+      </li>
+      <li>
+        <div class="chart-header d-flex justify-content-between">
+          <span class="skill-title">UI/UX Design (Pixel perfection with vibes)</span>
+          <span class="percentage">92%</span>
+        </div>
+        <div class="chart-border">
+          <div class="chart-percentage ninety-two-percent"></div>
+        </div>
+      </li>
+      <li>
+        <div class="chart-header d-flex justify-content-between">
+          <span class="skill-title">Networking & Cybersecurity (Your WiFi’s safe with me)</span>
+          <span class="percentage">90%</span>
+        </div>
+        <div class="chart-border">
+          <div class="chart-percentage ninety-percent"></div>
+        </div>
+      </li>
+      <li>
+        <div class="chart-header d-flex justify-content-between">
+          <span class="skill-title">Leadership & Project Management (Yes, I’m the boss here)</span>
+          <span class="percentage">94%</span>
+        </div>
+        <div class="chart-border">
+          <div class="chart-percentage ninety-four-percent"></div>
+        </div>
+      </li>
+      <li>
+        <div class="chart-header d-flex justify-content-between">
+          <span class="skill-title">Creative Content & Branding (I sell ideas, not just pixels)</span>
+          <span class="percentage">91%</span>
+        </div>
+        <div class="chart-border">
+          <div class="chart-percentage ninety-one-percent"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
             </div>
           </section>
 
@@ -513,13 +657,15 @@
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                           data-bs-target="#accordion-collapse1" aria-expanded="true"
                           aria-controls="accordion-collapse1">
-                          What experience do you have in web development?
+                          Can you tell us a bit about yourself?
                         </button>
                       </h2>
                       <div id="accordion-collapse1" class="accordion-collapse collapse show"
                         aria-labelledby="headingOne" data-bs-parent="#accordionExample2">
                         <div class="accordion-body">
-                          I developed a full-stack Smart Office system during my internship. I work best in a team, but I can also handle full-stack projects independently.
+                          I’m Muhammad Saiful Iqbal Abdul Rani, currently pursuing my Bachelor’s degree in IT. 
+                          I’m passionate about web development and cybersecurity, and I enjoy 
+                          building solutions that combine functionality with clean design.
                         </div>
                       </div>
                     </div>
@@ -529,13 +675,16 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#accordion-collapse2" aria-expanded="false"
                           aria-controls="accordion-collapse2">
-                          How many clients do you typically work with at once?
+                          What kind of projects have you worked on?
                         </button>
                       </h2>
                       <div id="accordion-collapse2" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample2">
                         <div class="accordion-body">
-                          I usually manage up to 3 clients at a time. All projects are delivered on schedule with strict quality control.
+                          I’ve developed a full-stack Smart Office system during my internship, 
+                          created a STEM Hub website for an education department, and worked on 
+                          freelance projects with my team (Team Chendawan), focusing on web development, 
+                          hosting, and maintenance.
                         </div>
                       </div>
                     </div>
@@ -545,13 +694,15 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#accordion-collapse3" aria-expanded="false"
                           aria-controls="accordion-collapse3">
-                          Can you take on urgent projects?
+                          What are your main technical skills?
                         </button>
                       </h2>
                       <div id="accordion-collapse3" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample2">
                         <div class="accordion-body">
-                          Yes, I can handle urgent projects. Pricing is adjusted accordingly for expedited work.
+                          I specialize in Laravel, PHP, JavaScript, HTML, and CSS for web development. 
+                          I also have experience in cybersecurity, including ethical hacking and 
+                          penetration testing, as well as creating dashboards for event management.
                         </div>
                       </div>
                     </div>
@@ -561,13 +712,15 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#accordion-collapse4" aria-expanded="false"
                           aria-controls="accordion-collapse4">
-                          Do you have expertise beyond web development?
+                          How would you describe your working style?
                         </button>
                       </h2>
                       <div id="accordion-collapse4" class="accordion-collapse collapse" aria-labelledby="headingFour"
                         data-bs-parent="#accordionExample2">
                         <div class="accordion-body">
-                          My UX skills are developing, but I am proficient in Cybersecurity. I can perform ethical penetration tests and create dashboards for event management.
+                          I’m detail-oriented, adaptive, and collaborative. I work well in a team, 
+                          but I’m also confident managing projects independently when needed. 
+                          Communication and meeting deadlines are my top priorities.
                         </div>
                       </div>
                     </div>
@@ -577,13 +730,15 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#accordion-collapse5" aria-expanded="false"
                           aria-controls="accordion-collapse5">
-                          Can I see examples of your projects?
+                          What do you do outside of work?
                         </button>
                       </h2>
                       <div id="accordion-collapse5" class="accordion-collapse collapse" aria-labelledby="headingFive"
                         data-bs-parent="#accordionExample2">
                         <div class="accordion-body">
-                          You can view selected projects in the E-Portfolio section. For more details or inquiries, feel free to contact me directly.
+                          Outside of coding, I enjoy riding my CBR150R, exploring new tech trends, 
+                          and sharing knowledge. I also aspire to become an IT educator one day, 
+                          blending my passion for technology with teaching.
                         </div>
                       </div>
                     </div>
@@ -591,28 +746,65 @@
                   </div>
                 </div>
 
-                <!-- Contact Form Column -->
-                <div class="col-lg-5">
-                  <div class="right-content" data-aos="fade-up">
-                    <div class="element-header align-right">
-                      <h3>Send me a message or project inquiry</h3>
-                    </div>
-                    <div class="contact-form py-4">
-                      <form id="form" class="form-group">
-                        <div class="pb-2">
-                          <input type="text" name="name" placeholder="Your Full Name" class="form-control" required>
-                        </div>
-                        <div class="pb-2">
-                          <input type="email" name="email" placeholder="Your Email Address" class="form-control" required>
-                        </div>
-                        <div class="pb-2">
-                          <textarea name="message" placeholder="Your Message" rows="6" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" name="submit" class="btn btn-dark w-100 btn-rounded">Submit</button>
-                      </form>
+               <!-- Success Popup -->
+              <div id="popup" class="popup hidden" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+                <div class="popup-content">
+                  <button class="close-btn" aria-label="Close">&times;</button>
+
+                  <!-- Animated Checkmark -->
+                  <div class="icon-wrap" aria-hidden="true">
+                    <svg class="success-svg" viewBox="0 0 72 72">
+                      <!-- Circle -->
+                      <circle class="success-circle" cx="36" cy="36" r="28" fill="none" stroke-width="6" />
+                      <!-- Check -->
+                      <path class="success-check" fill="none" stroke-width="6" d="M22 36 L32 46 L50 28" />
+                    </svg>
+
+                    <!-- Burst dots -->
+                    <div class="burst">
+                      <span></span><span></span><span></span><span></span><span></span>
+                      <span></span><span></span><span></span><span></span><span></span>
                     </div>
                   </div>
+
+                  <h3 id="popup-title">✨ You made my day!</h3>
+                  <p>Seriously, thanks a ton for this 🙌<br />I deeply appreciate your message.</p>
+
+
+                  <!-- Optional action buttons -->
+                  <div class="actions">
+                    <button class="btn-ok">Okay</button>
+                  </div>
                 </div>
+              </div>
+
+
+
+
+                <!-- Contact Form Column -->
+               <div class="col-lg-5">
+                <div class="right-content" data-aos="fade-up">
+                  <div class="element-header align-right">
+                      <h3>Let’s connect projects, ideas, or just some encouragement</h3>
+                      <p>Feel free to drop me a message. I’d love to hear from you!</p>
+                  </div>
+                  <div class="contact-form py-4">
+                    <form id="form" class="form-group">
+                      <div class="pb-2">
+                        <input type="text" name="name" placeholder="Your Full Name" class="form-control" required>
+                      </div>
+                      <div class="pb-2">
+                        <input type="email" name="email" placeholder="Your Email Address" class="form-control" required>
+                      </div>
+                      <div class="pb-2">
+                        <textarea name="message" placeholder="Your Message" rows="6" class="form-control" required></textarea>
+                      </div>
+                      <button type="submit" name="submit" class="btn btn-dark w-100 btn-rounded">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
 
 
               </div>
@@ -632,8 +824,6 @@
 <script src="js/script.js" defer></script>
 <script src="js/telebot.js" defer></script>
 <script src="optimize.js"></script>
-
-
 
 
 <!-- Load optimization -->

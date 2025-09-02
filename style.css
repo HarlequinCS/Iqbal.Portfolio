@@ -876,6 +876,19 @@ body.nav-active .nav__list-item:nth-child(10) {
   width: 95%;
 }
 
+.skill-chart li .chart-percentage.ninety-one-percent {
+  width: 91%;
+}
+
+.skill-chart li .chart-percentage.ninety-two-percent {
+  width: 92%;
+}
+
+.skill-chart li .chart-percentage.ninety-four-percent {
+  width: 94%;
+}
+
+
 
 /* slide in */
 .slide-in .swiper-slide span,
