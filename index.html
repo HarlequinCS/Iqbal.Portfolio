@@ -153,29 +153,29 @@
                   <div class="swiper-slide">
                     <img
                         class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                        src="images/intro.PNG"
-                        alt="Kitchen interior"
+                        src="images/intro.png"
+                        alt="introduction"
                       >
                   </div>
                   <div class="swiper-slide">
                     <img
                         class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                        src="images/experience.JPG"
-                        alt="Kitchen interior"
+                        src="images/experience.jpg"
+                        alt="experience"
                       >
                   </div>
                   <div class="swiper-slide">
                     <img
                         class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                        src="images/expertise.JPG"
-                        alt="Kitchen interior"
+                        src="images/expertise.jpg"
+                        alt="expertise"
                       >
                   </div>
                   <div class="swiper-slide">
                     <img
                         class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
                         src="images/whyme.jpg"
-                        alt="Kitchen interior"
+                        alt="whyme"
                       >
                   </div>
                 </div>
@@ -644,6 +644,37 @@
 
 <!-- Telebot JS -->
 <script src="js/telebot.js"></script>
+
+<!-- Load optimization -->
+ <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const allImages = document.querySelectorAll("img");
+    let loadedCount = 0;
+
+    if (allImages.length === 0) {
+        document.body.classList.add("loaded");
+        return;
+    }
+
+    allImages.forEach(img => {
+        if (img.complete) {
+            loadedCount++;
+            checkAllLoaded();
+        } else {
+            img.addEventListener("load", checkAllLoaded);
+            img.addEventListener("error", checkAllLoaded);
+        }
+    });
+
+    function checkAllLoaded() {
+        loadedCount++;
+        if (loadedCount === allImages.length) {
+            document.body.classList.add("loaded");
+        }
+    }
+});
+</script>
+
 
 
   </body>

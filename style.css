@@ -205,6 +205,17 @@ body {
   background-color: var(--bg-dark);
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
+
+  /* tambahan untuk load effect */
+  visibility: hidden;   /* sembunyi content awal */
+  opacity: 0;           /* fade out */
+  transition: opacity 0.5s ease;  /* smooth fade in */
+}
+
+/* bila semua siap load */
+body.loaded {
+  visibility: visible;
+  opacity: 1;
 }
 
 .logo {
