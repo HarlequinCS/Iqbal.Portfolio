@@ -1,0 +1,48 @@
+/* optimize.css */
+
+/* Smooth rendering & performance tweaks */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  backface-visibility: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  image-rendering: auto;
+}
+
+/* Remove heavy shadows globally if needed */
+[class*="shadow"] {
+  box-shadow: none !important;
+}
+
+/* Smooth transitions */
+a, button, .btn {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Force GPU acceleration for smoother animations */
+section, .card, .hero, .fade-in {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
