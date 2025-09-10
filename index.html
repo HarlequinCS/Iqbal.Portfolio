@@ -39,6 +39,35 @@
   --text: #f8fafc;
 }
 
+.project-desc {
+  font-size: 0.9rem;          /* sedikit lebih besar untuk readability */
+  color: #333;                /* gelap sikit untuk kontras lebih baik */
+  margin-top: 0.5rem;         /* beri space antara title & description */
+  line-height: 1.6;           /* lebih selesa untuk baca paragraph */
+  font-weight: 400;           /* standard weight, lebih elegan */
+  letter-spacing: 0.3px;      /* subtle spacing supaya nampak premium */
+  transition: color 0.3s ease;/* smooth effect bila hover jika nak highlight */
+}
+
+.project-desc a {
+  color: #1e90ff;             /* highlight links kalau ada */
+  text-decoration: underline;
+}
+
+.toggle-desc {
+  cursor: pointer;
+  border-radius: 6px;         /* smooth rounded button */
+  padding: 0.25rem 0.7rem;    /* kecil & minimal */
+  font-size: 0.8rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.toggle-desc:hover {
+  background: #333;
+  color: #fff;
+}
+
+
 /* Backdrop */
 .popup{
   position: fixed; inset: 0;
@@ -575,7 +604,8 @@ p{ margin: 0 0 14px; opacity: .9; }
             </div>
           </section>
 
-
+         
+          <!-- Porfolio section -->
           <section id="portfolio" class="pt-4 pt-lg-5 px-4 px-lg-5 my-5 py-5 fade-in">
             <div class="section-header my-5" data-aos="fade-up">
             <div class="row g-5">
@@ -599,11 +629,17 @@ p{ margin: 0 0 14px; opacity: .9; }
                       <img src="images/jsth.webp" alt="Johor STEM Talent Hub" class="img-fluid">
                     </a>
                   </div>
-                  <div class="caption d-flex justify-content-between align-items-center">
-                    <div class="title">Johor STEM Talent Hub</div>
-                    <a href="https://johorstemhub.com" target="_blank" class="image-format bg-orange">Live</a>
+                  <div class="caption d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="title">Johor STEM Talent Hub</div>
+                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
+                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
+                        Sebagai Lead Front-End Developer, saya bertanggungjawab membina antaramuka yang interaktif dan responsif. Projek ini menjadi platform utama untuk mempamerkan bakat STEM di Johor, memberi impak besar kepada pelajar dan komuniti STEM setempat.                      </div>
+                    </div>
+                    <a href="https://johorstemhub.com" target="_blank" class="image-format bg-orange">View Live</a>
                   </div>
                 </div>
+
 
                 <!-- Portfolio 2: CheckMySet -->
                 <div class="swiper-slide">
@@ -612,8 +648,13 @@ p{ margin: 0 0 14px; opacity: .9; }
                       <img src="images/cms.webp" alt="CheckMySet" class="img-fluid">
                     </a>
                   </div>
-                  <div class="caption d-flex justify-content-between align-items-center">
-                    <div class="title">CheckMySet: Interactive Relation Property Checker</div>
+                  <div class="caption d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="title">CheckMySet: Interactive Relation Property Checker</div>
+                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
+                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
+                        Saya sebagai Lead Developer, membangunkan tool interaktif untuk memeriksa sifat-sifat hubungan matematik secara real-time. Projek ini memudahkan pelajar memahami konsep abstrak dengan cara yang visual dan engaging.                      </div>
+                    </div>
                     <a href="https://harlequincs.github.io/chekmyset/" target="_blank" class="image-format bg-blue">Demo</a>
                   </div>
                 </div>
@@ -625,25 +666,92 @@ p{ margin: 0 0 14px; opacity: .9; }
                       <img src="images/Dashboard.webp" alt="SIEM Dashboard" class="img-fluid">
                     </a>
                   </div>
-                  <div class="caption d-flex justify-content-between align-items-center">
-                    <div class="title">SIEM Dashboard for Intrusion Detection & Log Analysis</div>
+                  <div class="caption d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="title">SIEM Dashboard for Intrusion Detection & Log Analysis</div>
+                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
+                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
+                      Sebagai Primary Contributor, saya membangunkan dashboard yang membolehkan pemantauan log dan pengesanan pencerobohan secara efektif. Projek ini meningkatkan pemahaman keselamatan siber melalui visualisasi data dan analisis interaktif.                      </div>
+                    </div>
                     <a href="https://docs.google.com/document/d/1nf1sWrmDV6zczArdTxkPzsqHZNuRQguHTjCQboSuogw/edit?usp=sharing" target="_blank" class="image-format bg-green">Google Docs</a>
                   </div>
                 </div>
 
-                 <!-- Portfolio 4: CryptoDash -->
+                <!-- Portfolio 4: CryptoDash -->
                 <div class="swiper-slide">
                   <div class="image-holder">
-                    <a href="https://docs.google.com/document/d/1nf1sWrmDV6zczArdTxkPzsqHZNuRQguHTjCQboSuogw/edit?usp=sharing" target="_blank" title="SIEM Dashboard Report">
+                    <a href="https://harlequincs.github.io/CryptoDash/" target="_blank" title="CryptoDash">
                       <img src="images/CryptoDash.png" alt="CryptoDash" class="img-fluid">
                     </a>
                   </div>
-                  <div class="caption d-flex justify-content-between align-items-center">
-                    <div class="title">CryptoCurrency Dashboard With Live Api Integration </div>
+                  <div class="caption d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="title">CryptoCurrency Dashboard With Live Api Integration</div>
+                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
+                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
+                        Saya bertindak sebagai Lead Developer & Integrator, membangunkan dashboard real-time yang memaparkan harga cryptocurrency melalui API live. Projek ini memudahkan pengguna memantau pasaran secara efisien dan interaktif.                      </div>
+                    </div>
                     <a href="https://harlequincs.github.io/CryptoDash/" target="_blank" class="image-format bg-green">Demo</a>
                   </div>
                 </div>
               </div>
+
+              <div class="swiper-pagination mt-5"></div>
+            </div>
+          </section>
+
+          <!-- Publishment Section -->
+
+          <section id="portfolio" class="pt-4 pt-lg-5 px-4 px-lg-5 my-5 py-5 fade-in">
+            <div class="section-header my-5" data-aos="fade-up">
+            <div class="row g-5">
+              <div class="col-lg-6">
+                <span class="introduction mb-3 d-block">Echoes of my creations</span>
+                <h2 class="name mb-4 txt-fx slide-up text-uppercase" style="font-size: 1300%;">Publishment</h2>
+              </div>
+            </div>
+          </div>
+
+            <div class="swiper portfolio-Swiper portfolio-content py-4" data-aos="fade-up">
+              <div class="swiper-wrapper">
+                <!-- PUBLISHMENT 1: MODUL MASTERI -->
+                <div class="swiper-slide">
+                  <div class="image-holder">
+                    <a href="https://online.fliphtml5.com/osnkm/gmpo/#p=1" target="_blank" title="Sample Ebook">
+                      <img src="images/Publishment1_ModulMasteriT4.png" alt="Modul Masteri Matematik Tambahan Tingkatan 4" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="caption d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="title">MODUL MASTERI MATEMATIK TAMBAHAN TINGKATAN 4 NEGERI JOHOR</div>
+                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
+                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
+                        Sebagai Editor Utama, saya bertanggungjawab memastikan keseragaman kandungan, ketepatan topik, dan kualiti penyampaian modul ini. Modul ini kini digunakan secara rasmi oleh semua sekolah di Johor, diterbitkan oleh Jabatan Pendidikan Negeri Johor, untuk membantu pelajar Tingkatan 4 memahami Matematik Tambahan dengan lebih efektif.
+                      </div>
+                    </div>
+                    <a href="https://online.fliphtml5.com/osnkm/gmpo/#p=1" target="_blank" class="image-format bg-orange">Ebook Sample</a>
+                  </div>
+                </div>
+
+                <!-- PUBLISHMENT 2: MODULAR MATH JOHOR -->
+                <div class="swiper-slide">
+                  <div class="image-holder">
+                    <a href="https://online.fliphtml5.com/osnkm/ufit/#p=1" target="_blank" title="Sample Ebook">
+                      <img src="images/Publishment2_ModularMathT5.png" alt="Modular Math Johor Matematik Tingkatan 5" class="img-fluid">
+                    </a>
+                  </div>
+                  <div class="caption d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="title">MODUL MODULAR MATH JOHOR MATEMATIK TINGKATAN 5</div>
+                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
+                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
+                        Sebagai Editor Utama, saya mengawasi kandungan modul ini untuk memastikan topik-topik Matematik Tingkatan 5 disampaikan secara jelas dan konsisten. Modul ini diterbitkan secara rasmi oleh Jabatan Pendidikan Negeri Johor dan digunakan oleh semua sekolah di negeri ini sebagai bahan rujukan utama pelajar.
+                      </div>
+                    </div>
+                    <a href="https://online.fliphtml5.com/osnkm/ufit/#p=1" target="_blank" class="image-format bg-blue">Ebook Sample</a>
+                  </div>
+                </div>
+
 
               <div class="swiper-pagination mt-5"></div>
             </div>
@@ -837,6 +945,21 @@ p{ margin: 0 0 14px; opacity: .9; }
 <script src="js/script.js" defer></script>
 <script src="js/telebot.js" defer></script>
 <script src="optimize.js"></script>
+
+<script>
+  document.querySelectorAll('.toggle-desc').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const desc = btn.nextElementSibling;
+      if(desc.style.maxHeight && desc.style.maxHeight !== "0px"){
+        desc.style.maxHeight = "0";
+        btn.textContent = "Read More";
+      } else {
+        desc.style.maxHeight = desc.scrollHeight + "px";
+        btn.textContent = "Hide";
+      }
+    });
+  });
+</script>
 
 
 <!-- Load optimization -->
