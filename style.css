@@ -229,11 +229,11 @@ body.loaded {
 .name {
   font-family: 'Six Caps', sans-serif;
   font-weight: 400;
-  font-size: 176px;
-  font-size: 206px;
-  line-height: 0.9;
+  font-size: clamp(2.2rem, 6vw, 5rem); /* min 2.2rem, max 5rem, scale ikut viewport */
+  line-height: 1.1;
   color: var(--text-color);
 }
+
 
 .introduction {
   font-weight: 700;
