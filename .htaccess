@@ -72,11 +72,14 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # -----------------------------
-# 7. Hotlink Protection
+# 7. Hotlink Protection (Fixed)
 # -----------------------------
 RewriteCond %{HTTP_REFERER} !^$
 RewriteCond %{HTTP_REFERER} !^https://(www\.)?harlequincs\.github\.io [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(localhost|127\.0\.0\.1) [NC]
+RewriteCond %{HTTP_REFERER} !^https?://192\.168\.0\.141 [NC]
 RewriteRule \.(jpg|jpeg|png|gif|svg|webp)$ - [F,NC,L]
+
 
 # -----------------------------
 # 8. Disable Directory Listing

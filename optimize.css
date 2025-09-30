@@ -1,11 +1,10 @@
-/* optimize.css */
+/* optimize.css - Performance Optimizations Only */
 
-/* Smooth rendering & performance tweaks */
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  backface-visibility: hidden;
 }
 
 html {
@@ -19,23 +18,17 @@ img {
   image-rendering: auto;
 }
 
-/* Remove heavy shadows globally if needed */
-[class*="shadow"] {
-  box-shadow: none !important;
+/* ===== LAZY LOADING STYLES ===== */
+img[data-src] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Smooth transitions */
-a, button, .btn {
-  transition: all 0.3s ease-in-out;
+img[data-src].loaded {
+  opacity: 1;
 }
 
-/* Force GPU acceleration for smoother animations */
-section, .card, .hero, .fade-in {
-  transform: translateZ(0);
-  will-change: transform, opacity;
-}
-
-/* Fade-in animation */
+/* ===== FADE-IN ANIMATIONS ===== */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -45,4 +38,38 @@ section, .card, .hero, .fade-in {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ===== GPU ACCELERATION ===== */
+.hero-image, .swiper-slide, .fade-in {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* ===== SMOOTH SCROLLING ===== */
+html {
+  scroll-padding-top: 80px;
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+  .fade-in {
+    transition-duration: 0.4s;
+  }
+  
+  button, .btn, a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

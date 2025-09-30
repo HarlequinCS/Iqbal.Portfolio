@@ -17,8 +17,10 @@
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <meta name="theme-color" content="#ffffff">
 
-  <!-- Preload critical CSS & Fonts -->
+  <!-- Preload critical resources for faster loading -->
   <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="optimize.css" as="style">
+  <link rel="preload" href="images/intro.webp" as="image">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:wght@400;700;900&family=Six+Caps&display=swap" as="style">
 
   <!-- CSS -->
@@ -28,6 +30,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:wght@400;700;900&family=Six+Caps&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="optimize.css">
+  
+  <!-- DNS prefetch for external resources -->
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
   <style>
 :root{
@@ -325,27 +333,30 @@ p{ margin: 0 0 14px; opacity: .9; }
                         alt="introduction"
                       >
                   </div>
-                  <div class="swiper-slide">
-                    <img
-                        class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                        src="images/experience.webp"
-                        alt="experience"
-                      >
-                  </div>
-                  <div class="swiper-slide">
-                    <img
-                        class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                        src="images/expertise.webp"
-                        alt="expertise"
-                      >
-                  </div>
-                  <div class="swiper-slide">
-                    <img
-                        class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                        src="images/whyme.webp"
-                        alt="whyme"
-                      >
-                  </div>
+                    <div class="swiper-slide">
+                      <img
+                          class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
+                          data-src="images/experience.webp"
+                          alt="experience"
+                          loading="lazy"
+                        >
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                          class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
+                          data-src="images/expertise.webp"
+                          alt="expertise"
+                          loading="lazy"
+                        >
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                          class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
+                          data-src="images/whyme.webp"
+                          alt="whyme"
+                          loading="lazy"
+                        >
+                    </div>
                 </div>
               </div>
             </div>
@@ -626,7 +637,7 @@ p{ margin: 0 0 14px; opacity: .9; }
                 <div class="swiper-slide">
                   <div class="image-holder">
                     <a href="https://johorstemhub.com" target="_blank" title="Johor STEM Talent Hub">
-                      <img src="images/jsth.webp" alt="Johor STEM Talent Hub" class="img-fluid">
+                      <img data-src="images/jsth.webp" alt="Johor STEM Talent Hub" class="img-fluid" loading="lazy">
                     </a>
                   </div>
                   <div class="caption d-flex justify-content-between align-items-start">
@@ -645,7 +656,7 @@ p{ margin: 0 0 14px; opacity: .9; }
                 <div class="swiper-slide">
                   <div class="image-holder">
                     <a href="https://harlequincs.github.io/chekmyset/" target="_blank" title="CheckMySet">
-                      <img src="images/cms.webp" alt="CheckMySet" class="img-fluid">
+                      <img data-src="images/cms.webp" alt="CheckMySet" class="img-fluid" loading="lazy">
                     </a>
                   </div>
                   <div class="caption d-flex justify-content-between align-items-start">
@@ -663,7 +674,7 @@ p{ margin: 0 0 14px; opacity: .9; }
                 <div class="swiper-slide">
                   <div class="image-holder">
                     <a href="https://docs.google.com/document/d/1nf1sWrmDV6zczArdTxkPzsqHZNuRQguHTjCQboSuogw/edit?usp=sharing" target="_blank" title="SIEM Dashboard Report">
-                      <img src="images/Dashboard.webp" alt="SIEM Dashboard" class="img-fluid">
+                      <img data-src="images/Dashboard.webp" alt="SIEM Dashboard" class="img-fluid" loading="lazy">
                     </a>
                   </div>
                   <div class="caption d-flex justify-content-between align-items-start">
@@ -681,7 +692,7 @@ p{ margin: 0 0 14px; opacity: .9; }
                 <div class="swiper-slide">
                   <div class="image-holder">
                     <a href="https://harlequincs.github.io/CryptoDash/" target="_blank" title="CryptoDash">
-                      <img src="images/CryptoDash.png" alt="CryptoDash" class="img-fluid">
+                      <img data-src="images/CryptoDash.png" alt="CryptoDash" class="img-fluid" loading="lazy">
                     </a>
                   </div>
                   <div class="caption d-flex justify-content-between align-items-start">
