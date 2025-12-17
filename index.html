@@ -217,8 +217,22 @@ p{ margin: 0 0 14px; opacity: .9; }
 </head>
 
   <body data-bs-theme="dark">
+    <div id="loader" class="preloader">
+      <div class="preloader-glow"></div>
+      <div class="preloader-inner">
+        <div class="preloader-avatar">
+          <img src="images/intro.webp" alt="Avatar loading">
+          <span class="avatar-ring"></span>
+        </div>
+        <p class="preloader-text">Crafting the portfolio...</p>
+        <div class="preloader-progress"><span></span></div>
+      </div>
+    </div>
 
-    <div class="container-fluid p-0">
+    <div id="page-content">
+
+    <div class="star-layer"></div>
+    <div class="container-fluid p-0 position-relative" id="page-shell">
       <div class="row g-0">
         <!-- Sidebar -->
         <div class="col-lg-3 position-fixed z-1 h-100 d-none d-lg-block" 
@@ -266,132 +280,86 @@ p{ margin: 0 0 14px; opacity: .9; }
             <!-- Main Content / data-aos="fade-up" --> 
             <div id="intro" class="col-lg-8 position-relative d-flex flex-column align-items-center"> 
               <div class="pt-4 pt-lg-5 px-4 px-lg-5 w-100 mt-5">
-                
-                <!--  slide-clip slide-in -->
-                <div class="swiper banner-slider slide-in mt-5 mt-lg-0 ">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <div class="banner-content d-flex flex-column">
-                        <span class="introduction mb-3 d-block">INTRODUCTION</span>
-                        <h2 class="name mb-4 txt-fx slide-up">MUHAMMAD SAIFUL IQBAL</h2>
-                        <p class="description mb-4">
-                          Web Developer, Ethical Hacker & Front-End Developer — passionate about building secure, creative, 
-                          and impactful digital solutions. Founder of ChendAwan, a young team driving rapid digital growth.
-                        </p>
-                        <a href="#contact" class="cta-link d-inline-block mb-5">Let’s Talk</a>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="banner-content d-flex flex-column">
-                        <span class="introduction mb-3 d-block">Founder / Project Manager</span>
-                        <h2 class="name mb-4 txt-fx slide-up">Team ChendAwan</h2>
-                        <p class="description mb-4">
-                          Leading ChendAwan – Young minds, united as a team, driving rapid digital growth through real-world client projects.
-                        </p>
-                        <a href="#portfolio" class="cta-link d-inline-block mb-5">See Projects</a>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="banner-content d-flex flex-column">
-                        <span class="introduction mb-3 d-block">Front-End & Cybersecurity</span>
-                        <h2 class="name mb-4 txt-fx slide-up">Full Stack Solutions</h2>
-                        <p class="description mb-4">
-                          Skilled in Laravel, HTML, CSS, JavaScript, and security practices to build fast, secure, and user-friendly web solutions.
-                        </p>
-                        <a href="#contact" class="cta-link d-inline-block mb-5">Let's Talk.</a>
-                      </div>
-                    </div>
-                    <div class="swiper-slide">
-                      <div class="banner-content d-flex flex-column">
-                        <span class="introduction mb-3 d-block">Why Work With Me?</span>
-                        <h2 class="name mb-4 txt-fx slide-up">Collaborative & Reliable</h2>
-                        <p class="description mb-4">
-                          I value clear communication, teamwork, and accountability to ensure every project runs smoothly and delivers real impact.
-                        </p>
-                        <a href="#about" class="cta-link d-inline-block mb-5">About Me.</a>
-                      </div>
+                <div class="hero-grid" data-aos="fade-up">
+                  <div>
+                    <span class="hero-kicker d-block mb-2">Computer Science & IT Enthusiast</span>
+                    <h1 class="hero-title txt-fx">Muhammad Saiful Iqbal</h1>
+                    <p class="hero-subtext">
+                      I craft secure, performant web experiences with a product mindset—combining Laravel/JS, clean UI, and security by design to ship faster with confidence.
+                    </p>
+                    <ul class="hero-bullets">
+                      <li>Full-stack delivery: Laravel, JS, responsive UI, and deployment.</li>
+                      <li>Security-aware builds: auth, validation, logging, and hardening.</li>
+                    </ul>
+                    <div class="cta-row mt-2">
+                      <a href="#portfolio" class="btn-pill primary">View Projects</a>
+                      <a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" class="btn-pill secondary">Connect on LinkedIn</a>
                     </div>
                   </div>
-                </div>
-                
-              </div>
-              
-              <nav class="section-nav swiper banner-nav-slider pt-3 pt-lg-4 px-4 px-lg-5 w-100" data-aos="fade-up" data-aos-delay="600" data-aos-anchor-placement="top-bottom">
-                <ul class="swiper-wrapper">
-                  <li class="swiper-slide"><span>01</span> INTRO</li>
-                  <li class="swiper-slide"><span>02</span> EXPERIENCE</li>
-                  <li class="swiper-slide"><span>03</span> EXPERTISE</li>
-                  <li class="swiper-slide"><span>04</span> WHY ME?</li>
-                </ul>
-              </nav>
-              <div class="swiper image-slider" data-aos="fade-up" data-aos-delay="1000" >
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img
-                        class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                        src="images/intro.webp"
-                        alt="introduction"
-                      >
+                  <div class="avatar-frame" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="images/intro.webp" alt="Muhammad Saiful Iqbal portrait" class="img-fluid">
                   </div>
-                    <div class="swiper-slide">
-                      <img
-                          class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                          data-src="images/experience.webp"
-                          alt="experience"
-                          loading="lazy"
-                        >
-                    </div>
-                    <div class="swiper-slide">
-                      <img
-                          class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                          data-src="images/expertise.webp"
-                          alt="expertise"
-                          loading="lazy"
-                        >
-                    </div>
-                    <div class="swiper-slide">
-                      <img
-                          class="hero-image position-absolute top-0 end-0 img-fluid mb-5 opacity-25 vh-100"
-                          data-src="images/whyme.webp"
-                          alt="whyme"
-                          loading="lazy"
-                        >
-                    </div>
+                  <span class="floating-shape shape-1"></span>
+                  <span class="floating-shape shape-2"></span>
+                  <div class="particle-field">
+                    <span style="top:10%;left:12%;"></span>
+                    <span style="top:30%;left:28%;"></span>
+                    <span style="top:50%;left:15%;"></span>
+                    <span style="top:70%;left:35%;"></span>
+                    <span style="top:20%;right:18%;"></span>
+                    <span style="top:40%;right:8%;"></span>
+                    <span style="top:60%;right:24%;"></span>
+                    <span style="bottom:18%;left:22%;"></span>
+                    <span style="bottom:26%;right:16%;"></span>
+                    <span style="bottom:8%;right:32%;"></span>
+                  </div>
                 </div>
               </div>
             </div>
             
-            <!-- Skills Section -->
+            <!-- Skills / Capabilities -->
             <div class="col-lg-4">
               <div class="p-4 p-lg-5 vh-100">
-                <div class="skill" data-aos="fade-up" data-aos-delay="200">
-                  <span class="skill-number d-block">01</span>
-                  <h3>Web Development</h3>
-                  <p>I turn ideas into clean, responsive, and scalable websites less bugs, more wow factor, and just the right touch of magic.</p>
+                <div class="card-soft" data-aos="fade-up" data-aos-delay="200">
+                  <span class="hero-kicker mb-2 d-block">Capabilities</span>
+                  <div class="capabilities">
+                    <div class="capability-group">
+                      <h4>Frontend</h4>
+                      <div class="chip-row">
+                        <span class="stack-chip">HTML/CSS/JS</span>
+                        <span class="stack-chip">Responsive UI</span>
+                        <span class="stack-chip">Accessibility</span>
+                      </div>
+                    </div>
+                    <div class="capability-group">
+                      <h4>Backend</h4>
+                      <div class="chip-row">
+                        <span class="stack-chip">Laravel/PHP</span>
+                        <span class="stack-chip">REST APIs</span>
+                        <span class="stack-chip">Auth & Validation</span>
+                        <span class="stack-chip">Caching</span>
+                      </div>
+                    </div>
+                    <div class="capability-group">
+                      <h4>Security & Ops</h4>
+                      <div class="chip-row">
+                        <span class="stack-chip">Secure-by-design</span>
+                        <span class="stack-chip">Logging/Monitoring</span>
+                        <span class="stack-chip">Perf tuning</span>
+                      </div>
+                    </div>
+                    <div class="capability-group">
+                      <h4>Delivery</h4>
+                      <div class="chip-row">
+                        <span class="stack-chip">Git/GitHub</span>
+                        <span class="stack-chip">CI-friendly</span>
+                        <span class="stack-chip">Docs & handoff</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                <div class="skill" data-aos="fade-up" data-aos-delay="400">
-                  <span class="skill-number d-block">02</span>
-                  <h3>Cybersecurity Awareness</h3>
-                  <p>Certified ethical hacker mindset I secure systems before hackers even think about it, like locking the door before they find the house.</p>
-                </div>
-
-                <div class="skill" data-aos="fade-up" data-aos-delay="600">
-                  <span class="skill-number d-block">03</span>
-                  <h3>Problem Solving</h3>
-                  <p>I debug, adapt, and create smart solutions sometimes faster than my coffee cools down, but with twice the energy boost.</p>
-                </div>
-
-                
-               <!-- Mobile-only content -->
-                <!-- <div class="d-lg-none mt-5">
-                  <hr class="sidebar-divider">
-                  <p class="job-title mb-2">WEB DEVELOPER / PROJECT MANAGER</p>
-                  <p class="location mb-4">JOHOR, MALAYSIA</p>
-                  <a href="#" class="cta-button d-block text-center">VIEW PORTFOLIO</a>
-                </div> -->
-                </div>
-                </div>
+              </div>
+            </div>
 
             
             <!-- CTA Button (Desktop) -->
@@ -405,122 +373,81 @@ p{ margin: 0 0 14px; opacity: .9; }
               </button> -->
             </div>
 
-            <section id="about" class="pt-4 pt-lg-5 px-4 px-lg-5 my-5 py-5 fade-in">
-            <div class="row d-flex flex-wrap" data-aos="fade-up">
-              <div class="col-lg-6 pb-5">
-                <span class="introduction mb-3 d-block">BIODATA</span>
-                <h2 class="name mb-4 txt-fx slide-up text-uppercase">Education</h2>
-                <div class="data-info py-3" data-aos="fade-up">
-                  <span class="meta-date">2017 - 2021</span>
-                  <h3 class="info-title">Sijil Pelajaran Malaysia (SPM)</h3>
-                  <p>Sekolah Menengah Kebangsaan Seri Sembrong</p>
+          <section id="about" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
+              <div class="row d-flex flex-wrap" data-aos="fade-up">
+                <div class="col-lg-7 pb-4">
+                  <span class="introduction mb-3 d-block">About</span>
+                  <h2 class="name mb-4 txt-fx slide-up text-uppercase">Building secure, user-first web products</h2>
+                  <p class="description mb-3">
+                    I’m a Computer Science & IT enthusiast who blends full-stack web development with a security mindset. I ship clean, responsive interfaces, build reliable backends, and keep performance and security in the loop from day one.
+                  </p>
+                  <div class="highlight-row mb-3">
+                    <div class="highlight-pill">Laravel + JS delivery</div>
+                    <div class="highlight-pill">Security by design</div>
+                    <div class="highlight-pill">STEM/EdTech focus</div>
+                    <div class="highlight-pill">Product-minded</div>
+                  </div>
+                  <div class="section-divider"></div>
+                  <div class="highlight-row">
+                    <div class="pill primary">UiTM CS (Diploma → Bachelor)</div>
+                    <div class="pill accent">Cisco: CCNA Intro, Cybersecurity, Ethical Hacker</div>
+                    <div class="pill primary">Opswat: Critical Infrastructure Protection</div>
+                    <div class="pill accent">Published STEM resources used statewide</div>
+                  </div>
+                  <div class="row g-3 mt-3" data-aos="fade-up" data-aos-delay="150">
+                    <div class="col-md-4">
+                      <div class="image-holder bg-cover" style="background-image:url('images/experience.webp');">
+                        <div class="overlay-content">
+                          <h5>Experience</h5>
+                          <p>Hands-on delivery from freelancing to leading Team ChendAwan, shipping secure web products end-to-end.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="image-holder bg-cover" style="background-image:url('images/expertise.webp');">
+                        <div class="overlay-content">
+                          <h5>Expertise</h5>
+                          <p>Frontend + backend with a security mindset—clarity in UI, discipline in auth, validation, and logging.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="image-holder bg-cover" style="background-image:url('images/whyme.webp');">
+                        <div class="overlay-content">
+                          <h5>Why collaborate</h5>
+                          <p>Product thinking, reliable communication, and collaborative delivery for fast, safe launches.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                <div class="data-info" data-aos="fade-up" data-aos-delay="100">
-                  <span class="meta-date">2022 - 2025</span>
-                  <h3 class="info-title">Diploma in Computer Science</h3>
-                  <p>Universiti Teknologi MARA (UiTM) Cawangan Johor Kampus Segamat</p>
-                </div>
-
-                <div class="data-info" data-aos="fade-up" data-aos-delay="200">
-                  <span class="meta-date">2025 - 2028 (Expected)</span>
-                  <h3 class="info-title">Bachelor of Computer Science (Hons.) Netcentric Computing</h3>
-                  <p>Universiti Teknologi MARA (UiTM) Cawangan Melaka Kampus Jasin</p>
-                </div>
-              </div>
-              <div class="col-lg-6 pb-5">
-                <h2 class="name mb-4 txt-fx slide-up text-uppercase">Experiences</h2>
-                <!-- EXPERIENCE SECTION -->
-                <div class="data-info py-3" data-aos="fade-up" data-aos-delay="200">
-                  <span class="meta-date">2021 - 2022</span>
-                  <h3 class="info-title">Barista - Leezo Restaurant</h3>
-                  <p>Developed strong customer service and multitasking skills while preparing beverages and managing financial transactions. Gained hands-on experience in handling daily operations and ensuring customer satisfaction.</p>
-                </div>
-
-                <div class="data-info" data-aos="fade-up" data-aos-delay="300">
-                  <span class="meta-date">2024-2025</span>
-                  <h3 class="info-title">Internship Trainee - Johor State Education Department (ICT Unit, Learning Sector)</h3>
-                  <p>Contributed to IT support and digital initiatives under the guidance of Ts. Ahmad Kamalrulzaman Bin Othman and Encik Mohd Hairil Bin Moh Khambali. Assisted in maintaining systems, supporting digital learning projects, and building practical problem-solving skills in a government environment.</p>
-                </div>
-
-                <div class="data-info" data-aos="fade-up" data-aos-delay="400">
-                  <span class="meta-date">2025 - Present</span>
-                  <h3 class="info-title">Founder & Creative Director - Team ChendAwan</h3>
-                  <p>Leading a startup team of young developers, multimedia specialists, and financial managers. Spearheading web development projects from planning to deployment, client management, and creative direction. Successfully delivered multiple freelance projects including <strong>web design, development, hosting, and maintenance</strong> for SMEs and organizations.</p>
-                </div>
-
-              </div>
-            </div>
-            <div class="row d-flex flex-wrap" data-aos="fade-up">
-             <div class="col-lg-6 pb-5">
-              <h2 class="name mb-4 txt-fx slide-up text-uppercase">Certificate</h2>
-
-              <!-- Networking & Cybersecurity -->
-              <div class="data-info py-3" data-aos="fade-up">
-                <h3 class="info-title">Networking & Cybersecurity</h3>
-                <ul>
-                  <li>CCNA: Introduction to Networks (Cisco)</li>
-                  <li>Introduction to Cybersecurity (Cisco)</li>
-                  <li>Ethical Hacker (Cisco)</li>
-                  <li>Introduction to CIP (Critical Infrastructure Protection) – Opswat Academy</li>
-                </ul>
-              </div>
-
-              <!-- Web Development & Hosting -->
-              <div class="data-info py-3" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="info-title">Web Development & Hosting</h3>
-                <ul>
-                  <li>HTML Essential (Cisco)</li>
-                  <li>CSS Essential (Cisco)</li>
-                  <li>JavaScript Essential 1 (Cisco)</li>
-                  <li>JavaScript Essential 2 (Cisco)</li>
-                  <li>Asas Pengendalian Pelayan Web – Tenang Komuniti Sdn. Bhd.</li>
-                </ul>
-              </div>
-
-              <!-- Green IT / Sustainability -->
-              <div class="data-info py-3" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="info-title">Green IT / Sustainability</h3>
-                <ul>
-                  <li>Introduction to Greenhouse Gas Accounting for IT</li>
-                </ul>
-              </div>
-            </div>
-              <div class="col-lg-6 pb-5"> 
-                <h2 class="name mb-4 txt-fx slide-up text-uppercase">References</h2>
-
-                <!-- Reference 1 -->
-                <div class="data-info py-3" data-aos="fade-up" data-aos-delay="200">
-                  <span class="meta-date">Diploma</span>
-                  <h3 class="info-title">Ts. Dr. Nur Huda binti Jaafar</h3>
-                  <p>MARA University of Technology (UiTM)<br>
-                  Academic Advisor<br>
-                  Email: <a href="mailto:nurhu378@uitm.edu.my">nurhu378@uitm.edu.my</a></p>
-                </div>
-
-                <!-- Reference 2 -->
-                <div class="data-info" data-aos="fade-up" data-aos-delay="300">
-                  <span class="meta-date">Internship</span>
-                  <h3 class="info-title">Encik Mohd Hairil Bin Moh Khambali</h3>
-                  <p>Johor State Education Department (JPNJ)<br>
-                  Assistant Director<br>
-                  Email: <a href="mailto:hairil.khambali@moe.gov.my">hairil.khambali@moe.gov.my</a></p>
-                </div>
-
-                <!-- Reference 3 -->
-                <div class="data-info" data-aos="fade-up" data-aos-delay="400">
-                  <span class="meta-date">Bachelor</span>
-                  <h3 class="info-title">Sir Mohamad Asrol Bin Arshad</h3>
-                  <p>MARA University of Technology (UiTM)<br>
-                  Academic Advisor<br>
-                  Email: <a href="mailto:mohamad_asrol@uitm.edu.my">mohamad_asrol@uitm.edu.my</a></p>
+                <div class="col-lg-5 pb-4">
+                  <div class="card-soft h-100 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="mb-3">How I work</h3>
+                    <div class="process-grid">
+                      <div class="process-card">
+                        <h4>Discover</h4>
+                        <p>Clarify goals, users, constraints, and risks up front.</p>
+                      </div>
+                      <div class="process-card">
+                        <h4>Design/Model</h4>
+                        <p>Define flows, data, auth, and validation paths early.</p>
+                      </div>
+                      <div class="process-card">
+                        <h4>Build & Secure</h4>
+                        <p>Implement clean UI + APIs with security checks in place.</p>
+                      </div>
+                      <div class="process-card">
+                        <h4>Test & Ship</h4>
+                        <p>Validate, monitor, and iterate fast with feedback loops.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </section>
 
-            </div>
-          </section>
-
-          <section id="experience" class="pt-4 pt-lg-5 px-4 px-lg-5 my-5 py-5 fade-in">
+          <section id="experience" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
             <div class="row mb-5">
               <div class="col-lg-6" data-aos="fade-up">
                 <span class="introduction mb-3 d-block">introduction</span>
@@ -559,65 +486,121 @@ p{ margin: 0 0 14px; opacity: .9; }
                 </div>
               </div>
 
-              <!-- Skill Chart -->
-<div class="col-lg-6">
-  <div class="skill-chart py-4" data-aos="fade-up">
-    <ul class="skill-chart-list list-unstyled">
-      <li>
-        <div class="chart-header d-flex justify-content-between">
-          <span class="skill-title">Web Development (I make code look good)</span>
-          <span class="percentage">95%</span>
-        </div>
-        <div class="chart-border">
-          <div class="chart-percentage ninety-five-percent"></div>
-        </div>
-      </li>
-      <li>
-        <div class="chart-header d-flex justify-content-between">
-          <span class="skill-title">UI/UX Design (Pixel perfection with vibes)</span>
-          <span class="percentage">92%</span>
-        </div>
-        <div class="chart-border">
-          <div class="chart-percentage ninety-two-percent"></div>
-        </div>
-      </li>
-      <li>
-        <div class="chart-header d-flex justify-content-between">
-          <span class="skill-title">Networking & Cybersecurity (Your WiFi’s safe with me)</span>
-          <span class="percentage">90%</span>
-        </div>
-        <div class="chart-border">
-          <div class="chart-percentage ninety-percent"></div>
-        </div>
-      </li>
-      <li>
-        <div class="chart-header d-flex justify-content-between">
-          <span class="skill-title">Leadership & Project Management (Yes, I’m the boss here)</span>
-          <span class="percentage">94%</span>
-        </div>
-        <div class="chart-border">
-          <div class="chart-percentage ninety-four-percent"></div>
-        </div>
-      </li>
-      <li>
-        <div class="chart-header d-flex justify-content-between">
-          <span class="skill-title">Creative Content & Branding (I sell ideas, not just pixels)</span>
-          <span class="percentage">91%</span>
-        </div>
-        <div class="chart-border">
-          <div class="chart-percentage ninety-one-percent"></div>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
+              <div class="col-lg-6">
+                <div class="card-soft py-4 px-4 h-100" data-aos="fade-up">
+                  <h4 class="mb-3">Recent impact</h4>
+                  <ul class="case-points mb-3">
+                    <li><strong>STEM Hub:</strong> Led front-end & deployment, improved onboarding and uptime for a statewide audience.</li>
+                    <li><strong>CheckMySet:</strong> Built interactive math tool with real-time validation to aid learning.</li>
+                    <li><strong>SIEM Dashboard:</strong> Delivered security-focused dashboards for log visibility and intrusion insights.</li>
+                    <li><strong>CryptoDash:</strong> Live API integration with performant UI for market monitoring.</li>
+                  </ul>
+                  <div class="chip-row">
+                    <span class="stack-chip">Performance-first</span>
+                    <span class="stack-chip">Secure delivery</span>
+                    <span class="stack-chip">UX & clarity</span>
+                  </div>
+                </div>
+              </div>
 
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-lg-6" data-aos="fade-up">
+                <h4 class="mb-3">Education</h4>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="meta-date">2017 - 2021</div>
+                    <h5 class="info-title">Sijil Pelajaran Malaysia (SPM)</h5>
+                    <p>Sekolah Menengah Kebangsaan Seri Sembrong</p>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="meta-date">2022 - 2025</div>
+                    <h5 class="info-title">Diploma in Computer Science</h5>
+                    <p>Universiti Teknologi MARA (UiTM) Cawangan Johor Kampus Segamat</p>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="meta-date">2025 - 2028 (Expected)</div>
+                    <h5 class="info-title">Bachelor of Computer Science (Hons.) Netcentric Computing</h5>
+                    <p>Universiti Teknologi MARA (UiTM) Cawangan Melaka Kampus Jasin</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="mb-3">Experience</h4>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="meta-date">2021 - 2022</div>
+                    <h5 class="info-title">Barista - Leezo Restaurant</h5>
+                    <p>Developed strong customer service and multitasking skills while preparing beverages and managing financial transactions. Gained hands-on experience in handling daily operations and ensuring customer satisfaction.</p>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="meta-date">2024 - 2025</div>
+                    <h5 class="info-title">Internship Trainee - Johor State Education Department (ICT Unit, Learning Sector)</h5>
+                    <p>Contributed to IT support and digital initiatives under the guidance of Ts. Ahmad Kamalrulzaman Bin Othman and Encik Mohd Hairil Bin Moh Khambali. Assisted in maintaining systems, supporting digital learning projects, and building practical problem-solving skills in a government environment.</p>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="meta-date">2025 - Present</div>
+                    <h5 class="info-title">Founder & Creative Director - Team ChendAwan</h5>
+                    <p>Leading a startup team of young developers, multimedia specialists, and financial managers. Spearheading web development projects from planning to deployment, client management, and creative direction. Successfully delivered multiple freelance projects including <strong>web design, development, hosting, and maintenance</strong> for SMEs and organizations.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-lg-6" data-aos="fade-up">
+                <h4 class="mb-3">Certificates</h4>
+                <div class="card-soft">
+                  <h6 class="mb-2">Networking & Cybersecurity</h6>
+                  <ul class="list-compact">
+                    <li>CCNA: Introduction to Networks (Cisco)</li>
+                    <li>Introduction to Cybersecurity (Cisco)</li>
+                    <li>Ethical Hacker (Cisco)</li>
+                    <li>Introduction to CIP (Critical Infrastructure Protection) – Opswat Academy</li>
+                  </ul>
+                  <div class="section-divider"></div>
+                  <h6 class="mb-2">Web Development & Hosting</h6>
+                  <ul class="list-compact">
+                    <li>HTML Essential (Cisco)</li>
+                    <li>CSS Essential (Cisco)</li>
+                    <li>JavaScript Essential 1 (Cisco)</li>
+                    <li>JavaScript Essential 2 (Cisco)</li>
+                    <li>Asas Pengendalian Pelayan Web – Tenang Komuniti Sdn. Bhd.</li>
+                  </ul>
+                  <div class="section-divider"></div>
+                  <h6 class="mb-2">Green IT / Sustainability</h6>
+                  <ul class="list-compact">
+                    <li>Introduction to Greenhouse Gas Accounting for IT</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="mb-3">References</h4>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="meta-date">Diploma</div>
+                    <h5 class="info-title">Ts. Dr. Nur Huda binti Jaafar</h5>
+                    <p>MARA University of Technology (UiTM)<br>Academic Advisor<br>Email: <a href="mailto:nurhu378@uitm.edu.my">nurhu378@uitm.edu.my</a></p>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="meta-date">Internship</div>
+                    <h5 class="info-title">Encik Mohd Hairil Bin Moh Khambali</h5>
+                    <p>Johor State Education Department (JPNJ)<br>Assistant Director<br>Email: <a href="mailto:hairil.khambali@moe.gov.my">hairil.khambali@moe.gov.my</a></p>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="meta-date">Bachelor</div>
+                    <h5 class="info-title">Sir Mohamad Asrol Bin Arshad</h5>
+                    <p>MARA University of Technology (UiTM)<br>Academic Advisor<br>Email: <a href="mailto:mohamad_asrol@uitm.edu.my">mohamad_asrol@uitm.edu.my</a></p>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
          
           <!-- Porfolio section -->
-          <section id="portfolio" class="pt-4 pt-lg-5 px-4 px-lg-5 my-5 py-5 fade-in">
+          <section id="portfolio" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
             <div class="section-header my-5" data-aos="fade-up">
             <div class="row g-5">
               <div class="col-lg-6">
@@ -631,89 +614,123 @@ p{ margin: 0 0 14px; opacity: .9; }
             </div>
           </div>
 
-            <div class="swiper portfolio-Swiper portfolio-content py-4" data-aos="fade-up">
-              <div class="swiper-wrapper">
+            <div class="portfolio-wrapper" data-aos="fade-up">
+              <div class="portfolio-nav d-flex align-items-center justify-content-end gap-2 mb-3">
+                <button class="nav-btn portfolio-prev" aria-label="Previous project"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="nav-btn portfolio-next" aria-label="Next project"><i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+              <div class="swiper portfolio-Swiper portfolio-content py-4">
+                <div class="swiper-wrapper">
                 <!-- Portfolio 1: JSTH -->
                 <div class="swiper-slide">
-                  <div class="image-holder">
-                    <a href="https://johorstemhub.com" target="_blank" title="Johor STEM Talent Hub">
-                      <img data-src="images/jsth.webp" alt="Johor STEM Talent Hub" class="img-fluid" loading="lazy">
-                    </a>
-                  </div>
-                  <div class="caption d-flex justify-content-between align-items-start">
-                    <div>
+                  <div class="portfolio-card">
+                    <div class="image-holder bg-cover" style="background-image:url('images/jsth.webp');"></div>
+                    <div class="caption mt-0">
                       <div class="title">Johor STEM Talent Hub</div>
-                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
-                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
-                        Sebagai Lead Front-End Developer, saya bertanggungjawab membina antaramuka yang interaktif dan responsif. Projek ini menjadi platform utama untuk mempamerkan bakat STEM di Johor, memberi impak besar kepada pelajar dan komuniti STEM setempat.                      </div>
+                      <div class="case-meta">Role: Lead Front-End & Deployment</div>
+                      <ul class="case-points">
+                        <li><strong>Problem:</strong> Needed a reliable hub to onboard and showcase STEM talents statewide.</li>
+                        <li><strong>Solution:</strong> Built responsive UI with clear flows, hardening forms and deployment.</li>
+                        <li><strong>Outcome:</strong> Improved onboarding and uptime for thousands of student visits.</li>
+                      </ul>
+                      <div class="chip-row mb-2">
+                        <span class="stack-chip">Laravel</span>
+                        <span class="stack-chip">JavaScript</span>
+                        <span class="stack-chip">Responsive UI</span>
+                        <span class="stack-chip">Security-first</span>
+                      </div>
+                      <div class="case-actions">
+                        <a href="https://johorstemhub.com" target="_blank" class="btn-pill primary">Live Site</a>
+                        <a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" class="btn-pill secondary">Discuss</a>
+                      </div>
                     </div>
-                    <a href="https://johorstemhub.com" target="_blank" class="image-format bg-orange">View Live</a>
                   </div>
                 </div>
 
 
                 <!-- Portfolio 2: CheckMySet -->
                 <div class="swiper-slide">
-                  <div class="image-holder">
-                    <a href="https://harlequincs.github.io/chekmyset/" target="_blank" title="CheckMySet">
-                      <img data-src="images/cms.webp" alt="CheckMySet" class="img-fluid" loading="lazy">
-                    </a>
-                  </div>
-                  <div class="caption d-flex justify-content-between align-items-start">
-                    <div>
-                      <div class="title">CheckMySet: Interactive Relation Property Checker</div>
-                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
-                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
-                        Saya sebagai Lead Developer, membangunkan tool interaktif untuk memeriksa sifat-sifat hubungan matematik secara real-time. Projek ini memudahkan pelajar memahami konsep abstrak dengan cara yang visual dan engaging.                      </div>
+                  <div class="portfolio-card">
+                    <div class="image-holder bg-cover" style="background-image:url('images/cms.webp');"></div>
+                    <div class="caption mt-0">
+                      <div class="title">CheckMySet — Interactive Relation Checker</div>
+                      <div class="case-meta">Role: Lead Developer</div>
+                      <ul class="case-points">
+                        <li><strong>Problem:</strong> Students struggled to grasp abstract relation properties.</li>
+                        <li><strong>Solution:</strong> Built a real-time interactive checker with visual feedback.</li>
+                        <li><strong>Outcome:</strong> Faster understanding with immediate validation in browser.</li>
+                      </ul>
+                      <div class="chip-row mb-2">
+                        <span class="stack-chip">JavaScript</span>
+                        <span class="stack-chip">UX writing</span>
+                        <span class="stack-chip">Client-side logic</span>
+                      </div>
+                      <div class="case-actions">
+                        <a href="https://harlequincs.github.io/chekmyset/" target="_blank" class="btn-pill primary">Live Demo</a>
+                        <a href="https://github.com/harlequincs/chekmyset" target="_blank" class="btn-pill secondary">GitHub</a>
+                      </div>
                     </div>
-                    <a href="https://harlequincs.github.io/chekmyset/" target="_blank" class="image-format bg-blue">Demo</a>
                   </div>
                 </div>
 
                 <!-- Portfolio 3: SIEM Dashboard -->
                 <div class="swiper-slide">
-                  <div class="image-holder">
-                    <a href="https://docs.google.com/document/d/1nf1sWrmDV6zczArdTxkPzsqHZNuRQguHTjCQboSuogw/edit?usp=sharing" target="_blank" title="SIEM Dashboard Report">
-                      <img data-src="images/Dashboard.webp" alt="SIEM Dashboard" class="img-fluid" loading="lazy">
-                    </a>
-                  </div>
-                  <div class="caption d-flex justify-content-between align-items-start">
-                    <div>
-                      <div class="title">SIEM Dashboard for Intrusion Detection & Log Analysis</div>
-                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
-                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
-                      Sebagai Primary Contributor, saya membangunkan dashboard yang membolehkan pemantauan log dan pengesanan pencerobohan secara efektif. Projek ini meningkatkan pemahaman keselamatan siber melalui visualisasi data dan analisis interaktif.                      </div>
+                  <div class="portfolio-card">
+                    <div class="image-holder bg-cover" style="background-image:url('images/Dashboard.webp');"></div>
+                    <div class="caption mt-0">
+                      <div class="title">SIEM Dashboard — Intrusion Detection</div>
+                      <div class="case-meta">Role: Primary Contributor</div>
+                      <ul class="case-points">
+                        <li><strong>Problem:</strong> Needed clearer visibility into intrusion events and logs.</li>
+                        <li><strong>Solution:</strong> Built dashboards with actionable views and log triage flows.</li>
+                        <li><strong>Outcome:</strong> Faster insight for security monitoring and reporting.</li>
+                      </ul>
+                      <div class="chip-row mb-2">
+                        <span class="stack-chip">Dashboards</span>
+                        <span class="stack-chip">Security</span>
+                        <span class="stack-chip">Data viz</span>
+                      </div>
+                      <div class="case-actions">
+                        <a href="https://docs.google.com/document/d/1nf1sWrmDV6zczArdTxkPzsqHZNuRQguHTjCQboSuogw/edit?usp=sharing" target="_blank" class="btn-pill primary">Case Study</a>
+                      </div>
                     </div>
-                    <a href="https://docs.google.com/document/d/1nf1sWrmDV6zczArdTxkPzsqHZNuRQguHTjCQboSuogw/edit?usp=sharing" target="_blank" class="image-format bg-green">Google Docs</a>
                   </div>
                 </div>
 
                 <!-- Portfolio 4: CryptoDash -->
                 <div class="swiper-slide">
-                  <div class="image-holder">
-                    <a href="https://harlequincs.github.io/CryptoDash/" target="_blank" title="CryptoDash">
-                      <img data-src="images/CryptoDash.png" alt="CryptoDash" class="img-fluid" loading="lazy">
-                    </a>
-                  </div>
-                  <div class="caption d-flex justify-content-between align-items-start">
-                    <div>
-                      <div class="title">CryptoCurrency Dashboard With Live Api Integration</div>
-                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
-                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
-                        Saya bertindak sebagai Lead Developer & Integrator, membangunkan dashboard real-time yang memaparkan harga cryptocurrency melalui API live. Projek ini memudahkan pengguna memantau pasaran secara efisien dan interaktif.                      </div>
+                  <div class="portfolio-card">
+                    <div class="image-holder bg-cover" style="background-image:url('images/CryptoDash.png');"></div>
+                    <div class="caption mt-0">
+                      <div class="title">CryptoDash — Live Market Dashboard</div>
+                      <div class="case-meta">Role: Lead Developer</div>
+                      <ul class="case-points">
+                        <li><strong>Problem:</strong> Needed real-time market view with clean UX.</li>
+                        <li><strong>Solution:</strong> Integrated live APIs with performant UI and state handling.</li>
+                        <li><strong>Outcome:</strong> Smooth monitoring experience with responsive layout.</li>
+                      </ul>
+                      <div class="chip-row mb-2">
+                        <span class="stack-chip">API integration</span>
+                        <span class="stack-chip">JavaScript</span>
+                        <span class="stack-chip">Responsive</span>
+                      </div>
+                      <div class="case-actions">
+                        <a href="https://harlequincs.github.io/CryptoDash/" target="_blank" class="btn-pill primary">Live Demo</a>
+                        <a href="https://github.com/harlequincs/CryptoDash" target="_blank" class="btn-pill secondary">GitHub</a>
+                      </div>
                     </div>
-                    <a href="https://harlequincs.github.io/CryptoDash/" target="_blank" class="image-format bg-green">Demo</a>
                   </div>
                 </div>
               </div>
 
-              <div class="swiper-pagination mt-5"></div>
+                <div class="swiper-pagination mt-5"></div>
+              </div>
             </div>
           </section>
 
           <!-- Publishment Section -->
 
-          <section id="portfolio" class="pt-4 pt-lg-5 px-4 px-lg-5 my-5 py-5 fade-in">
+          <section id="portfolio" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
             <div class="section-header my-5" data-aos="fade-up">
             <div class="row g-5">
               <div class="col-lg-6">
@@ -723,52 +740,54 @@ p{ margin: 0 0 14px; opacity: .9; }
             </div>
           </div>
 
-            <div class="swiper portfolio-Swiper portfolio-content py-4" data-aos="fade-up">
-              <div class="swiper-wrapper">
+            <div class="portfolio-wrapper" data-aos="fade-up">
+              <div class="portfolio-nav d-flex align-items-center justify-content-end gap-2 mb-3">
+                <button class="nav-btn portfolio-prev" aria-label="Previous publishment"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="nav-btn portfolio-next" aria-label="Next publishment"><i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+              <div class="swiper portfolio-Swiper portfolio-content py-4">
+                <div class="swiper-wrapper">
                 <!-- PUBLISHMENT 1: MODUL MASTERI -->
                 <div class="swiper-slide">
-                  <div class="image-holder">
-                    <a href="https://online.fliphtml5.com/osnkm/gmpo/#p=1" target="_blank" title="Sample Ebook">
-                      <img src="images/Publishment1_ModulMasteriT4.png" alt="Modul Masteri Matematik Tambahan Tingkatan 4" class="img-fluid">
-                    </a>
-                  </div>
-                  <div class="caption d-flex justify-content-between align-items-start">
-                    <div>
-                      <div class="title">MODUL MASTERI MATEMATIK TAMBAHAN TINGKATAN 4 NEGERI JOHOR</div>
-                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
-                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
-                        Sebagai Editor Utama, saya bertanggungjawab memastikan keseragaman kandungan, ketepatan topik, dan kualiti penyampaian modul ini. Modul ini kini digunakan secara rasmi oleh semua sekolah di Johor, diterbitkan oleh Jabatan Pendidikan Negeri Johor, untuk membantu pelajar Tingkatan 4 memahami Matematik Tambahan dengan lebih efektif.
+                  <div class="portfolio-card">
+                    <div class="image-holder bg-cover" style="background-image:url('images/Publishment1_ModulMasteriT4.png');"></div>
+                    <div class="caption mt-0 d-flex justify-content-between align-items-start">
+                      <div>
+                        <div class="title">MODUL MASTERI MATEMATIK TAMBAHAN TINGKATAN 4 NEGERI JOHOR</div>
+                        <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
+                        <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
+                          Sebagai Editor Utama, saya bertanggungjawab memastikan keseragaman kandungan, ketepatan topik, dan kualiti penyampaian modul ini. Modul ini kini digunakan secara rasmi oleh semua sekolah di Johor, diterbitkan oleh Jabatan Pendidikan Negeri Johor, untuk membantu pelajar Tingkatan 4 memahami Matematik Tambahan dengan lebih efektif.
+                        </div>
                       </div>
+                      <a href="https://online.fliphtml5.com/osnkm/gmpo/#p=1" target="_blank" class="btn-pill secondary">Ebook Sample</a>
                     </div>
-                    <a href="https://online.fliphtml5.com/osnkm/gmpo/#p=1" target="_blank" class="image-format bg-orange">Ebook Sample</a>
                   </div>
                 </div>
 
                 <!-- PUBLISHMENT 2: MODULAR MATH JOHOR -->
                 <div class="swiper-slide">
-                  <div class="image-holder">
-                    <a href="https://online.fliphtml5.com/osnkm/ufit/#p=1" target="_blank" title="Sample Ebook">
-                      <img src="images/Publishment2_ModularMathT5.png" alt="Modular Math Johor Matematik Tingkatan 5" class="img-fluid">
-                    </a>
-                  </div>
-                  <div class="caption d-flex justify-content-between align-items-start">
-                    <div>
-                      <div class="title">MODUL MODULAR MATH JOHOR MATEMATIK TINGKATAN 5</div>
-                      <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
-                      <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
-                        Sebagai Editor Utama, saya mengawasi kandungan modul ini untuk memastikan topik-topik Matematik Tingkatan 5 disampaikan secara jelas dan konsisten. Modul ini diterbitkan secara rasmi oleh Jabatan Pendidikan Negeri Johor dan digunakan oleh semua sekolah di negeri ini sebagai bahan rujukan utama pelajar.
+                  <div class="portfolio-card">
+                    <div class="image-holder bg-cover" style="background-image:url('images/Publishment2_ModularMathT5.png');"></div>
+                    <div class="caption mt-0 d-flex justify-content-between align-items-start">
+                      <div>
+                        <div class="title">MODUL MODULAR MATH JOHOR MATEMATIK TINGKATAN 5</div>
+                        <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
+                        <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
+                          Sebagai Editor Utama, saya mengawasi kandungan modul ini untuk memastikan topik-topik Matematik Tingkatan 5 disampaikan secara jelas dan konsisten. Modul ini diterbitkan secara rasmi oleh Jabatan Pendidikan Negeri Johor dan digunakan oleh semua sekolah di negeri ini sebagai bahan rujukan utama pelajar.
+                        </div>
                       </div>
+                      <a href="https://online.fliphtml5.com/osnkm/ufit/#p=1" target="_blank" class="btn-pill secondary">Ebook Sample</a>
                     </div>
-                    <a href="https://online.fliphtml5.com/osnkm/ufit/#p=1" target="_blank" class="image-format bg-blue">Ebook Sample</a>
                   </div>
                 </div>
 
 
-              <div class="swiper-pagination mt-5"></div>
+                <div class="swiper-pagination mt-5"></div>
+              </div>
             </div>
           </section>
 
-          <section id="contact" class="pt-4 pt-lg-5 px-4 px-lg-5 my-5 py-5 fade-in">
+          <section id="contact" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
             <div class="container">
               <div class="row mb-5">
                 <div class="col-lg-6" data-aos="fade-up">
@@ -1025,8 +1044,11 @@ p{ margin: 0 0 14px; opacity: .9; }
     const cssPromises = cssAssets.map(loadCSS);
 
     Promise.all([...imgPromises, ...scriptPromises, ...cssPromises]).then(() => {
-      document.getElementById("page-content").style.display = "block";
-      document.getElementById("loader").classList.add("hidden");
+      const page = document.getElementById("page-content");
+      const loader = document.getElementById("loader");
+      if (page) page.style.display = "block";
+      if (loader) loader.classList.add("hidden");
+      document.body.classList.add("loaded");
     });
   });
 </script>

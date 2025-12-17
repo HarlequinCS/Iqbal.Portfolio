@@ -35,27 +35,36 @@
     // Listen to slide changes from both sliders
     banner_swiper.on('slideChange', updatePagination);
 
-    // Portfolio Slider
-    var swiper = new Swiper(".portfolio-Swiper", {
-      slidesPerView: 4,
-      spaceBetween: 30,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      breakpoints: {
-        300: {
-          slidesPerView: 2,
+    // Portfolio Sliders (per wrapper for scoped nav/pagination)
+    document.querySelectorAll(".portfolio-wrapper").forEach(function(wrapper) {
+      var slider = wrapper.querySelector(".portfolio-Swiper");
+      if (!slider) return;
+
+      new Swiper(slider, {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: wrapper.querySelector(".portfolio-next"),
+          prevEl: wrapper.querySelector(".portfolio-prev"),
         },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20,
+        pagination: {
+          el: wrapper.querySelector(".swiper-pagination"),
+          clickable: true,
         },
-        1200: {
-          slidesPerView: 3,
-          spaceBetween: 30,
+        breakpoints: {
+          300: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1200: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
         },
-      },
+      });
     });
   }
 
