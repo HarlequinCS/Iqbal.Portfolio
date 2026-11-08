@@ -157,7 +157,7 @@ Motion is used only for feedback, never for decoration.
 | **Fonts** | IBM Plex Sans + Mono from Google Fonts with `preconnect` and `display=swap`. |
 | **Images** | Explicit `width`/`height` (no layout shift), `loading="lazy"` below the fold, publication covers converted from 540 KB PNGs to small WebP files. |
 | **No-JS** | Every section renders without JavaScript; JS only adds the theme toggle, mobile menu, active nav, filters, copy-email and the form. |
-| **Contact form** | No secrets in the browser. By default it opens the visitor's email app with the message pre-filled. To send directly from the page, add a form service endpoint (Formspree or Web3Forms, whose keys are designed to be public) to `data-endpoint` on the form. |
+| **Contact form** | No secrets in the browser. The form posts to `api/contact.php` on the server, which validates the message, rate-limits by IP, and forwards it to Telegram using a bot token stored only on the server. If the endpoint is unavailable, the visitor's email app opens with the message pre-filled. See `docs/DEPLOY.md`. |
 | **SEO** | Canonical URLs, Open Graph/Twitter cards with a 1200×630 image, `Person` JSON-LD, per-page titles and descriptions, `sitemap.xml`, `robots.txt`, a real `404.html`, filled web manifest. |
 | **Accessibility** | Semantic landmarks, one `h1` per page, skip link, visible focus rings, labelled form fields, `aria-pressed` filters, `aria-current` nav, AA contrast, reduced-motion support. |
 

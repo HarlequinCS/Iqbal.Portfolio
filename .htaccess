@@ -1,93 +1,102 @@
-# =============================
-# Ultimate .htaccess for Portfolio
-# Author: Muhammad Saiful Iqbal bin Abdul Rani
-# =============================
+# =============================================================
+# Portfolio: Apache configuration for the private server
+# Author: Muhammad Saiful Iqbal Abdul Rani
+# Needs: mod_rewrite, mod_headers (recommended), PHP 7.4+ for api/contact.php
+# =============================================================
 
-# -----------------------------
-# 1. Enable Rewrite Engine
-# -----------------------------
-RewriteEngine On
-
-# -----------------------------
-# 2. Force HTTPS (if SSL enabled)
-# -----------------------------
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# -----------------------------
-# 3. Enable Gzip Compression
-# -----------------------------
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml
-  AddOutputFilterByType DEFLATE text/css text/javascript application/javascript
-  AddOutputFilterByType DEFLATE application/json application/xml
-  AddOutputFilterByType DEFLATE font/ttf font/otf font/woff font/woff2 image/svg+xml
-</IfModule>
-
-# -----------------------------
-# 4. Browser Caching / Expires
-# -----------------------------
-<IfModule mod_expires.c>
-  ExpiresActive On
-  # HTML
-  ExpiresByType text/html "access plus 1 hour"
-  # CSS & JS
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType text/javascript "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-  # Images
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/gif "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType image/webp "access plus 1 year"
-  # Fonts
-  ExpiresByType font/woff "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-  ExpiresByType font/ttf "access plus 1 year"
-  ExpiresByType font/otf "access plus 1 year"
-</IfModule>
-
-# -----------------------------
-# 5. Cache-Control Headers (Extra Performance)
-# -----------------------------
-<FilesMatch "\.(ico|jpe?g|png|gif|svg|webp|js|css|woff2?|ttf|otf)$">
-  Header set Cache-Control "public, max-age=31536000, immutable"
-</FilesMatch>
-
-<FilesMatch "\.html$">
-  Header set Cache-Control "public, max-age=3600"
-</FilesMatch>
-
-# -----------------------------
-# 6. Security Headers
-# -----------------------------
-<IfModule mod_headers.c>
-  Header set X-Content-Type-Options "nosniff"
-  Header set X-XSS-Protection "1; mode=block"
-  Header set X-Frame-Options "SAMEORIGIN"
-  Header set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-</IfModule>
-
-# -----------------------------
-# 7. Hotlink Protection (Fixed)
-# -----------------------------
-RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^https://(www\.)?harlequincs\.github\.io [NC]
-RewriteCond %{HTTP_REFERER} !^https?://(localhost|127\.0\.0\.1) [NC]
-RewriteCond %{HTTP_REFERER} !^https?://192\.168\.0\.141 [NC]
-RewriteRule \.(jpg|jpeg|png|gif|svg|webp)$ - [F,NC,L]
-
-
-# -----------------------------
-# 8. Disable Directory Listing
-# -----------------------------
 Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+AddType application/manifest+json .webmanifest
 
-# -----------------------------
-# 9. Custom Error Pages
-# -----------------------------
+# -------------------------------------------------------------
+# 1. Rewrites: HTTPS, hidden files, hot-link protection
+# -------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # One canonical address: www.saifuliqbal.io → https://saifuliqbal.io
+  RewriteCond %{HTTP_HOST} ^www\.saifuliqbal\.io$ [NC]
+  RewriteRule ^ https://saifuliqbal.io%{REQUEST_URI} [L,R=301]
+
+  # Force HTTPS (skipped for local development hosts)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Never serve dotfiles/dot-folders (.git, .env, .claude …), except .well-known
+  RewriteRule (^|/)\.(?!well-known/) - [R=404,L]
+
+  # Never serve repository-only files
+  RewriteRule ^(README\.md|LICENSE|wip\.css\.map)$ - [R=404,L,NC]
+
+  # Hot-link protection for images: allow empty referrers (direct visits,
+  # social previews) and this site's own host, whatever the domain is.
+  RewriteCond %{HTTP_REFERER} !^$
+  RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]+)@@https?://\1(/|$) [NC]
+  RewriteCond %{REQUEST_URI} !/images/og-image\.png$ [NC]
+  RewriteRule \.(jpe?g|png|gif|webp|svg)$ - [F,NC,L]
+</IfModule>
+
+# -------------------------------------------------------------
+# 2. Compression
+# -------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml application/manifest+json image/svg+xml
+</IfModule>
+
+# -------------------------------------------------------------
+# 3. Caching
+#    Images/fonts rarely change: cache long. CSS/JS change with redesigns
+#    and have no version in their file names: cache for a day, then revalidate.
+# -------------------------------------------------------------
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ico|jpe?g|png|gif|svg|webp|woff2?)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=86400, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|txt|webmanifest)$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.pdf$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+</IfModule>
+
+# -------------------------------------------------------------
+# 4. Security headers
+# -------------------------------------------------------------
+<IfModule mod_headers.c>
+  # Content Security Policy:
+  # - scripts: this site + the one inline theme script (by hash; see docs/DEPLOY.md
+  #   if you change that script). JSON-LD blocks are data, not scripts.
+  # - styles/fonts: this site + Google Fonts. 'unsafe-inline' styles cover a few style="" attributes.
+  # - connect: only this site (the contact form posts to /api/contact.php).
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-O52GItLztnCNW2sXzQH2qLvsIwstmkO4bUiYi/Ax3ts='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+
+  # HSTS: only sent over HTTPS. Add "; includeSubDomains" once every subdomain uses HTTPS.
+  Header always set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on'"
+
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+</IfModule>
+
+# Hide the server version where the host allows it
+ServerSignature Off
+
+# -------------------------------------------------------------
+# 5. Error pages
+# -------------------------------------------------------------
 ErrorDocument 404 /404.html
-ErrorDocument 403 /403.html
+ErrorDocument 403 /404.html

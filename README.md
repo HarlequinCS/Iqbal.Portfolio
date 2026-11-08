@@ -2,7 +2,7 @@
 
 Personal portfolio of **Muhammad Saiful Iqbal Abdul Rani**, Software Engineer & Cybersecurity Developer.
 
-🌐 **Live:** [harlequincs.github.io/Iqbal.Portfolio](https://harlequincs.github.io/Iqbal.Portfolio/)
+🌐 **Live:** [saifuliqbal.io](https://saifuliqbal.io/)
 
 ---
 
@@ -15,17 +15,19 @@ css/main.css        The whole design system (tokens at the top, light + dark the
 js/main.js          Theme toggle, mobile menu, active nav, project filters, copy email, contact form
 asset/              Résumé and CV (PDF)
 images/             Portrait, photos, publication covers, icons, Open Graph image
-docs/               Redesign plan and design system notes
-404.html            GitHub Pages "not found" page
+api/                Contact form endpoint (forwards to Telegram; secrets stay on the server)
+docs/               Redesign plan, design system notes, deployment guide (DEPLOY.md)
+404.html            "Not found" page
 ```
 
-No frameworks, no build step: plain HTML, CSS and JavaScript. The design rationale and maintenance notes are in [`docs/REDESIGN-PLAN.md`](docs/REDESIGN-PLAN.md).
+No frameworks, no build step: plain HTML, CSS and JavaScript, plus one small PHP endpoint. The design rationale and maintenance notes are in [`docs/REDESIGN-PLAN.md`](docs/REDESIGN-PLAN.md).
 
 ## Common edits
 
 - **Add a project:** copy a `<li data-category="…">` row in the *Project index* of `index.html`. Categories: `client`, `security`, `web`, `mobile`, `iot`. Filter counts update automatically.
 - **Mark a project live:** change its status to `<span class="status status--live">Live</span>` and add the link.
-- **Contact form:** by default it opens the visitor's email app. To receive messages directly, create a form on a form service such as Formspree and put its endpoint URL in `data-endpoint` on `<form id="contact-form">`. Never put private API tokens in front-end code.
+- **Contact form:** posts to `api/contact.php`, which forwards the message to Telegram. The bot token lives only on the server (`api/config.php` or environment variables). If the endpoint isn't available, the form opens the visitor's email app instead. Never put private API tokens in front-end code.
+- **Deploying to a server:** see [`docs/DEPLOY.md`](docs/DEPLOY.md).
 
 ## License
 

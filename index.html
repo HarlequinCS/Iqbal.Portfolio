@@ -6,14 +6,14 @@
   <title>Muhammad Saiful Iqbal — Software Engineer &amp; Cybersecurity Developer</title>
   <meta name="description" content="Muhammad Saiful Iqbal Abdul Rani is a software engineer and cybersecurity developer from Johor, Malaysia, founder of Team ChendAwan Ventures and builder of VERITAS, a live web vulnerability assessment platform.">
   <meta name="author" content="Muhammad Saiful Iqbal Abdul Rani">
-  <link rel="canonical" href="https://harlequincs.github.io/Iqbal.Portfolio/">
+  <link rel="canonical" href="https://saifuliqbal.io/">
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Muhammad Saiful Iqbal — Software Engineer & Cybersecurity Developer">
   <meta property="og:description" content="I build software that is useful, reliable and secure by design. Founder of Team ChendAwan Ventures; builder of VERITAS.">
-  <meta property="og:url" content="https://harlequincs.github.io/Iqbal.Portfolio/">
-  <meta property="og:image" content="https://harlequincs.github.io/Iqbal.Portfolio/images/og-image.png">
+  <meta property="og:url" content="https://saifuliqbal.io/">
+  <meta property="og:image" content="https://saifuliqbal.io/images/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_MY">
@@ -46,8 +46,8 @@
     "name": "Muhammad Saiful Iqbal Abdul Rani",
     "alternateName": "Iqbal",
     "jobTitle": "Software Engineer & Cybersecurity Developer",
-    "url": "https://harlequincs.github.io/Iqbal.Portfolio/",
-    "image": "https://harlequincs.github.io/Iqbal.Portfolio/images/intro.webp",
+    "url": "https://saifuliqbal.io/",
+    "image": "https://saifuliqbal.io/images/intro.webp",
     "email": "mailto:iqbal.intern@gmail.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Kluang", "addressRegion": "Johor", "addressCountry": "MY" },
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universiti Teknologi MARA (UiTM)" },
@@ -145,7 +145,7 @@
               <dt>Building</dt>
               <dd>Team ChendAwan Ventures · VERITAS</dd>
               <dt>Status</dt>
-              <dd><span class="status status--live">Open to work</span><br>Internship, part-time or contract</dd>
+              <dd><span class="status status--live">Open to work</span><br>Internship, part-time or contract · anywhere in Malaysia or internationally</dd>
             </dl>
           </aside>
         </div>
@@ -753,7 +753,7 @@
         <div>
           <div class="section-head">
             <h2 id="contact-title">Looking for an internship, part-time or contract role.</h2>
-            <p class="lead">I want to build or secure real systems alongside experienced engineers, as a <strong>Security Software Engineer</strong>, <strong>Embedded Systems Engineer</strong>, <strong>Information Security Analyst</strong>, <strong>Cybersecurity Consultant</strong> or <strong>Solutions Architect</strong>. I'm based in Johor and open to on-site, hybrid or remote work, including the Klang Valley.</p>
+            <p class="lead">I want to build or secure real systems alongside experienced engineers, as a <strong>Security Software Engineer</strong>, <strong>Embedded Systems Engineer</strong>, <strong>Information Security Analyst</strong>, <strong>Cybersecurity Consultant</strong> or <strong>Solutions Architect</strong>. I'm based in Johor and open to on-site, hybrid or remote work anywhere in Malaysia, as well as international opportunities.</p>
           </div>
 
           <p class="meta">The best way to reach me</p>
@@ -775,9 +775,9 @@
               </ul>
             </div>
 
-            <!-- To send messages directly from the page, set data-endpoint to a form service URL
-                 (e.g. https://formspree.io/f/xxxx). Never put private API tokens here. -->
-            <form class="form" id="contact-form" data-endpoint="" data-mailto="iqbal.intern@gmail.com" novalidate>
+            <!-- Posts to api/contact.php, which forwards to Telegram on the server.
+                 Never put private API tokens in this page. -->
+            <form class="form" id="contact-form" data-endpoint="api/contact.php" data-mailto="iqbal.intern@gmail.com" novalidate>
               <div class="field">
                 <label for="f-name">Name</label>
                 <input id="f-name" name="name" type="text" autocomplete="name" required>
@@ -789,6 +789,11 @@
               <div class="field">
                 <label for="f-message">Message</label>
                 <textarea id="f-message" name="message" rows="6" required></textarea>
+              </div>
+              <!-- Spam trap: hidden from people, filled in by bots -->
+              <div class="visually-hidden" aria-hidden="true">
+                <label for="f-website">Leave this field empty</label>
+                <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
               </div>
               <div>
                 <button class="btn btn--solid" type="submit">Send message

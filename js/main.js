@@ -131,20 +131,28 @@
   });
 
   /* ---------- Contact form ----------
-     No secrets in the browser. With data-endpoint set (a form service such as
-     Formspree), the message is POSTed there. Otherwise the visitor's email app
-     opens with the message pre-filled. */
+     No secrets in the browser. The message is POSTed to data-endpoint
+     (api/contact.php on the server, which forwards it to Telegram). If the
+     endpoint is missing or unavailable, the visitor's email app opens with
+     the message pre-filled instead, so nothing is lost. */
   var form = document.getElementById("contact-form");
   if (form) {
     var status = document.getElementById("form-status");
     var note = document.getElementById("form-note");
     var endpoint = (form.getAttribute("data-endpoint") || "").trim();
     var mailto = form.getAttribute("data-mailto");
-    if (endpoint && note) note.textContent = "Your message is sent straight to my inbox.";
+    if (endpoint && note) note.textContent = "Your message is sent to me directly.";
 
     var say = function (msg, state) {
       status.textContent = msg;
       status.setAttribute("data-state", state || "");
+    };
+
+    var openEmail = function (name, email, message, prefix) {
+      var subject = "Portfolio enquiry from " + name;
+      var body = message + "\n\n" + name + "\n" + email;
+      window.location.href = "mailto:" + mailto + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      say((prefix || "") + "Your email app should open with the message ready to send. If it doesn't, email me at " + mailto + ".", "ok");
     };
 
     form.addEventListener("submit", function (e) {
@@ -166,10 +174,7 @@
       }
 
       if (!endpoint) {
-        var subject = "Portfolio enquiry from " + name;
-        var body = message + "\n\n" + name + "\n" + email;
-        window.location.href = "mailto:" + mailto + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-        say("Your email app should open with the message ready to send. If it doesn't, email me at " + mailto + ".", "ok");
+        openEmail(name, email, message);
         return;
       }
 
@@ -179,13 +184,21 @@
       fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({ name: name, email: email, message: message })
+        body: JSON.stringify({ name: name, email: email, message: message, website: form.elements.website ? form.elements.website.value : "" })
       }).then(function (res) {
-        if (!res.ok) throw new Error(res.status);
-        form.reset();
-        say("Thanks, " + name + ". Your message has been sent and I'll reply by email.", "ok");
+        if (res.ok) {
+          form.reset();
+          say("Thanks, " + name + ". Your message has been sent and I'll reply by email.", "ok");
+        } else if (res.status === 429) {
+          say("You've sent several messages in a short time. Please wait a few minutes, or email me at " + mailto + ".", "error");
+        } else if (res.status === 422) {
+          say("Please check your name, email address and message, then try again.", "error");
+        } else {
+          // Endpoint missing, not configured or down: fall back to email.
+          openEmail(name, email, message, "I couldn't send that directly. ");
+        }
       }).catch(function () {
-        say("Sorry, that didn't send. Please email me at " + mailto + ".", "error");
+        openEmail(name, email, message, "I couldn't send that directly. ");
       }).then(function () {
         submit.disabled = false;
       });

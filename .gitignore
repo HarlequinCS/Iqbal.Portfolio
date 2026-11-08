@@ -1,0 +1,5 @@
+# Server-only secrets (Telegram bot token)
+api/config.php
+
+# Local editor / tooling
+.claude/

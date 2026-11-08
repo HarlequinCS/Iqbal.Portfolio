@@ -1,0 +1,14 @@
+# Only contact.php is reachable from the web. Secrets and examples are not.
+<IfModule mod_authz_core.c>
+  Require all denied
+  <Files "contact.php">
+    Require all granted
+  </Files>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order deny,allow
+  Deny from all
+  <Files "contact.php">
+    Allow from all
+  </Files>
+</IfModule>
