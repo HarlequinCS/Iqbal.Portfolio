@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /wip.html
+
+Sitemap: https://harlequincs.github.io/Iqbal.Portfolio/sitemap.xml

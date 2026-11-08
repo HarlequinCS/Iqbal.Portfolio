@@ -1,1060 +1,821 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
+<html lang="en" class="no-js">
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muhammad Saiful Iqbal — Software Engineer &amp; Cybersecurity Developer</title>
+  <meta name="description" content="Muhammad Saiful Iqbal Abdul Rani is a software engineer and cybersecurity developer from Johor, Malaysia, founder of Team ChendAwan Ventures and builder of VERITAS, a live web vulnerability assessment platform.">
+  <meta name="author" content="Muhammad Saiful Iqbal Abdul Rani">
+  <link rel="canonical" href="https://harlequincs.github.io/Iqbal.Portfolio/">
 
-  <title>Muhammad Saiful Iqbal - Web Developer, Ethical Hacker, Front-End Developer & Founder of ChendAwan</title>
-  <meta name="description" content="Official E-Portfolio of Saifull Iqbal — Web Developer, Ethical Hacker, Front-End Developer, and Founder of ChendAwan. Explore my projects, skills, and achievements in web development, cybersecurity, and IT innovation.">
-  <meta name="author" content="Saifull Iqbal">
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Muhammad Saiful Iqbal — Software Engineer & Cybersecurity Developer">
+  <meta property="og:description" content="I build software that is useful, reliable and secure by design. Founder of Team ChendAwan Ventures; builder of VERITAS.">
+  <meta property="og:url" content="https://harlequincs.github.io/Iqbal.Portfolio/">
+  <meta property="og:image" content="https://harlequincs.github.io/Iqbal.Portfolio/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_MY">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Favicon -->
+  <meta name="theme-color" content="#F3F1EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111315" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link rel="manifest" href="images/site.webmanifest">
-  <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <meta name="theme-color" content="#ffffff">
 
-  <!-- Preload critical resources for faster loading -->
-  <link rel="preload" href="style.css" as="style">
-  <link rel="preload" href="optimize.css" as="style">
-  <link rel="preload" href="images/intro.webp" as="image">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:wght@400;700;900&family=Six+Caps&display=swap" as="style">
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.className = d.className.replace('no-js', 'js');
+      try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); } catch (e) {}
+    })();
+  </script>
 
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="css/vendor.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:wght@400;700;900&family=Six+Caps&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="optimize.css">
-  
-  <!-- DNS prefetch for external resources -->
-  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/main.css">
 
-  <style>
-:root{
-  --popup-bg: rgba(0,0,0,0.55);
-  --card-grad-1: #0f0f12;
-  --card-grad-2: #1a1a22;
-  --accent: #4ade80; /* soft green */
-  --accent-2: #22c55e;
-  --text: #f8fafc;
-}
-
-.project-desc {
-  font-size: 0.9rem;          /* sedikit lebih besar untuk readability */
-  color: #333;                /* gelap sikit untuk kontras lebih baik */
-  margin-top: 0.5rem;         /* beri space antara title & description */
-  line-height: 1.6;           /* lebih selesa untuk baca paragraph */
-  font-weight: 400;           /* standard weight, lebih elegan */
-  letter-spacing: 0.3px;      /* subtle spacing supaya nampak premium */
-  transition: color 0.3s ease;/* smooth effect bila hover jika nak highlight */
-}
-
-.project-desc a {
-  color: #1e90ff;             /* highlight links kalau ada */
-  text-decoration: underline;
-}
-
-.toggle-desc {
-  cursor: pointer;
-  border-radius: 6px;         /* smooth rounded button */
-  padding: 0.25rem 0.7rem;    /* kecil & minimal */
-  font-size: 0.8rem;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.toggle-desc:hover {
-  background: #333;
-  color: #fff;
-}
-
-
-/* Backdrop */
-.popup{
-  position: fixed; inset: 0;
-  display: grid; place-items: center;
-  background: var(--popup-bg);
-  opacity: 0; visibility: hidden;
-  transition: opacity .28s ease, visibility .28s ease;
-  z-index: 9999;
-}
-.popup.show{ opacity: 1; visibility: visible; }
-
-.hidden{ display: none; }
-
-/* Card */
-.popup-content{
-  position: relative;
-  background: linear-gradient(135deg, var(--card-grad-1), var(--card-grad-2));
-  color: var(--text);
-  padding: 28px 30px 26px;
-  border-radius: 22px;
-  box-shadow: 0 18px 50px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
-  transform: translateY(6px) scale(.94);
-  opacity: 0;
-  animation: cardIn .42s cubic-bezier(.2,.8,.2,1) .08s forwards;
-  max-width: 380px;
-  width: min(92vw, 380px);
-  text-align: center;
-  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-}
-
-/* Close */
-.close-btn{
-  position: absolute; top: 10px; right: 12px;
-  font-size: 26px; line-height: 1;
-  background: transparent; border: 0; color: #cbd5e1;
-  cursor: pointer; padding: 6px; border-radius: 10px;
-  transition: transform .15s ease, background .15s ease, color .15s ease;
-}
-.close-btn:hover{ transform: rotate(90deg); background: rgba(255,255,255,.06); color: #fff; }
-
-/* Animated icon wrapper */
-.icon-wrap{
-  position: relative;
-  width: 96px; height: 96px;
-  margin: 8px auto 12px;
-}
-
-/* SVG */
-.success-svg{
-  width: 100%; height: 100%;
-  display: block;
-  filter: drop-shadow(0 6px 14px rgba(34,197,94,.3));
-}
-.success-circle,
-.success-check{
-  stroke: var(--accent);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-/* Stroke animation setup */
-.success-circle{
-  stroke-dasharray: 176; /* ~2πr with r=28 is ~175.9 */
-  stroke-dashoffset: 176;
-  animation: drawCircle .6s ease-out .15s forwards;
-}
-.success-check{
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
-  animation: drawCheck .45s ease-out .45s forwards;
-}
-
-/* Little success burst */
-.burst{
-  position: absolute; inset: 0; pointer-events: none;
-}
-.burst span{
-  position: absolute; top: 50%; left: 50%;
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--accent-2);
-  transform: translate(-50%, -50%) scale(0);
-  animation: burst .6s ease-out .46s forwards;
-}
-.burst span:nth-child(odd){ background: #86efac; }
-.burst span:nth-child(1){ --tx: -38px; --ty: -4px; }
-.burst span:nth-child(2){ --tx: 36px; --ty: 6px; }
-.burst span:nth-child(3){ --tx: -10px; --ty: -34px; }
-.burst span:nth-child(4){ --tx: 12px; --ty: 34px; }
-.burst span:nth-child(5){ --tx: -30px; --ty: 22px; }
-.burst span:nth-child(6){ --tx: 30px; --ty: -22px; }
-.burst span:nth-child(7){ --tx: -22px; --ty: -26px; }
-.burst span:nth-child(8){ --tx: 24px; --ty: 24px; }
-.burst span:nth-child(9){ --tx: -2px; --ty: 40px; }
-.burst span:nth-child(10){ --tx: 4px; --ty: -40px; }
-
-/* Text */
-h3{ font-size: 22px; margin: 6px 0 8px; }
-p{ margin: 0 0 14px; opacity: .9; }
-
-/* Actions */
-.actions{ display: flex; justify-content: center; gap: 10px; margin-top: 6px; }
-.btn-ok{
-  padding: 10px 16px; border-radius: 12px; border: 0; cursor: pointer;
-  background: linear-gradient(180deg, #16a34a, #15803d);
-  color: white; font-weight: 600;
-  box-shadow: 0 6px 16px rgba(34,197,94,.35), inset 0 1px 0 rgba(255,255,255,.2);
-  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
-}
-.btn-ok:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-.btn-ok:active{ transform: translateY(0); box-shadow: 0 3px 10px rgba(34,197,94,.25); }
-
-/* Animations */
-@keyframes cardIn{
-  to{ transform: translateY(0) scale(1); opacity: 1; }
-}
-@keyframes drawCircle{
-  0%{ stroke-dashoffset: 176; }
-  100%{ stroke-dashoffset: 0; }
-}
-@keyframes drawCheck{
-  0%{ stroke-dashoffset: 48; }
-  100%{ stroke-dashoffset: 0; }
-}
-@keyframes burst{
-  0%{ transform: translate(-50%, -50%) scale(0); opacity: 1; }
-  80%{ opacity: 1; }
-  100%{ transform: translate(calc(-50% + var(--tx,0)), calc(-50% + var(--ty,0))) scale(1); opacity: 0; }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .popup, .popup-content, .success-circle, .success-check, .burst span{
-    animation: none !important; transition: none !important;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muhammad Saiful Iqbal Abdul Rani",
+    "alternateName": "Iqbal",
+    "jobTitle": "Software Engineer & Cybersecurity Developer",
+    "url": "https://harlequincs.github.io/Iqbal.Portfolio/",
+    "image": "https://harlequincs.github.io/Iqbal.Portfolio/images/intro.webp",
+    "email": "mailto:iqbal.intern@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Kluang", "addressRegion": "Johor", "addressCountry": "MY" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universiti Teknologi MARA (UiTM)" },
+    "worksFor": { "@type": "Organization", "name": "Team ChendAwan Ventures" },
+    "knowsAbout": ["Application security", "Vulnerability assessment", "Secure software development", "Laravel", "Next.js", "FastAPI", "Android", "Docker"],
+    "sameAs": ["https://linkedin.com/in/saiful-iqbal12", "https://github.com/HarlequinCS"]
   }
-}
-
-  </style>
-
+  </script>
 </head>
 
-  <body data-bs-theme="dark">
-    <div id="loader" class="preloader">
-      <div class="preloader-glow"></div>
-      <div class="preloader-inner">
-        <div class="preloader-avatar">
-          <img src="images/intro.webp" alt="Avatar loading">
-          <span class="avatar-ring"></span>
-        </div>
-        <p class="preloader-text">Crafting the portfolio...</p>
-        <div class="preloader-progress"><span></span></div>
+<body>
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6.5L12 13l8.5-6.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M5 15V5.5A1.5 1.5 0 0 1 6.5 4H15"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 17h5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 16 16"><path d="M3.6 5.6H.4V16h3.2V5.6zM2 4.2A1.85 1.85 0 1 0 2 .5a1.85 1.85 0 0 0 0 3.7zM16 16h-3.2v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V16H5.9V5.6H9V7c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5V16z"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="./" aria-label="Saiful Iqbal, home">Saiful Iqbal<span>.</span></a>
+      <nav class="nav" aria-label="Primary" data-open="false">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#capabilities">Capabilities</a></li>
+          <li><a href="#credentials">Credentials</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn--outline btn--resume" href="asset/MUHAMMAD%20SAIFUL%20IQBAL%20ABDUL%20RANI_RESUME.pdf" target="_blank" rel="noopener">Résumé</a>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme">
+          <svg class="icon icon--stroke icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon icon--stroke icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Open menu">
+          <svg class="icon icon--stroke" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
       </div>
     </div>
+  </header>
 
-    <div id="page-content">
+  <main id="main">
 
-    <div class="star-layer"></div>
-    <div class="container-fluid p-0 position-relative" id="page-shell">
-      <div class="row g-0">
-        <!-- Sidebar -->
-        <div class="col-lg-3 position-fixed z-1 h-100 d-none d-lg-block" 
-            data-aos="slide-right" data-aos-delay="200">
-          <div class="sidebar p-4 p-lg-5 vh-100 d-flex flex-column position-relative">
-            <a href="index.html" class="logo mb-0 text-decoration-none">SAIFUL IQBAL.</a>
-            <p class="bio mt-4" style="max-width: 200px;">
-              I’m Muhammad Saiful Iqbal, a Web Developer with a passion for front-end  
-              (and a curious Ethical Hacker who sometimes breaks things first).  
-              With a Computer Science background from UiTM and certs in networking, cybersecurity, and web,  
-              I now lead ChendAwan a young, creative team set on building secure projects and a future success story.
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <p class="hero-kicker meta">
+              <span>Software engineer</span><span aria-hidden="true">/</span>
+              <span>Cybersecurity developer</span><span aria-hidden="true">/</span>
+              <span>Founder</span>
             </p>
-
-            <p style="max-width: 200px;">
-              Develop By: Muhammad Saiful Iqbal<br> 
-              <a href="https://linkedin.com/company/chendawan" target="_blank" class="text-decoration-none"> Founder of ChendAwan</a>
+            <h1 id="hero-title">I build software that is useful, reliable and <span class="mark">secure by design</span>.</h1>
+            <p class="hero-lead">
+              I'm Iqbal, a software engineer from Johor, Malaysia. I founded <strong>Team ChendAwan Ventures</strong>,
+              which delivers production systems for government and corporate clients, and I built <strong>VERITAS</strong>,
+              a live web vulnerability assessment platform, as my final-year project.
             </p>
-                    
-            <div class="social-icons mt-auto mb-4 d-flex flex-column">
-              <a href="https://www.instagram.com/iqbalss._" 
-                class="social-icon" aria-label="Instagram" target="_blank">
-                <i class="fab fa-instagram"></i>
+            <div class="hero-actions">
+              <a class="btn btn--solid" href="#work">See selected work
+                <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg>
               </a>
-              <a href="https://linkedin.com/in/saiful-iqbal12" 
-                class="social-icon" aria-label="LinkedIn" target="_blank">
-                <i class="fab fa-linkedin-in"></i>
+              <a class="btn btn--outline" href="asset/MUHAMMAD%20SAIFUL%20IQBAL%20ABDUL%20RANI_RESUME.pdf" target="_blank" rel="noopener">
+                <svg class="icon icon--stroke" aria-hidden="true"><use href="#i-download"/></svg> Résumé (PDF)
               </a>
-              <a href="https://www.tiktok.com/@aliveiqbal" 
-                class="social-icon" aria-label="TikTok" target="_blank">
-                <i class="fab fa-tiktok"></i>
-              </a>
-            </div>
-
-            <div class="personal-info">
-              <p class="job-title mb-2">Web Developer & Front-End Engineer | Ethical Hacking Practitioner </p>
-              <p class="location">Johor, Malaysia</p>
             </div>
           </div>
+
+          <aside class="hero-card" aria-label="Summary">
+            <figure class="portrait">
+              <img src="images/intro.webp" width="298" height="421" alt="Portrait of Muhammad Saiful Iqbal">
+              <figcaption><strong>Muhammad Saiful Iqbal Abdul Rani</strong>Software Engineer &amp; Cybersecurity Developer</figcaption>
+            </figure>
+            <dl class="record">
+              <dt>Based</dt>
+              <dd>Kluang, Johor, Malaysia</dd>
+              <dt>Studying</dt>
+              <dd>BSc (Hons.) Computer Science, Netcentric Computing, UiTM · final year</dd>
+              <dt>Building</dt>
+              <dd>Team ChendAwan Ventures · VERITAS</dd>
+              <dt>Status</dt>
+              <dd><span class="status status--live">Open to work</span><br>Internship, part-time or contract</dd>
+            </dl>
+          </aside>
         </div>
 
+        <ul class="proof" aria-label="Highlights">
+          <li>
+            <a href="work/hrsb-one.html">
+              <span class="figure">15+ modules</span>
+              <span class="label">in HRSB ONE, the HR, attendance &amp; payroll platform I lead</span>
+              <span class="meta source">Case study →</span>
+            </a>
+          </li>
+          <li>
+            <a href="work/veritas.html">
+              <span class="figure">210,845</span>
+              <span class="label">security payloads across 65 categories in the VERITAS corpus</span>
+              <span class="meta source">Case study →</span>
+            </a>
+          </li>
+          <li>
+            <a href="#credentials">
+              <span class="figure">1st Runner-Up</span>
+              <span class="label">National TAMiNG iCTF8 Hacking Competition, 2026</span>
+              <span class="meta source">Credentials →</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about">
+              <span class="figure">3.74 CGPA</span>
+              <span class="label">BSc (Hons.) Computer Science, UiTM, expected 2027</span>
+              <span class="meta source">Education →</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-        <div class="col-lg-9 offset-lg-3">
-          <div class="row">
-            
-            <!-- Main Content / data-aos="fade-up" --> 
-            <div id="intro" class="col-lg-8 position-relative d-flex flex-column align-items-center"> 
-              <div class="pt-4 pt-lg-5 px-4 px-lg-5 w-100 mt-5">
-                <div class="hero-grid" data-aos="fade-up">
-                  <div>
-                    <span class="hero-kicker d-block mb-2">Computer Science & IT Enthusiast</span>
-                    <h1 class="hero-title txt-fx">Muhammad Saiful Iqbal</h1>
-                    <p class="hero-subtext">
-                      I craft secure, performant web experiences with a product mindset—combining Laravel/JS, clean UI, and security by design to ship faster with confidence.
-                    </p>
-                    <ul class="hero-bullets">
-                      <li>Full-stack delivery: Laravel, JS, responsive UI, and deployment.</li>
-                      <li>Security-aware builds: auth, validation, logging, and hardening.</li>
+    <!-- ============ 01 WORK ============ -->
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="container section-grid">
+        <p class="section-index"><span class="num">01</span><span>Selected work</span></p>
+        <div>
+          <div class="section-head">
+            <h2 id="work-title">Systems in production, and the tools to test them.</h2>
+            <p class="lead">Client platforms I've led, security tooling I've built, and coursework I'm proud of. Client work is marked private where screens and code can't be shared; ask me for a walkthrough of anything marked "demo on request".</p>
+          </div>
+
+          <div class="filter-bar" role="group" aria-label="Filter projects">
+            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All <span class="count"></span></button>
+            <button type="button" class="filter-btn" data-filter="client" aria-pressed="false">Client work <span class="count"></span></button>
+            <button type="button" class="filter-btn" data-filter="security" aria-pressed="false">Security <span class="count"></span></button>
+            <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web &amp; PWA <span class="count"></span></button>
+            <button type="button" class="filter-btn" data-filter="mobile" aria-pressed="false">Mobile <span class="count"></span></button>
+            <button type="button" class="filter-btn" data-filter="iot" aria-pressed="false">IoT <span class="count"></span></button>
+          </div>
+
+          <div class="work-group">
+            <div class="sub-head"><h3>Featured</h3><p class="meta" data-count>4 projects</p></div>
+            <ul class="case-list">
+
+              <li class="case-row" data-category="security web">
+                <span class="case-id">P-01</span>
+                <div class="case-main">
+                  <h3><a href="work/veritas.html">VERITAS</a></h3>
+                  <p class="sub">Web vulnerability assessment platform · Final-year project · Solo</p>
+                  <p>A multi-tenant workspace where customers prove they own a web application, run an active security assessment, and get findings backed by evidence, confidence levels and remediation guidance. Its rule: <em>AI proposes, evidence validates, rules decide.</em></p>
+                  <div class="case-links">
+                    <a class="text-link" href="work/veritas.html">Read case study <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg></a>
+                    <a class="text-link" href="https://scanwithveritas.tech" target="_blank" rel="noopener">scanwithveritas.tech <svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                  </div>
+                </div>
+                <div class="case-side">
+                  <span class="status status--live">Live</span>
+                  <ul class="tag-list" aria-label="Stack">
+                    <li class="tag">Next.js 15</li><li class="tag">FastAPI</li><li class="tag">Celery</li><li class="tag">Supabase</li><li class="tag">PostgreSQL RLS</li><li class="tag">Stripe</li><li class="tag">Docker</li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="case-row" data-category="client web">
+                <span class="case-id">P-02</span>
+                <div class="case-main">
+                  <h3><a href="work/hrsb-one.html">HRSB ONE</a></h3>
+                  <p class="sub">HR, attendance &amp; payroll platform · HRSB Holdings Sdn Bhd · Lead developer &amp; project manager</p>
+                  <p>One Laravel platform with 15+ modules for a multi-company corporate group: staff records, biometric attendance, leave, claims, multi-level overtime approvals and a payroll engine that produces Malaysian statutory outputs (EPF, SOCSO, EIS, PCB, zakat).</p>
+                  <div class="case-links">
+                    <a class="text-link" href="work/hrsb-one.html">Read case study <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg></a>
+                  </div>
+                </div>
+                <div class="case-side">
+                  <span class="status status--private">Private client work</span>
+                  <ul class="tag-list" aria-label="Stack">
+                    <li class="tag">Laravel 9</li><li class="tag">PHP 8.1</li><li class="tag">MySQL</li><li class="tag">Redis</li><li class="tag">Docker Compose</li><li class="tag">JWT</li><li class="tag">AWS S3</li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="case-row" data-category="client web">
+                <span class="case-id">P-03</span>
+                <div class="case-main">
+                  <h3><a href="https://johorstemhub.com" target="_blank" rel="noopener">JohorSTEMHub.com</a></h3>
+                  <p class="sub">Statewide STEM education platform · Johor State Education Department (JPNJ) · Lead architect &amp; project manager</p>
+                  <p>A centralised platform for STEM education programmes across Johor, designed for high-concurrency traffic and complex education datasets. I worked directly with government stakeholders, resolved ISP infrastructure bottlenecks to keep it available, and protected it with Cloudflare and SSL/TLS.</p>
+                  <div class="case-links">
+                    <a class="text-link" href="https://johorstemhub.com" target="_blank" rel="noopener">johorstemhub.com <svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                  </div>
+                </div>
+                <div class="case-side">
+                  <span class="status status--live">Live</span>
+                  <span class="status status--client">Client work</span>
+                  <ul class="tag-list" aria-label="Stack">
+                    <li class="tag">Laravel</li><li class="tag">PHP</li><li class="tag">MySQL</li><li class="tag">Cloudflare</li>
+                  </ul>
+                </div>
+              </li>
+
+              <li class="case-row" data-category="mobile">
+                <span class="case-id">P-04</span>
+                <div class="case-main">
+                  <h3><a href="work/roadsense.html">RoadSense</a></h3>
+                  <p class="sub">Crowdsourced road hazard reporting · Android app + web admin · Team of 4</p>
+                  <p>Drivers report potholes, flooding and debris with photo and GPS, see hazards on a live map, and help confirm or resolve them. A hybrid risk score gives an instant on-device result, then a Cloud Function asks Gemini to review the report and photo in the background.</p>
+                  <div class="case-links">
+                    <a class="text-link" href="work/roadsense.html">Read case study <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg></a>
+                  </div>
+                </div>
+                <div class="case-side">
+                  <span class="status status--demo">Demo on request</span>
+                  <ul class="tag-list" aria-label="Stack">
+                    <li class="tag">Java</li><li class="tag">Android SDK</li><li class="tag">Firestore</li><li class="tag">Cloud Functions</li><li class="tag">Gemini</li><li class="tag">Next.js</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="work-group">
+            <div class="sub-head"><h3>Project index</h3><p class="meta">Select a project for details</p></div>
+            <ul class="project-list">
+
+              <li data-category="security">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-05</span>
+                    <span><span class="p-name">Veritas Payloads</span><span class="p-desc">OWASP Top 10 payload dataset, companion to VERITAS</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>210,845 payloads in 65 vulnerability categories, across 139 files (~70 MB of JSON), covering all 10 OWASP Top 10 (2025) categories.</li>
+                      <li>One schema for every entry: ID, category, target technology, injection point, payload, and validation rules (expected status code and success pattern).</li>
+                      <li>Compiled and normalised from industry-standard testing wordlists, with an interactive static dashboard on GitHub Pages.</li>
                     </ul>
-                    <div class="cta-row mt-2">
-                      <a href="#portfolio" class="btn-pill primary">View Projects</a>
-                      <a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" class="btn-pill secondary">Connect on LinkedIn</a>
-                    </div>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">Python</li><li class="tag">JSON</li><li class="tag">JavaScript</li><li class="tag">GitHub Pages</li></ul>
                   </div>
-                  <div class="avatar-frame" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="images/intro.webp" alt="Muhammad Saiful Iqbal portrait" class="img-fluid">
+                </details>
+              </li>
+
+              <li data-category="security">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-06</span>
+                    <span><span class="p-name">Projek Dengkis</span><span class="p-desc">Modular CLI for authorised web security assessments</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>Active testing only runs with an explicit authorisation flag, against systems the user has permission to assess.</li>
+                      <li>Endpoint discovery, context-aware payload testing, business-logic checks and evidence-based verification of results.</li>
+                      <li>HTML, JSON and Markdown reports, plus architecture notes and a Kali Linux workflow guide.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">Python</li><li class="tag">Docker</li><li class="tag">Kali Linux</li></ul>
                   </div>
-                  <span class="floating-shape shape-1"></span>
-                  <span class="floating-shape shape-2"></span>
-                  <div class="particle-field">
-                    <span style="top:10%;left:12%;"></span>
-                    <span style="top:30%;left:28%;"></span>
-                    <span style="top:50%;left:15%;"></span>
-                    <span style="top:70%;left:35%;"></span>
-                    <span style="top:20%;right:18%;"></span>
-                    <span style="top:40%;right:8%;"></span>
-                    <span style="top:60%;right:24%;"></span>
-                    <span style="bottom:18%;left:22%;"></span>
-                    <span style="bottom:26%;right:16%;"></span>
-                    <span style="bottom:8%;right:32%;"></span>
+                </details>
+              </li>
+
+              <li data-category="security web">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-07</span>
+                    <span><span class="p-name">SAJATECH</span><span class="p-desc">Network topology &amp; security simulator · Team project, ITT550</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>Interactive vector diagram of a 32-device faculty network design.</li>
+                      <li>Ping simulator that tests VLAN segmentation and guest-isolation rules across the topology.</li>
+                      <li>AI Copilot that explains VLANs, ACLs, packet paths and each simulation result. The API key stays on the server, never in the browser.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">Next.js</li><li class="tag">TypeScript</li><li class="tag">React</li></ul>
                   </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Skills / Capabilities -->
-            <div class="col-lg-4">
-              <div class="p-4 p-lg-5 vh-100">
-                <div class="card-soft" data-aos="fade-up" data-aos-delay="200">
-                  <span class="hero-kicker mb-2 d-block">Capabilities</span>
-                  <div class="capabilities">
-                    <div class="capability-group">
-                      <h4>Frontend</h4>
-                      <div class="chip-row">
-                        <span class="stack-chip">HTML/CSS/JS</span>
-                        <span class="stack-chip">Responsive UI</span>
-                        <span class="stack-chip">Accessibility</span>
-                      </div>
-                    </div>
-                    <div class="capability-group">
-                      <h4>Backend</h4>
-                      <div class="chip-row">
-                        <span class="stack-chip">Laravel/PHP</span>
-                        <span class="stack-chip">REST APIs</span>
-                        <span class="stack-chip">Auth & Validation</span>
-                        <span class="stack-chip">Caching</span>
-                      </div>
-                    </div>
-                    <div class="capability-group">
-                      <h4>Security & Ops</h4>
-                      <div class="chip-row">
-                        <span class="stack-chip">Secure-by-design</span>
-                        <span class="stack-chip">Logging/Monitoring</span>
-                        <span class="stack-chip">Perf tuning</span>
-                      </div>
-                    </div>
-                    <div class="capability-group">
-                      <h4>Delivery</h4>
-                      <div class="chip-row">
-                        <span class="stack-chip">Git/GitHub</span>
-                        <span class="stack-chip">CI-friendly</span>
-                        <span class="stack-chip">Docs & handoff</span>
-                      </div>
-                    </div>
+                </details>
+              </li>
+
+              <li data-category="security">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-08</span>
+                    <span><span class="p-name">DengkisExiftools</span><span class="p-desc">Telegram bot for digital forensics</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>Extracts EXIF metadata with ExifTool, with optional Binwalk signature scans and Foremost file carving.</li>
+                      <li>Returns a structured report plus the raw JSON.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">Python</li><li class="tag">ExifTool</li><li class="tag">Binwalk</li><li class="tag">Foremost</li><li class="tag">Telegram Bot API</li></ul>
                   </div>
-                </div>
-              </div>
-            </div>
+                </details>
+              </li>
 
-            
-            <!-- CTA Button (Desktop) -->
-            <div class="col-lg-3 d-none d-lg-block position-fixed bottom-0 end-0 p-0" style="z-index: 8;">
-              <!-- <a href="#" class="cta-button d-block">VIEW ALL WORKS</a> -->
-              <!-- <button class="btn-special w-100" data-aos="fade-up" data-aos-delay="800" data-aos-anchor-placement="top-bottom">
-                  <span class="text-container">
-                      <span class="original-text">HIRE ME</span>
-                      <span class="hover-text">HIRE ME</span>
-                  </span>
-              </button> -->
-            </div>
-
-          <section id="about" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
-              <div class="row d-flex flex-wrap" data-aos="fade-up">
-                <div class="col-lg-7 pb-4">
-                  <span class="introduction mb-3 d-block">About</span>
-                  <h2 class="name mb-4 txt-fx slide-up text-uppercase">Building secure, user-first web products</h2>
-                  <p class="description mb-3">
-                    I’m a Computer Science & IT enthusiast who blends full-stack web development with a security mindset. I ship clean, responsive interfaces, build reliable backends, and keep performance and security in the loop from day one.
-                  </p>
-                  <div class="highlight-row mb-3">
-                    <div class="highlight-pill">Laravel + JS delivery</div>
-                    <div class="highlight-pill">Security by design</div>
-                    <div class="highlight-pill">STEM/EdTech focus</div>
-                    <div class="highlight-pill">Product-minded</div>
+              <li data-category="web">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-09</span>
+                    <span><span class="p-name">PCS.MY</span><span class="p-desc">E-commerce ordering platform · Projek Cuti Sem × Workshirt Collection</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>Product catalogue, pre-orders, checkout, promotions, admin panel, confirmation emails and PDF invoices.</li>
+                      <li>ToyyibPay payment gateway with payment callbacks and gateway-fee handling.</li>
+                      <li>CSRF protection, rate limiting, secure session cookies, security headers and PDO prepared statements.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">PHP</li><li class="tag">MySQL</li><li class="tag">ToyyibPay</li><li class="tag">PHPMailer</li><li class="tag">Dompdf</li></ul>
                   </div>
-                  <div class="section-divider"></div>
-                  <div class="highlight-row">
-                    <div class="pill primary">UiTM CS (Diploma → Bachelor)</div>
-                    <div class="pill accent">Cisco: CCNA Intro, Cybersecurity, Ethical Hacker</div>
-                    <div class="pill primary">Opswat: Critical Infrastructure Protection</div>
-                    <div class="pill accent">Published STEM resources used statewide</div>
+                </details>
+              </li>
+
+              <li data-category="mobile">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-10</span>
+                    <span><span class="p-name">BudiMadani</span><span class="p-desc">Fuel subsidy calculator for Malaysian drivers · Android</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>Fetches current RON95, RON97, diesel and BUDI95 prices from the data.gov.my open data API, with offline fallbacks.</li>
+                      <li>Calculates by litres or by budget, and compares pump price against subsidised price to show savings.</li>
+                      <li>Google Sign-In through Firebase Authentication and Android Credential Manager; Material Design 3 light and dark themes.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">Java 17</li><li class="tag">Android SDK</li><li class="tag">OkHttp</li><li class="tag">Firebase Auth</li></ul>
                   </div>
-                  <div class="row g-3 mt-3" data-aos="fade-up" data-aos-delay="150">
-                    <div class="col-md-4">
-                      <div class="image-holder bg-cover" style="background-image:url('images/experience.webp');">
-                        <div class="overlay-content">
-                          <h5>Experience</h5>
-                          <p>Hands-on delivery from freelancing to leading Team ChendAwan, shipping secure web products end-to-end.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="image-holder bg-cover" style="background-image:url('images/expertise.webp');">
-                        <div class="overlay-content">
-                          <h5>Expertise</h5>
-                          <p>Frontend + backend with a security mindset—clarity in UI, discipline in auth, validation, and logging.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="image-holder bg-cover" style="background-image:url('images/whyme.webp');">
-                        <div class="overlay-content">
-                          <h5>Why collaborate</h5>
-                          <p>Product thinking, reliable communication, and collaborative delivery for fast, safe launches.</p>
-                        </div>
-                      </div>
-                    </div>
+                </details>
+              </li>
+
+              <li data-category="web">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-11</span>
+                    <span><span class="p-name">NeuroQuiz</span><span class="p-desc">Adaptive learning quiz platform · Team project, PWA</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>RB-ADA adaptive difficulty algorithm, and a Cognitive Analyzer based on the Rule Space Method.</li>
+                      <li>1,000+ questions in 5 categories, with points, levels, streaks, achievements and performance analytics.</li>
+                      <li>Bilingual (English and Bahasa Malaysia), WCAG AA accessible, works offline, exports results to PDF.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">JavaScript</li><li class="tag">PWA</li><li class="tag">Service Workers</li><li class="tag">jsPDF</li></ul>
                   </div>
-                </div>
-                <div class="col-lg-5 pb-4">
-                  <div class="card-soft h-100 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="mb-3">How I work</h3>
-                    <div class="process-grid">
-                      <div class="process-card">
-                        <h4>Discover</h4>
-                        <p>Clarify goals, users, constraints, and risks up front.</p>
-                      </div>
-                      <div class="process-card">
-                        <h4>Design/Model</h4>
-                        <p>Define flows, data, auth, and validation paths early.</p>
-                      </div>
-                      <div class="process-card">
-                        <h4>Build & Secure</h4>
-                        <p>Implement clean UI + APIs with security checks in place.</p>
-                      </div>
-                      <div class="process-card">
-                        <h4>Test & Ship</h4>
-                        <p>Validate, monitor, and iterate fast with feedback loops.</p>
-                      </div>
-                    </div>
+                </details>
+              </li>
+
+              <li data-category="web">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-12</span>
+                    <span><span class="p-name">BQR.PRO</span><span class="p-desc">Offline-first QR code studio · PWA</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>Real-time preview for URLs, text, email, phone, WiFi, vCard, WhatsApp and location, with 8 templates.</li>
+                      <li>Colours, gradients, module styles and logo overlay that automatically switches to the highest error-correction level.</li>
+                      <li>PNG and SVG export; uploaded SVG logos are sanitised before use; deployed through CI.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">JavaScript</li><li class="tag">Vite</li><li class="tag">Workbox</li><li class="tag">Canvas API</li></ul>
                   </div>
-                </div>
-              </div>
-            </section>
+                </details>
+              </li>
 
-          <section id="experience" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
-            <div class="row mb-5">
-              <div class="col-lg-6" data-aos="fade-up">
-                <span class="introduction mb-3 d-block">introduction</span>
-                <h2 class="name mb-4 txt-fx slide-up text-uppercase">Digital Maestro</h2>
-                <p>
-                  I’m Muhammad Saiful Iqbal, passionate about web development, cybersecurity, and creative digital projects. 
-                  With hands-on experience as a freelancer and founder of <strong>Team ChendAwan</strong>, 
-                  I combine technical expertise with design thinking to build secure, impactful, and user-friendly solutions. 
-                </p>
-              </div>
-            </div>
-            <div class="row">
-              <!-- Personal Info -->
-              <div class="col-lg-6">
-                <div class="info-element py-4" data-aos="fade-up">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <th>Age</th>
-                        <td>21 (2025)</td>
-                      </tr>
-                      <tr>
-                        <th>Residence</th>
-                        <td>Johor, Malaysia</td>
-                      </tr>
-                      <tr>
-                        <th>Address</th>
-                        <td>Kluang, Johor</td>
-                      </tr>
-                      <tr>
-                        <th>E-mail</th>
-                        <td><a href="mailto:iqbal.chendawan@gmail.com">iqbal.chendawan@gmail.com</a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div class="col-lg-6">
-                <div class="card-soft py-4 px-4 h-100" data-aos="fade-up">
-                  <h4 class="mb-3">Recent impact</h4>
-                  <ul class="case-points mb-3">
-                    <li><strong>STEM Hub:</strong> Led front-end & deployment, improved onboarding and uptime for a statewide audience.</li>
-                    <li><strong>CheckMySet:</strong> Built interactive math tool with real-time validation to aid learning.</li>
-                    <li><strong>SIEM Dashboard:</strong> Delivered security-focused dashboards for log visibility and intrusion insights.</li>
-                    <li><strong>CryptoDash:</strong> Live API integration with performant UI for market monitoring.</li>
-                  </ul>
-                  <div class="chip-row">
-                    <span class="stack-chip">Performance-first</span>
-                    <span class="stack-chip">Secure delivery</span>
-                    <span class="stack-chip">UX & clarity</span>
+              <li data-category="iot">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-13</span>
+                    <span><span class="p-name">EcoPulse</span><span class="p-desc">IoT plant-monitoring dashboard for an ESP32 sensor node</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>Receives live sensor data from an ESP32 over MQTT using secure WebSockets.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">ESP32</li><li class="tag">MQTT</li><li class="tag">WebSockets</li><li class="tag">JavaScript</li></ul>
                   </div>
-                </div>
-              </div>
+                </details>
+              </li>
 
-            </div>
-
-            <div class="row mt-4">
-              <div class="col-lg-6" data-aos="fade-up">
-                <h4 class="mb-3">Education</h4>
-                <div class="timeline">
-                  <div class="timeline-item">
-                    <div class="meta-date">2017 - 2021</div>
-                    <h5 class="info-title">Sijil Pelajaran Malaysia (SPM)</h5>
-                    <p>Sekolah Menengah Kebangsaan Seri Sembrong</p>
+              <li data-category="web">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-14</span>
+                    <span><span class="p-name">One Is Lying</span><span class="p-desc">Mobile-first social deduction party game</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>For 3–10 players, with custom or auto-generated word pairs, camera-based player avatars and timers.</li>
+                      <li>WCAG AA accessible.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">JavaScript</li><li class="tag">HTML5</li><li class="tag">Camera API</li></ul>
                   </div>
-                  <div class="timeline-item">
-                    <div class="meta-date">2022 - 2025</div>
-                    <h5 class="info-title">Diploma in Computer Science</h5>
-                    <p>Universiti Teknologi MARA (UiTM) Cawangan Johor Kampus Segamat</p>
+                </details>
+              </li>
+
+              <li data-category="web">
+                <details class="project-row">
+                  <summary>
+                    <span class="p-id">P-15</span>
+                    <span><span class="p-name">ZapZap</span><span class="p-desc">Browser-based internet speed test</span></span>
+                    <span class="status status--demo">Demo on request</span>
+                    <span class="p-toggle" aria-hidden="true"></span>
+                  </summary>
+                  <div class="p-body">
+                    <ul>
+                      <li>Measures ping, download and upload speeds in the browser.</li>
+                    </ul>
+                    <ul class="tag-list" aria-label="Stack"><li class="tag">JavaScript</li><li class="tag">LibreSpeed</li></ul>
                   </div>
-                  <div class="timeline-item">
-                    <div class="meta-date">2025 - 2028 (Expected)</div>
-                    <h5 class="info-title">Bachelor of Computer Science (Hons.) Netcentric Computing</h5>
-                    <p>Universiti Teknologi MARA (UiTM) Cawangan Melaka Kampus Jasin</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <h4 class="mb-3">Experience</h4>
-                <div class="timeline">
-                  <div class="timeline-item">
-                    <div class="meta-date">2021 - 2022</div>
-                    <h5 class="info-title">Barista - Leezo Restaurant</h5>
-                    <p>Developed strong customer service and multitasking skills while preparing beverages and managing financial transactions. Gained hands-on experience in handling daily operations and ensuring customer satisfaction.</p>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="meta-date">2024 - 2025</div>
-                    <h5 class="info-title">Internship Trainee - Johor State Education Department (ICT Unit, Learning Sector)</h5>
-                    <p>Contributed to IT support and digital initiatives under the guidance of Ts. Ahmad Kamalrulzaman Bin Othman and Encik Mohd Hairil Bin Moh Khambali. Assisted in maintaining systems, supporting digital learning projects, and building practical problem-solving skills in a government environment.</p>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="meta-date">2025 - Present</div>
-                    <h5 class="info-title">Founder & Creative Director - Team ChendAwan</h5>
-                    <p>Leading a startup team of young developers, multimedia specialists, and financial managers. Spearheading web development projects from planning to deployment, client management, and creative direction. Successfully delivered multiple freelance projects including <strong>web design, development, hosting, and maintenance</strong> for SMEs and organizations.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row mt-4">
-              <div class="col-lg-6" data-aos="fade-up">
-                <h4 class="mb-3">Certificates</h4>
-                <div class="card-soft">
-                  <h6 class="mb-2">Networking & Cybersecurity</h6>
-                  <ul class="list-compact">
-                    <li>CCNA: Introduction to Networks (Cisco)</li>
-                    <li>Introduction to Cybersecurity (Cisco)</li>
-                    <li>Ethical Hacker (Cisco)</li>
-                    <li>Introduction to CIP (Critical Infrastructure Protection) – Opswat Academy</li>
-                  </ul>
-                  <div class="section-divider"></div>
-                  <h6 class="mb-2">Web Development & Hosting</h6>
-                  <ul class="list-compact">
-                    <li>HTML Essential (Cisco)</li>
-                    <li>CSS Essential (Cisco)</li>
-                    <li>JavaScript Essential 1 (Cisco)</li>
-                    <li>JavaScript Essential 2 (Cisco)</li>
-                    <li>Asas Pengendalian Pelayan Web – Tenang Komuniti Sdn. Bhd.</li>
-                  </ul>
-                  <div class="section-divider"></div>
-                  <h6 class="mb-2">Green IT / Sustainability</h6>
-                  <ul class="list-compact">
-                    <li>Introduction to Greenhouse Gas Accounting for IT</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <h4 class="mb-3">References</h4>
-                <div class="timeline">
-                  <div class="timeline-item">
-                    <div class="meta-date">Diploma</div>
-                    <h5 class="info-title">Ts. Dr. Nur Huda binti Jaafar</h5>
-                    <p>MARA University of Technology (UiTM)<br>Academic Advisor<br>Email: <a href="mailto:nurhu378@uitm.edu.my">nurhu378@uitm.edu.my</a></p>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="meta-date">Internship</div>
-                    <h5 class="info-title">Encik Mohd Hairil Bin Moh Khambali</h5>
-                    <p>Johor State Education Department (JPNJ)<br>Assistant Director<br>Email: <a href="mailto:hairil.khambali@moe.gov.my">hairil.khambali@moe.gov.my</a></p>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="meta-date">Bachelor</div>
-                    <h5 class="info-title">Sir Mohamad Asrol Bin Arshad</h5>
-                    <p>MARA University of Technology (UiTM)<br>Academic Advisor<br>Email: <a href="mailto:mohamad_asrol@uitm.edu.my">mohamad_asrol@uitm.edu.my</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-         
-          <!-- Porfolio section -->
-          <section id="portfolio" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
-            <div class="section-header my-5" data-aos="fade-up">
-            <div class="row g-5">
-              <div class="col-lg-6">
-                <span class="introduction mb-3 d-block">Some of my recent works & experience</span>
-                <h2 class="name mb-4 txt-fx slide-up text-uppercase">Portfolio</h2>
-              </div>
-              <div class="col-lg-4" data-aos="fade-up">
-                <p>Check out my complete Resume & CV.</p>
-                <a href="asset/RESUME MUHAMMAD SAIFUL IQBAL ABDUL RANI.pdf" target="_blank" class="btn btn-dark px-5 py-4">View My Resume / CV</a>
-              </div>
-            </div>
-          </div>
-
-            <div class="portfolio-wrapper" data-aos="fade-up">
-              <div class="portfolio-nav d-flex align-items-center justify-content-end gap-2 mb-3">
-                <button class="nav-btn portfolio-prev" aria-label="Previous project"><i class="fa-solid fa-arrow-left"></i></button>
-                <button class="nav-btn portfolio-next" aria-label="Next project"><i class="fa-solid fa-arrow-right"></i></button>
-              </div>
-              <div class="swiper portfolio-Swiper portfolio-content py-4">
-                <div class="swiper-wrapper">
-                <!-- Portfolio 1: JSTH -->
-                <div class="swiper-slide">
-                  <div class="portfolio-card">
-                    <div class="image-holder bg-cover" style="background-image:url('images/jsth.webp');"></div>
-                    <div class="caption mt-0">
-                      <div class="title">Johor STEM Talent Hub</div>
-                      <div class="case-meta">Role: Lead Front-End & Deployment</div>
-                      <ul class="case-points">
-                        <li><strong>Problem:</strong> Needed a reliable hub to onboard and showcase STEM talents statewide.</li>
-                        <li><strong>Solution:</strong> Built responsive UI with clear flows, hardening forms and deployment.</li>
-                        <li><strong>Outcome:</strong> Improved onboarding and uptime for thousands of student visits.</li>
-                      </ul>
-                      <div class="chip-row mb-2">
-                        <span class="stack-chip">Laravel</span>
-                        <span class="stack-chip">JavaScript</span>
-                        <span class="stack-chip">Responsive UI</span>
-                        <span class="stack-chip">Security-first</span>
-                      </div>
-                      <div class="case-actions">
-                        <a href="https://johorstemhub.com" target="_blank" class="btn-pill primary">Live Site</a>
-                        <a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" class="btn-pill secondary">Discuss</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-                <!-- Portfolio 2: CheckMySet -->
-                <div class="swiper-slide">
-                  <div class="portfolio-card">
-                    <div class="image-holder bg-cover" style="background-image:url('images/cms.webp');"></div>
-                    <div class="caption mt-0">
-                      <div class="title">CheckMySet — Interactive Relation Checker</div>
-                      <div class="case-meta">Role: Lead Developer</div>
-                      <ul class="case-points">
-                        <li><strong>Problem:</strong> Students struggled to grasp abstract relation properties.</li>
-                        <li><strong>Solution:</strong> Built a real-time interactive checker with visual feedback.</li>
-                        <li><strong>Outcome:</strong> Faster understanding with immediate validation in browser.</li>
-                      </ul>
-                      <div class="chip-row mb-2">
-                        <span class="stack-chip">JavaScript</span>
-                        <span class="stack-chip">UX writing</span>
-                        <span class="stack-chip">Client-side logic</span>
-                      </div>
-                      <div class="case-actions">
-                        <a href="https://harlequincs.github.io/chekmyset/" target="_blank" class="btn-pill primary">Live Demo</a>
-                        <a href="https://github.com/harlequincs/chekmyset" target="_blank" class="btn-pill secondary">GitHub</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Portfolio 3: SIEM Dashboard -->
-                <div class="swiper-slide">
-                  <div class="portfolio-card">
-                    <div class="image-holder bg-cover" style="background-image:url('images/Dashboard.webp');"></div>
-                    <div class="caption mt-0">
-                      <div class="title">SIEM Dashboard — Intrusion Detection</div>
-                      <div class="case-meta">Role: Primary Contributor</div>
-                      <ul class="case-points">
-                        <li><strong>Problem:</strong> Needed clearer visibility into intrusion events and logs.</li>
-                        <li><strong>Solution:</strong> Built dashboards with actionable views and log triage flows.</li>
-                        <li><strong>Outcome:</strong> Faster insight for security monitoring and reporting.</li>
-                      </ul>
-                      <div class="chip-row mb-2">
-                        <span class="stack-chip">Dashboards</span>
-                        <span class="stack-chip">Security</span>
-                        <span class="stack-chip">Data viz</span>
-                      </div>
-                      <div class="case-actions">
-                        <a href="https://docs.google.com/document/d/1nf1sWrmDV6zczArdTxkPzsqHZNuRQguHTjCQboSuogw/edit?usp=sharing" target="_blank" class="btn-pill primary">Case Study</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Portfolio 4: CryptoDash -->
-                <div class="swiper-slide">
-                  <div class="portfolio-card">
-                    <div class="image-holder bg-cover" style="background-image:url('images/CryptoDash.png');"></div>
-                    <div class="caption mt-0">
-                      <div class="title">CryptoDash — Live Market Dashboard</div>
-                      <div class="case-meta">Role: Lead Developer</div>
-                      <ul class="case-points">
-                        <li><strong>Problem:</strong> Needed real-time market view with clean UX.</li>
-                        <li><strong>Solution:</strong> Integrated live APIs with performant UI and state handling.</li>
-                        <li><strong>Outcome:</strong> Smooth monitoring experience with responsive layout.</li>
-                      </ul>
-                      <div class="chip-row mb-2">
-                        <span class="stack-chip">API integration</span>
-                        <span class="stack-chip">JavaScript</span>
-                        <span class="stack-chip">Responsive</span>
-                      </div>
-                      <div class="case-actions">
-                        <a href="https://harlequincs.github.io/CryptoDash/" target="_blank" class="btn-pill primary">Live Demo</a>
-                        <a href="https://github.com/harlequincs/CryptoDash" target="_blank" class="btn-pill secondary">GitHub</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-                <div class="swiper-pagination mt-5"></div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Publishment Section -->
-
-          <section id="portfolio" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
-            <div class="section-header my-5" data-aos="fade-up">
-            <div class="row g-5">
-              <div class="col-lg-6">
-                <span class="introduction mb-3 d-block">Echoes of my creations</span>
-                <h2 class="name mb-4 txt-fx slide-up text-uppercase">Publishment</h2>
-              </div>
-            </div>
-          </div>
-
-            <div class="portfolio-wrapper" data-aos="fade-up">
-              <div class="portfolio-nav d-flex align-items-center justify-content-end gap-2 mb-3">
-                <button class="nav-btn portfolio-prev" aria-label="Previous publishment"><i class="fa-solid fa-arrow-left"></i></button>
-                <button class="nav-btn portfolio-next" aria-label="Next publishment"><i class="fa-solid fa-arrow-right"></i></button>
-              </div>
-              <div class="swiper portfolio-Swiper portfolio-content py-4">
-                <div class="swiper-wrapper">
-                <!-- PUBLISHMENT 1: MODUL MASTERI -->
-                <div class="swiper-slide">
-                  <div class="portfolio-card">
-                    <div class="image-holder bg-cover" style="background-image:url('images/Publishment1_ModulMasteriT4.png');"></div>
-                    <div class="caption mt-0 d-flex justify-content-between align-items-start">
-                      <div>
-                        <div class="title">MODUL MASTERI MATEMATIK TAMBAHAN TINGKATAN 4 NEGERI JOHOR</div>
-                        <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
-                        <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
-                          Sebagai Editor Utama, saya bertanggungjawab memastikan keseragaman kandungan, ketepatan topik, dan kualiti penyampaian modul ini. Modul ini kini digunakan secara rasmi oleh semua sekolah di Johor, diterbitkan oleh Jabatan Pendidikan Negeri Johor, untuk membantu pelajar Tingkatan 4 memahami Matematik Tambahan dengan lebih efektif.
-                        </div>
-                      </div>
-                      <a href="https://online.fliphtml5.com/osnkm/gmpo/#p=1" target="_blank" class="btn-pill secondary">Ebook Sample</a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- PUBLISHMENT 2: MODULAR MATH JOHOR -->
-                <div class="swiper-slide">
-                  <div class="portfolio-card">
-                    <div class="image-holder bg-cover" style="background-image:url('images/Publishment2_ModularMathT5.png');"></div>
-                    <div class="caption mt-0 d-flex justify-content-between align-items-start">
-                      <div>
-                        <div class="title">MODUL MODULAR MATH JOHOR MATEMATIK TINGKATAN 5</div>
-                        <button class="toggle-desc btn-sm btn-outline-dark mt-1">Read More</button>
-                        <div class="project-desc" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; margin-top:0.5rem;">
-                          Sebagai Editor Utama, saya mengawasi kandungan modul ini untuk memastikan topik-topik Matematik Tingkatan 5 disampaikan secara jelas dan konsisten. Modul ini diterbitkan secara rasmi oleh Jabatan Pendidikan Negeri Johor dan digunakan oleh semua sekolah di negeri ini sebagai bahan rujukan utama pelajar.
-                        </div>
-                      </div>
-                      <a href="https://online.fliphtml5.com/osnkm/ufit/#p=1" target="_blank" class="btn-pill secondary">Ebook Sample</a>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="swiper-pagination mt-5"></div>
-              </div>
-            </div>
-          </section>
-
-          <section id="contact" class="section-tight pt-4 pt-lg-4 px-4 px-lg-5 my-4 py-4 fade-in">
-            <div class="container">
-              <div class="row mb-5">
-                <div class="col-lg-6" data-aos="fade-up">
-                  <span class="introduction mb-3 d-block">Personal Info</span>
-                  <h2 class="name mb-4 txt-fx slide-up text-uppercase">Contact Me</h2>
-                  <p>If you have any questions, project inquiries, or just want to connect, feel free to reach out using the form below.</p>
-                </div>
-              </div>
-
-              <div class="row d-flex g-5">
-                <!-- FAQ Column -->
-                <div class="col-lg-7" data-aos="fade-up">
-                  <h3>Frequently Asked Questions</h3>
-                  <div class="accordion" id="accordionExample2">
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#accordion-collapse1" aria-expanded="true"
-                          aria-controls="accordion-collapse1">
-                          Can you tell us a bit about yourself?
-                        </button>
-                      </h2>
-                      <div id="accordion-collapse1" class="accordion-collapse collapse show"
-                        aria-labelledby="headingOne" data-bs-parent="#accordionExample2">
-                        <div class="accordion-body">
-                          I’m Muhammad Saiful Iqbal Abdul Rani, currently pursuing my Bachelor’s degree in IT. 
-                          I’m passionate about web development and cybersecurity, and I enjoy 
-                          building solutions that combine functionality with clean design.
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#accordion-collapse2" aria-expanded="false"
-                          aria-controls="accordion-collapse2">
-                          What kind of projects have you worked on?
-                        </button>
-                      </h2>
-                      <div id="accordion-collapse2" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#accordionExample2">
-                        <div class="accordion-body">
-                          I’ve developed a full-stack Smart Office system during my internship, 
-                          created a STEM Hub website for an education department, and worked on 
-                          freelance projects with my team (Team Chendawan), focusing on web development, 
-                          hosting, and maintenance.
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#accordion-collapse3" aria-expanded="false"
-                          aria-controls="accordion-collapse3">
-                          What are your main technical skills?
-                        </button>
-                      </h2>
-                      <div id="accordion-collapse3" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionExample2">
-                        <div class="accordion-body">
-                          I specialize in Laravel, PHP, JavaScript, HTML, and CSS for web development. 
-                          I also have experience in cybersecurity, including ethical hacking and 
-                          penetration testing, as well as creating dashboards for event management.
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#accordion-collapse4" aria-expanded="false"
-                          aria-controls="accordion-collapse4">
-                          How would you describe your working style?
-                        </button>
-                      </h2>
-                      <div id="accordion-collapse4" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                        data-bs-parent="#accordionExample2">
-                        <div class="accordion-body">
-                          I’m detail-oriented, adaptive, and collaborative. I work well in a team, 
-                          but I’m also confident managing projects independently when needed. 
-                          Communication and meeting deadlines are my top priorities.
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingFive">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#accordion-collapse5" aria-expanded="false"
-                          aria-controls="accordion-collapse5">
-                          What do you do outside of work?
-                        </button>
-                      </h2>
-                      <div id="accordion-collapse5" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                        data-bs-parent="#accordionExample2">
-                        <div class="accordion-body">
-                          Outside of coding, I enjoy riding my CBR150R, exploring new tech trends, 
-                          and sharing knowledge. I also aspire to become an IT educator one day, 
-                          blending my passion for technology with teaching.
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-               <!-- Success Popup -->
-              <div id="popup" class="popup hidden" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-                <div class="popup-content">
-                  <button class="close-btn" aria-label="Close">&times;</button>
-
-                  <!-- Animated Checkmark -->
-                  <div class="icon-wrap" aria-hidden="true">
-                    <svg class="success-svg" viewBox="0 0 72 72">
-                      <!-- Circle -->
-                      <circle class="success-circle" cx="36" cy="36" r="28" fill="none" stroke-width="6" />
-                      <!-- Check -->
-                      <path class="success-check" fill="none" stroke-width="6" d="M22 36 L32 46 L50 28" />
-                    </svg>
-
-                    <!-- Burst dots -->
-                    <div class="burst">
-                      <span></span><span></span><span></span><span></span><span></span>
-                      <span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                  </div>
-
-                  <h3 id="popup-title">✨ You made my day!</h3>
-                  <p>Seriously, thanks a ton for this 🙌<br />I deeply appreciate your message.</p>
-
-
-                  <!-- Optional action buttons -->
-                  <div class="actions">
-                    <button class="btn-ok">Okay</button>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-                <!-- Contact Form Column -->
-               <div class="col-lg-5">
-                <div class="right-content" data-aos="fade-up">
-                  <div class="element-header align-right">
-                      <h3>Let’s connect projects, ideas, or just some encouragement</h3>
-                      <p>Feel free to drop me a message. I’d love to hear from you!</p>
-                  </div>
-                  <div class="contact-form py-4">
-                    <form id="form" class="form-group">
-                      <div class="pb-2">
-                        <input type="text" name="name" placeholder="Your Full Name" class="form-control" required>
-                      </div>
-                      <div class="pb-2">
-                        <input type="email" name="email" placeholder="Your Email Address" class="form-control" required>
-                      </div>
-                      <div class="pb-2">
-                        <textarea name="message" placeholder="Your Message" rows="6" class="form-control" required></textarea>
-                      </div>
-                      <button type="submit" name="submit" class="btn btn-dark w-100 btn-rounded">Submit</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-
-
-
-              </div>
-            </div>
-          </section>
-
-          
+                </details>
+              </li>
+            </ul>
           </div>
         </div>
-
       </div>
+    </section>
+
+    <!-- ============ 02 EXPERIENCE ============ -->
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="container section-grid">
+        <p class="section-index"><span class="num">02</span><span>Experience</span></p>
+        <div>
+          <div class="section-head">
+            <h2 id="experience-title">From first conversation to production, and support after handover.</h2>
+          </div>
+          <ol class="timeline">
+            <li>
+              <p class="when meta">Jan 2025 – Present</p>
+              <div>
+                <h3>Founder &amp; Lead Developer</h3>
+                <p class="org">Team ChendAwan Ventures · Johor, Malaysia · SSM 202603212164 (003878769-W)</p>
+                <p>A registered, student-led software business that designs, builds and delivers production web and mobile systems for government and corporate clients, including <a href="work/hrsb-one.html">HRSB ONE</a> and <a href="https://johorstemhub.com" target="_blank" rel="noopener">JohorSTEMHub.com</a>.</p>
+                <ul class="bullets">
+                  <li>Lead client engagements from requirements gathering and system design through development, deployment, handover and support.</li>
+                  <li>Direct the technical team, set the architecture and review delivery for each project.</li>
+                  <li>Manage client and stakeholder communication, timelines and scope.</li>
+                  <li>Apply security from development through production: Cloudflare proxies, SSL/TLS, role-based access control and secure authentication.</li>
+                  <li>Build internal tools that automate client workflows and reduce manual effort.</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <p class="when meta">Oct 2024 – Feb 2025</p>
+              <div>
+                <h3>ICT Intern</h3>
+                <p class="org">Johor State Education Department (JPNJ) · Johor Bahru, Malaysia</p>
+                <ul class="bullets">
+                  <li>Built and deployed the Smart Office Staff Movement Tracker, replacing manual logging for department staff.</li>
+                  <li>Digitised redundant manual workflows, improving data accuracy and reporting speed.</li>
+                  <li>Maintained ICT infrastructure for the Learning Sector by diagnosing and resolving network and hardware faults.</li>
+                  <li>Presented technical briefings and progress reports to senior management.</li>
+                </ul>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 CAPABILITIES ============ -->
+    <section class="section" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="container section-grid">
+        <p class="section-index"><span class="num">03</span><span>Capabilities</span></p>
+        <div>
+          <div class="section-head">
+            <h2 id="capabilities-title">What I can do, and where I've done it.</h2>
+            <p class="lead">Every capability below points to a project, certification or competition you can check.</p>
+          </div>
+
+          <div class="cap-grid">
+            <table class="evidence">
+              <caption><h3>Security</h3></caption>
+              <tbody>
+                <tr><th scope="row">Web application security (OWASP Top 10)</th><td>VERITAS, Veritas Payloads, Projek Dengkis</td></tr>
+                <tr><th scope="row">Vulnerability assessment</th><td>VERITAS scan engine and reporting</td></tr>
+                <tr><th scope="row">Authorised penetration testing</th><td>Projek Dengkis, CTF competitions, Kali Linux</td></tr>
+                <tr><th scope="row">Red team operations</th><td>CRTOM certification, CTF competitions</td></tr>
+                <tr><th scope="row">Threat intelligence</th><td>CTIGA certification</td></tr>
+                <tr><th scope="row">LLM security</th><td>CLLMSP, CLLMSE; keeping AI out of VERITAS's decision path</td></tr>
+                <tr><th scope="row">Authentication &amp; access control</th><td>MFA, RBAC, JWT, OAuth in VERITAS and HRSB ONE</td></tr>
+                <tr><th scope="row">Data protection</th><td>Postgres row-level security, HMAC-signed requests, Cloudflare, SSL/TLS</td></tr>
+                <tr><th scope="row">Digital forensics basics</th><td>DengkisExiftools (ExifTool, Binwalk, Foremost)</td></tr>
+              </tbody>
+            </table>
+
+            <table class="evidence">
+              <caption><h3>Engineering</h3></caption>
+              <tbody>
+                <tr><th scope="row">Multi-module web platforms</th><td>HRSB ONE, VERITAS, JohorSTEMHub</td></tr>
+                <tr><th scope="row">Background jobs, queues &amp; schedulers</th><td>Celery + Redis in VERITAS; queue workers and split schedulers in HRSB ONE</td></tr>
+                <tr><th scope="row">Statutory payroll &amp; HR rules</th><td>EPF, SOCSO, EIS, PCB, zakat and Maybank M2E in HRSB ONE</td></tr>
+                <tr><th scope="row">Payments &amp; integrations</th><td>Stripe, ToyyibPay, Maybank M2E, data.gov.my, WDMS biometric devices</td></tr>
+                <tr><th scope="row">Android development</th><td>RoadSense, BudiMadani</td></tr>
+                <tr><th scope="row">AI with guardrails</th><td>Gemini in RoadSense, Groq in VERITAS, server-side keys in SAJATECH</td></tr>
+                <tr><th scope="row">Containers &amp; edge</th><td>Docker Compose, Nginx, Cloudflare, AWS S3</td></tr>
+                <tr><th scope="row">Networking</th><td>VLAN &amp; ACL design in SAJATECH; CCNA: Introduction to Networks</td></tr>
+                <tr><th scope="row">Automated testing</th><td>PHPUnit in HRSB ONE, pytest in VERITAS</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="sub-head"><h3>Tools I use</h3></div>
+          <div class="stack-groups" style="margin-top: var(--s-5)">
+            <div class="stack-group">
+              <h4>Languages</h4>
+              <ul class="tag-list"><li class="tag">Python</li><li class="tag">TypeScript</li><li class="tag">JavaScript</li><li class="tag">PHP</li><li class="tag">Java</li><li class="tag">C++</li><li class="tag">SQL</li></ul>
+            </div>
+            <div class="stack-group">
+              <h4>Frameworks &amp; platforms</h4>
+              <ul class="tag-list"><li class="tag">Laravel</li><li class="tag">Next.js</li><li class="tag">React</li><li class="tag">FastAPI</li><li class="tag">Android SDK</li><li class="tag">Tailwind CSS</li><li class="tag">PWA / Service Workers</li></ul>
+            </div>
+            <div class="stack-group">
+              <h4>Data &amp; infrastructure</h4>
+              <ul class="tag-list"><li class="tag">PostgreSQL</li><li class="tag">Supabase</li><li class="tag">MySQL</li><li class="tag">Firestore</li><li class="tag">Redis</li><li class="tag">Docker</li><li class="tag">Nginx</li><li class="tag">Cloudflare</li><li class="tag">AWS S3</li><li class="tag">Firebase</li><li class="tag">GitHub Actions</li><li class="tag">ESP32 / MQTT</li></ul>
+            </div>
+            <div class="stack-group">
+              <h4>Professional</h4>
+              <ul class="tag-list"><li class="tag">Project management</li><li class="tag">System analysis &amp; design</li><li class="tag">Requirements gathering</li><li class="tag">Stakeholder management</li><li class="tag">Technical documentation</li><li class="tag">Team leadership</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 CREDENTIALS ============ -->
+    <section class="section" id="credentials" aria-labelledby="credentials-title">
+      <div class="container section-grid">
+        <p class="section-index"><span class="num">04</span><span>Credentials</span></p>
+        <div>
+          <div class="section-head">
+            <h2 id="credentials-title">Certified, and tested under competition pressure.</h2>
+          </div>
+
+          <table class="cred-table">
+            <caption class="visually-hidden">Certifications</caption>
+            <thead><tr><th scope="col">Certification</th><th scope="col">Issuer</th><th scope="col">Date</th></tr></thead>
+            <tbody>
+              <tr><td>Certified LLM Security Expert <abbr title="Certified LLM Security Expert">CLLMSE</abbr></td><td>Red Team Leaders</td><td>Nov 2026</td></tr>
+              <tr><td>Certified LLM Security Professional <abbr title="Certified LLM Security Professional">CLLMSP</abbr></td><td>Red Team Leaders</td><td>Jun 2026</td></tr>
+              <tr><td>Certified Threat Intelligence &amp; Governance Analyst <abbr title="Certified Threat Intelligence &amp; Governance Analyst">CTIGA</abbr></td><td>Red Team Leaders</td><td>Feb 2026</td></tr>
+              <tr><td>Certified Red Team Operations Management <abbr title="Certified Red Team Operations Management">CRTOM</abbr></td><td>Red Team Leaders</td><td>Feb 2026</td></tr>
+              <tr><td>Certified C++ Practitioner <abbr title="Certified C++ Practitioner">CCPC</abbr></td><td>Red Team Leaders</td><td>Feb 2026</td></tr>
+              <tr><td>Certified Cybersecurity Educator Professional <abbr title="Certified Cybersecurity Educator Professional">CCEP</abbr></td><td>Red Team Leaders</td><td>Jan 2026</td></tr>
+              <tr><td>CCNA: Introduction to Networks</td><td>Cisco Networking Academy</td><td>Aug 2025</td></tr>
+              <tr><td>Introduction to Critical Infrastructure Protection <abbr title="Introduction to Critical Infrastructure Protection">ICIP</abbr></td><td>OPSWAT Academy</td><td>Aug 2025</td></tr>
+              <tr><td>Ethical Hacker</td><td>Cisco Networking Academy</td><td>Jul 2025</td></tr>
+              <tr><td>Web Server Management</td><td>Tenang Komuniti</td><td>Jun 2024</td></tr>
+            </tbody>
+          </table>
+
+          <div class="two-col" style="margin-top: var(--s-8)">
+            <div>
+              <div class="sub-head"><h3>Awards</h3></div>
+              <ul class="plain-list" style="border-top:0">
+                <li><span><span class="award">1st Runner-Up</span> · National TAMiNG iCTF8 Hacking Competition</span><span class="yr">2026</span></li>
+                <li><span><span class="award">Winner</span> · UiTM Ideathon Environment Pitching Competition</span><span class="yr">2026</span></li>
+                <li><span><span class="award">Best Contributor Award</span> · Gerakan Mahasiswa Jauhar (GERMAJ)</span><span class="yr">2025</span></li>
+              </ul>
+            </div>
+            <div>
+              <div class="sub-head"><h3>CTF &amp; programming competitions</h3></div>
+              <ul class="plain-list" style="border-top:0">
+                <li><span>National TAMiNG iCTF8 <span class="note">1st Runner-Up</span></span><span class="yr">2026</span></li>
+                <li><span>OWASP KL CTF</span><span class="yr">2026</span></li>
+                <li><span>Re:Hack CTF</span><span class="yr">2026</span></li>
+                <li><span>NadiXMCMC CTF</span><span class="yr">2026</span></li>
+                <li><span>IHack UiTM CTF</span><span class="yr">2026</span></li>
+                <li><span>ProSolve Competitive Programming, UiTM</span><span class="yr">2026</span></li>
+                <li><span>rAKSASA CTF</span><span class="yr">2023</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 ABOUT ============ -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container section-grid">
+        <p class="section-index"><span class="num">05</span><span>About</span></p>
+        <div>
+          <div class="section-head">
+            <h2 id="about-title">Security is part of engineering, from the first design decision.</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-story">
+              <p>I started building software for real users early, and that shaped how I work. When a client depends on a system for payroll, attendance or a statewide portal, it has to stay available, protect people's data and do exactly what it promises.</p>
+              <p>Through Team ChendAwan Ventures, I take projects from first conversation to production: gathering requirements, designing the architecture, building the system, deploying it and supporting the client after handover. Along the way I've worked with Malaysian statutory payroll rules, biometric attendance devices, multi-level approval workflows, payment gateways and government stakeholders.</p>
+              <p>On the security side, I compete in capture-the-flag events, hold certifications in red team operations, threat intelligence and LLM security, and built VERITAS to understand application security from the inside: how inputs are reached, how findings are proven, and how results should be reported so developers can act on them.</p>
+              <p>I learn quickly, enjoy practical problems and like working closely with the people who will use what I build.</p>
+
+              <div class="photos">
+                <figure>
+                  <img src="images/expertise.webp" width="274" height="206" alt="Iqbal working at a laptop" loading="lazy">
+                  <figcaption>At work.</figcaption>
+                </figure>
+                <figure>
+                  <img src="images/experience.webp" width="343" height="257" alt="Iqbal with colleagues in front of the Learning Sector sign at the Johor State Education Department" loading="lazy">
+                  <figcaption>With the Learning Sector team during my JPNJ internship.</figcaption>
+                </figure>
+                <figure>
+                  <img src="images/whyme.webp" width="288" height="384" alt="A red motorcycle parked in front of a mosque" loading="lazy">
+                  <figcaption>Off the keyboard: I ride a CBR150R.</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div>
+              <div class="sub-head" style="margin-top:0"><h3>How I work</h3></div>
+              <ol class="principles" style="border-top:0">
+                <li><div><h4>Understand the real requirement first</h4><p>Payroll, attendance and approval rules are where systems usually go wrong, so I learn the business process before writing code.</p></div></li>
+                <li><div><h4>Security is a design decision</h4><p>Scope control, least privilege and auditability go into the architecture, not a later patch.</p></div></li>
+                <li><div><h4>Evidence over assumptions</h4><p>In VERITAS the rule is "AI proposes, evidence validates, rules decide." I apply the same thinking to any system that makes important decisions.</p></div></li>
+                <li><div><h4>Degrade gracefully</h4><p>Long-running jobs go to queues, external services can fail, and the system should keep working when they do.</p></div></li>
+                <li><div><h4>Document and hand over properly</h4><p>Clients should be able to run, maintain and understand what they've been given.</p></div></li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="two-col" style="margin-top: var(--s-8)">
+            <div>
+              <div class="sub-head"><h3>Education</h3></div>
+              <ul class="plain-list" style="border-top:0">
+                <li><span>BSc (Hons.) Computer Science, Netcentric Computing<span class="note">Universiti Teknologi MARA (UiTM), Melaka (Jasin) · CGPA 3.74 · Final-year project: VERITAS</span></span><span class="yr">2025–2027</span></li>
+                <li><span>Diploma in Computer Science<span class="note">Universiti Teknologi MARA (UiTM), Johor (Segamat) · CGPA 3.42</span></span><span class="yr">2022–2025</span></li>
+              </ul>
+              <div class="sub-head"><h3>Languages</h3></div>
+              <ul class="plain-list" style="border-top:0">
+                <li><span>Malay</span><span class="yr">Native</span></li>
+                <li><span>English</span><span class="yr">Fluent</span></li>
+                <li><span>Arabic</span><span class="yr">Basic</span></li>
+              </ul>
+            </div>
+            <div>
+              <div class="sub-head"><h3>Leadership &amp; activities</h3></div>
+              <ul class="plain-list" style="border-top:0">
+                <li><span>Exco Multimedia<span class="note">Gerakan Mahasiswa Jauhar (GERMAJ)</span></span><span class="yr">2024</span></li>
+                <li><span>Grant Holder<span class="note">Duta Jauhar, Program Pemerkasaan Menara Gading</span></span><span class="yr">2024</span></li>
+                <li><span>Student Leader Council<span class="note">UiTM Orientation Day</span></span><span class="yr">2023</span></li>
+                <li><span>Audit Committee<span class="note">Campus Elections</span></span><span class="yr">2023</span></li>
+                <li><span>Participant<span class="note">University Leadership Engagement Institute Dato' Onn</span></span><span class="yr">2023</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="sub-head"><h3>Publications</h3><p class="meta">Lead editor</p></div>
+          <div class="pubs" style="margin-top: var(--s-5)">
+            <article class="pub">
+              <img src="images/pub-modul-masteri-t4.webp" width="240" height="383" alt="Cover of Modul Masteri Matematik Tambahan Tingkatan 4" loading="lazy">
+              <div>
+                <h4>Modul Masteri Matematik Tambahan Tingkatan 4 Negeri Johor</h4>
+                <p>As lead editor, I was responsible for consistent content, accurate topics and quality of delivery. Published by the Johor State Education Department and used by schools across Johor.</p>
+                <a class="text-link" href="https://online.fliphtml5.com/osnkm/gmpo/#p=1" target="_blank" rel="noopener">View sample <svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </article>
+            <article class="pub">
+              <img src="images/pub-modular-math-t5.webp" width="240" height="383" alt="Cover of Modul Modular Math Johor Matematik Tingkatan 5" loading="lazy">
+              <div>
+                <h4>Modul Modular Math Johor Matematik Tingkatan 5</h4>
+                <p>As lead editor, I made sure Form 5 Mathematics topics were presented clearly and consistently. Published by the Johor State Education Department as a reference for students across the state.</p>
+                <a class="text-link" href="https://online.fliphtml5.com/osnkm/ufit/#p=1" target="_blank" rel="noopener">View sample <svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 CONTACT ============ -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container section-grid">
+        <p class="section-index"><span class="num">06</span><span>Contact</span></p>
+        <div>
+          <div class="section-head">
+            <h2 id="contact-title">Looking for an internship, part-time or contract role.</h2>
+            <p class="lead">I want to build or secure real systems alongside experienced engineers, as a <strong>Security Software Engineer</strong>, <strong>Embedded Systems Engineer</strong>, <strong>Information Security Analyst</strong>, <strong>Cybersecurity Consultant</strong> or <strong>Solutions Architect</strong>. I'm based in Johor and open to on-site, hybrid or remote work, including the Klang Valley.</p>
+          </div>
+
+          <p class="meta">The best way to reach me</p>
+          <div class="contact-email">
+            <a href="mailto:iqbal.intern@gmail.com">iqbal.intern@gmail.com</a>
+            <button type="button" class="icon-btn copy-btn" data-copy="iqbal.intern@gmail.com">
+              <svg class="icon icon--stroke" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span>
+            </button>
+          </div>
+
+          <div class="contact-grid">
+            <div>
+              <ul class="link-list">
+                <li><a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn<span class="handle">saiful-iqbal12</span><svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li><a href="https://github.com/HarlequinCS" target="_blank" rel="noopener"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="handle">HarlequinCS</span><svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li><a href="https://scanwithveritas.tech" target="_blank" rel="noopener"><svg class="icon icon--stroke" aria-hidden="true"><use href="#i-globe"/></svg>VERITAS<span class="handle">scanwithveritas.tech</span><svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li><a href="asset/MUHAMMAD%20SAIFUL%20IQBAL%20ABDUL%20RANI_RESUME.pdf" target="_blank" rel="noopener"><svg class="icon icon--stroke" aria-hidden="true"><use href="#i-file"/></svg>Résumé<span class="handle">PDF</span><svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                <li><a href="asset/MUHAMMAD%20SAIFUL%20IQBAL%20ABDUL%20RANI_CV.pdf" target="_blank" rel="noopener"><svg class="icon icon--stroke" aria-hidden="true"><use href="#i-file"/></svg>Full CV<span class="handle">PDF</span><svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+              </ul>
+            </div>
+
+            <!-- To send messages directly from the page, set data-endpoint to a form service URL
+                 (e.g. https://formspree.io/f/xxxx). Never put private API tokens here. -->
+            <form class="form" id="contact-form" data-endpoint="" data-mailto="iqbal.intern@gmail.com" novalidate>
+              <div class="field">
+                <label for="f-name">Name</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="f-message">Message</label>
+                <textarea id="f-message" name="message" rows="6" required></textarea>
+              </div>
+              <div>
+                <button class="btn btn--solid" type="submit">Send message
+                  <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg>
+                </button>
+              </div>
+              <p class="form-note" id="form-note">Sending opens your email app with this message filled in.</p>
+              <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span data-year>2026</span> Muhammad Saiful Iqbal Abdul Rani · Designed and built by hand.</p>
+      <ul class="footer-links">
+        <li><a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/HarlequinCS" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="mailto:iqbal.intern@gmail.com">Email</a></li>
+        <li><a href="#main">Back to top</a></li>
+      </ul>
     </div>
+  </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" defer></script>
-<script src="js/jquery-1.11.0.min.js" defer></script>
-<script src="js/plugins.js" defer></script>
-<script src="js/script.js" defer></script>
-<script src="js/telebot.js" defer></script>
-<script src="optimize.js"></script>
-
-<script>
-  document.querySelectorAll('.toggle-desc').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const desc = btn.nextElementSibling;
-      if(desc.style.maxHeight && desc.style.maxHeight !== "0px"){
-        desc.style.maxHeight = "0";
-        btn.textContent = "Read More";
-      } else {
-        desc.style.maxHeight = desc.scrollHeight + "px";
-        btn.textContent = "Hide";
-      }
-    });
-  });
-</script>
-
-
-<!-- Load optimization -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const jsAssets = [
-      "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js",
-      "optimize.js",
-      "js/jquery-1.11.0.min.js",
-      "js/plugins.js",
-      "js/script.js",
-      "js/telebot.js",
-    ];
-
-    const cssAssets = [
-      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
-    ];
-
-    function loadScript(src) {
-      return new Promise((resolve, reject) => {
-        const s = document.createElement("script");
-        s.src = src;
-        s.onload = resolve;
-        s.onerror = reject;
-        document.body.appendChild(s);
-      });
-    }
-
-    function loadCSS(href) {
-      return new Promise((resolve, reject) => {
-        const l = document.createElement("link");
-        l.rel = "stylesheet";
-        l.href = href;
-        l.onload = resolve;
-        l.onerror = reject;
-        document.head.appendChild(l);
-      });
-    }
-
-    function preloadImage(img) {
-      return new Promise((resolve) => {
-        if (img.complete) resolve();
-        else {
-          img.addEventListener("load", resolve);
-          img.addEventListener("error", resolve);
-        }
-      });
-    }
-
-    const imgPromises = Array.from(document.images).map(preloadImage);
-    const scriptPromises = jsAssets.map(loadScript);
-    const cssPromises = cssAssets.map(loadCSS);
-
-    Promise.all([...imgPromises, ...scriptPromises, ...cssPromises]).then(() => {
-      const page = document.getElementById("page-content");
-      const loader = document.getElementById("loader");
-      if (page) page.style.display = "block";
-      if (loader) loader.classList.add("hidden");
-      document.body.classList.add("loaded");
-    });
-  });
-</script>
-
-
-
-
-  </body>
+  <script src="js/main.js" defer></script>
+</body>
 </html>

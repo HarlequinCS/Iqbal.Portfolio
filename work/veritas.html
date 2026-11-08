@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VERITAS — Case study · Muhammad Saiful Iqbal</title>
+  <meta name="description" content="How I designed and built VERITAS, a live multi-tenant web vulnerability assessment platform: DNS ownership proof, evidence-based findings, tenant isolation and a hash-chained audit log.">
+  <meta name="author" content="Muhammad Saiful Iqbal Abdul Rani">
+  <link rel="canonical" href="https://harlequincs.github.io/Iqbal.Portfolio/work/veritas.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="VERITAS — Case study by Muhammad Saiful Iqbal">
+  <meta property="og:description" content="How I designed and built VERITAS, a live multi-tenant web vulnerability assessment platform: DNS ownership proof, evidence-based findings, tenant isolation and a hash-chained audit log.">
+  <meta property="og:url" content="https://harlequincs.github.io/Iqbal.Portfolio/work/veritas.html">
+  <meta property="og:image" content="https://harlequincs.github.io/Iqbal.Portfolio/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="theme-color" content="#F3F1EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111315" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.className = d.className.replace('no-js', 'js');
+      try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../" aria-label="Saiful Iqbal, home">Saiful Iqbal<span>.</span></a>
+      <nav class="nav" aria-label="Primary" data-open="false">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="../#work" aria-current="page">Work</a></li>
+          <li><a href="../#experience">Experience</a></li>
+          <li><a href="../#capabilities">Capabilities</a></li>
+          <li><a href="../#credentials">Credentials</a></li>
+          <li><a href="../#about">About</a></li>
+          <li><a href="../#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn--outline btn--resume" href="../asset/MUHAMMAD%20SAIFUL%20IQBAL%20ABDUL%20RANI_RESUME.pdf" target="_blank" rel="noopener">Résumé</a>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme">
+          <svg class="icon icon--stroke icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon icon--stroke icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Open menu">
+          <svg class="icon icon--stroke" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article>
+      <header class="cs-hero">
+        <div class="container">
+          <p class="breadcrumb"><a href="../#work"><svg class="icon icon--stroke" aria-hidden="true"><use href="#i-right"/></svg>All work</a></p>
+          <p class="meta"><span class="num">P-01</span> · Case study · Final-year project</p>
+          <h1>VERITAS: web vulnerability assessment you can trust.</h1>
+          <p class="hero-lead">A multi-tenant platform where customers prove they own a web application, run an active security assessment, and receive findings backed by evidence, confidence levels and remediation guidance, shared with their team.</p>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="cs-layout">
+          <aside class="cs-aside" aria-label="Project facts">
+            <dl class="record">
+              <dt>Role</dt><dd>Sole designer &amp; developer</dd>
+              <dt>Context</dt><dd>Final Year Project, BSc (Hons.) Computer Science, UiTM</dd>
+              <dt>Full title</dt><dd>VERITAS: Web Vulnerability Evaluation and Real-Time Intelligence Through Automated Solution</dd>
+              <dt>Status</dt><dd><span class="status status--live">Live</span></dd>
+              <dt>Scale</dt><dd>~11,000-line Python scan engine · 210,845 payloads · 65 categories</dd>
+              <dt>Stack</dt><dd>Next.js 15, TypeScript, Tailwind CSS, FastAPI, Python, Celery, Redis, Supabase (PostgreSQL), Stripe, Groq, Docker, Nginx, pytest</dd>
+            </dl>
+            <a class="btn btn--solid" href="https://scanwithveritas.tech" target="_blank" rel="noopener">Visit scanwithveritas.tech
+              <svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+          </aside>
+
+          <div class="prose">
+            <h2><span class="num">01</span>The problem</h2>
+            <p>Developers and security teams need a reliable record of what was tested on an application they own: which inputs were reached, which tests ran, which results are actually confirmed, and what should be fixed. A raw scanner alert isn't enough. It doesn't say whether the issue is real, and it doesn't help a developer act on it.</p>
+            <p>A scanner is also a dual-use tool. If it will attack any URL it's given, it can be pointed at systems the user has no right to test.</p>
+
+            <h2><span class="num">02</span>The approach</h2>
+            <p>I designed VERITAS around five principles, decided before any code was written:</p>
+            <ol class="steps">
+              <li><div><strong>Ownership before testing.</strong> A target must publish a DNS TXT record (<code>veritas-verification=&lt;token&gt;</code>) before any scan is accepted.</div></li>
+              <li><div><strong>AI proposes. Evidence validates. Rules decide.</strong> Language models may suggest categories, payload variants and report prose, but confirming a finding is a deterministic decision in code.</div></li>
+              <li><div><strong>Tenant isolation.</strong> Organisation data is protected in the database itself, not only in application code.</div></li>
+              <li><div><strong>Everything important is audited.</strong> Platform changes go into a log that can't be edited or deleted.</div></li>
+              <li><div><strong>Degrade without inventing.</strong> If an AI model is unavailable, scans continue on the deterministic path.</div></li>
+            </ol>
+
+            <div class="callout">
+              <p>Models cannot change finding counts, severity or evidence. They can only help explain what the evidence already shows.</p>
+              <span class="meta">Design rule</span>
+            </div>
+
+            <h2><span class="num">03</span>How a scan works</h2>
+            <ol class="steps">
+              <li><div>The customer registers a target URL. The app normalises it and rejects embedded credentials and internal hosts.</div></li>
+              <li><div>The customer publishes a DNS TXT token to prove ownership.</div></li>
+              <li><div>A scan is queued through a signed internal request and picked up by a background worker.</div></li>
+              <li><div>The engine crawls the target and can sign in first, using form login, cookies, bearer tokens or custom headers.</div></li>
+              <li><div>It selects payloads from a corpus of 210,845 payloads across 65 categories, mapped to the OWASP Top 10 2025, and sends bounded probes.</div></li>
+              <li><div>Each response is compared with a baseline to decide whether a finding is confirmed. Severity is derived from CVSS.</div></li>
+              <li><div>Findings are stored with endpoint, parameter, category, request and response metadata, and the reason for their confidence level.</div></li>
+              <li><div>Technical and executive reports are generated, plus a remediation record for each confirmed finding.</div></li>
+            </ol>
+
+            <h3>Architecture</h3>
+            <ul class="flow" aria-label="Request flow">
+              <li>Next.js app</li><li class="arrow" aria-hidden="true">→</li>
+              <li>FastAPI enqueue</li><li class="arrow" aria-hidden="true">→</li>
+              <li>Redis</li><li class="arrow" aria-hidden="true">→</li>
+              <li>Celery workers</li><li class="arrow" aria-hidden="true">→</li>
+              <li>Scan engine</li><li class="arrow" aria-hidden="true">→</li>
+              <li>Postgres (RLS)</li>
+            </ul>
+            <table class="data-table">
+              <thead><tr><th scope="col">Layer</th><th scope="col">Implementation</th></tr></thead>
+              <tbody>
+                <tr><td>Frontend &amp; BFF</td><td>Next.js 15 App Router behind Nginx with TLS</td></tr>
+                <tr><td>Database &amp; auth</td><td>Supabase: Postgres with row-level security; email and OAuth sign-in via Google and GitHub</td></tr>
+                <tr><td>Scan pipeline</td><td>FastAPI enqueue API with Celery workers on Redis; internal requests HMAC-signed with an expiry</td></tr>
+                <tr><td>Scan engine</td><td>About 11,000 lines of Python with a pytest test suite</td></tr>
+                <tr><td>AI</td><td>Groq-hosted models for scan analysis assistance and the in-app product assistant</td></tr>
+                <tr><td>Deployment</td><td>Docker Compose</td></tr>
+              </tbody>
+            </table>
+
+            <h2><span class="num">04</span>Challenges &amp; decisions</h2>
+            <div class="decisions">
+              <div class="decision">
+                <div><span class="meta label">Challenge</span><h3>Stop the scanner being aimed at someone else's system</h3></div>
+                <div><span class="meta label">Decision</span><p>DNS TXT ownership proof before any scan. The engine re-checks ownership and that the host resolves to a public address, and rejects IP literals, <code>localhost</code> and internal hostnames, so a scan can't be turned against internal infrastructure.</p></div>
+              </div>
+              <div class="decision">
+                <div><span class="meta label">Challenge</span><h3>Use AI without letting it invent findings</h3></div>
+                <div><span class="meta label">Decision</span><p>Confirmation is a deterministic comparison against a baseline response. AI is limited to suggestions and prose, and the scan still completes when the model is unavailable.</p></div>
+              </div>
+              <div class="decision">
+                <div><span class="meta label">Challenge</span><h3>Keep each organisation's findings private</h3></div>
+                <div><span class="meta label">Decision</span><p>Postgres row-level security and security-definer functions enforce tenant isolation in the database, so an application bug can't leak another tenant's data.</p></div>
+              </div>
+              <div class="decision">
+                <div><span class="meta label">Challenge</span><h3>Run long scans without blocking the web app</h3></div>
+                <div><span class="meta label">Decision</span><p>Scans are queued to Celery workers on Redis. The web app talks to the scan API only through HMAC-signed requests that expire.</p></div>
+              </div>
+              <div class="decision">
+                <div><span class="meta label">Challenge</span><h3>Make administrative actions accountable</h3></div>
+                <div><span class="meta label">Decision</span><p>Organisation changes are logged, and platform changes go into a hash-chained audit log that can't be edited or deleted. The Super Admin control centre runs on its own hostname behind MFA.</p></div>
+              </div>
+            </div>
+
+            <h2><span class="num">05</span>What it does today</h2>
+            <ul class="bullets">
+              <li>Personal workspace for every account, with optional team organisations.</li>
+              <li>Organisation roles (owner, admin, analyst, developer, viewer), email invitations and authenticator (MFA) requirements.</li>
+              <li>Live scan session view.</li>
+              <li>Technical, executive and advanced reports, downloadable as PDF, Markdown and JSON.</li>
+              <li>Remediation ticket list, support tickets and an in-app product assistant.</li>
+              <li>Plan catalogue with quotas enforced in the database; Stripe Checkout with promotion codes and invoices.</li>
+              <li>Super Admin control centre with MFA, maintenance mode, operational telemetry and the tamper-evident audit chain.</li>
+            </ul>
+
+            <h2><span class="num">06</span>Outcome</h2>
+            <p>VERITAS is live at <a href="https://scanwithveritas.tech" target="_blank" rel="noopener">scanwithveritas.tech</a>. I designed and built it alone, from the scan engine and payload corpus to billing and the admin control centre. The payload corpus is also published as its own dataset, <a href="../#work">Veritas Payloads</a>.</p>
+            <p>Building it taught me application security from the inside: how inputs are reached, how findings are proven, and how results should be reported so developers can act on them.</p>
+            <p>I'm happy to walk through a live scan. <a href="../#contact">Get in touch</a>.</p>
+
+            <nav class="cs-pager" aria-label="More case studies">
+              <a href="roadsense.html"><span class="meta">← Previous · P-04</span><strong>RoadSense</strong></a>
+              <a href="hrsb-one.html"><span class="meta">Next · P-02 →</span><strong>HRSB ONE</strong></a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span data-year>2026</span> Muhammad Saiful Iqbal Abdul Rani · Designed and built by hand.</p>
+      <ul class="footer-links">
+        <li><a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/HarlequinCS" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="mailto:iqbal.intern@gmail.com">Email</a></li>
+        <li><a href="#main">Back to top</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
