@@ -3,25 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VERITAS — Case study · Muhammad Saiful Iqbal</title>
-  <meta name="description" content="How I designed and built VERITAS, a live multi-tenant web vulnerability assessment platform: DNS ownership proof, evidence-based findings, tenant isolation and a hash-chained audit log.">
+  <title>VERITAS Case Study: Web Vulnerability Scanner | Saiful Iqbal</title>
+  <meta name="description" content="How Saiful Iqbal designed and built VERITAS, a live multi-tenant web vulnerability assessment platform: DNS ownership proof, evidence-based findings and tenant isolation.">
   <meta name="author" content="Muhammad Saiful Iqbal Abdul Rani">
-  <link rel="canonical" href="https://saifuliqbal.io/work/veritas.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://saifuliqbal.io/work/veritas">
 
+  <!-- Open Graph / Twitter -->
+  <meta property="og:site_name" content="Saiful Iqbal">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="VERITAS — Case study by Muhammad Saiful Iqbal">
-  <meta property="og:description" content="How I designed and built VERITAS, a live multi-tenant web vulnerability assessment platform: DNS ownership proof, evidence-based findings, tenant isolation and a hash-chained audit log.">
-  <meta property="og:url" content="https://saifuliqbal.io/work/veritas.html">
+  <meta property="og:title" content="VERITAS: a web vulnerability assessment platform, case study by Saiful Iqbal">
+  <meta property="og:description" content="How Saiful Iqbal designed and built VERITAS, a live multi-tenant web vulnerability assessment platform: DNS ownership proof, evidence-based findings and tenant isolation.">
+  <meta property="og:url" content="https://saifuliqbal.io/work/veritas">
   <meta property="og:image" content="https://saifuliqbal.io/images/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Muhammad Saiful Iqbal, Software Engineer &amp; Cybersecurity Developer, Kluang, Johor, Malaysia">
+  <meta property="og:locale" content="en_MY">
+  <meta property="article:author" content="https://saifuliqbal.io/about">
+  <meta property="article:published_time" content="2026-11-08">
+  <meta property="article:modified_time" content="2026-11-11">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VERITAS: a web vulnerability assessment platform, case study by Saiful Iqbal">
+  <meta name="twitter:description" content="How Saiful Iqbal designed and built VERITAS, a live multi-tenant web vulnerability assessment platform: DNS ownership proof, evidence-based findings and tenant isolation.">
+  <meta name="twitter:image" content="https://saifuliqbal.io/images/og-image.png">
+  <meta name="twitter:image:alt" content="Muhammad Saiful Iqbal, Software Engineer &amp; Cybersecurity Developer">
 
   <meta name="theme-color" content="#F3F1EC" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111315" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="manifest" href="../images/site.webmanifest">
 
   <script>
     (function () {
@@ -37,14 +51,109 @@
     })();
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="../css/main.css">
-  <link rel="stylesheet" href="../css/fx.css">
-  <link rel="modulepreload" href="../js/main.js">
+  <link rel="preload" href="../fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/main.css?v=2a951b8e71">
+  <link rel="stylesheet" href="../css/fx.css?v=cf425059c1">
+  <link rel="modulepreload" href="../js/main.js?v=a33097fa4e">
   <link rel="modulepreload" href="../js/fx/motion.js">
   <link rel="modulepreload" href="../js/fx/text.js">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://saifuliqbal.io/work/veritas#article",
+        "headline": "VERITAS: web vulnerability assessment you can trust.",
+        "name": "VERITAS case study",
+        "description": "How Saiful Iqbal designed and built VERITAS, a live multi-tenant web vulnerability assessment platform: DNS ownership proof, evidence-based findings and tenant isolation.",
+        "url": "https://saifuliqbal.io/work/veritas",
+        "mainEntityOfPage": {
+          "@id": "https://saifuliqbal.io/work/veritas#webpage"
+        },
+        "image": "https://saifuliqbal.io/images/og-image.png",
+        "author": {
+          "@id": "https://saifuliqbal.io/#person"
+        },
+        "publisher": {
+          "@id": "https://saifuliqbal.io/#person"
+        },
+        "datePublished": "2026-11-08",
+        "dateModified": "2026-11-11",
+        "inLanguage": "en",
+        "about": {
+          "@id": "https://saifuliqbal.io/work/veritas#software"
+        },
+        "isPartOf": {
+          "@id": "https://saifuliqbal.io/#website"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://saifuliqbal.io/work/veritas#webpage",
+        "url": "https://saifuliqbal.io/work/veritas",
+        "name": "VERITAS Case Study: Web Vulnerability Scanner | Saiful Iqbal",
+        "isPartOf": {
+          "@id": "https://saifuliqbal.io/#website"
+        },
+        "breadcrumb": {
+          "@id": "https://saifuliqbal.io/work/veritas#breadcrumb"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://saifuliqbal.io/work/veritas#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Saiful Iqbal",
+            "item": "https://saifuliqbal.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Work",
+            "item": "https://saifuliqbal.io/#work"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "VERITAS",
+            "item": "https://saifuliqbal.io/work/veritas"
+          }
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://saifuliqbal.io/work/veritas#software",
+        "name": "VERITAS",
+        "alternateName": "VERITAS: Web Vulnerability Evaluation and Real-Time Intelligence Through Automated Solution",
+        "url": "https://scanwithveritas.tech",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Web",
+        "creator": {
+          "@id": "https://saifuliqbal.io/#person"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://saifuliqbal.io/#person",
+        "name": "Muhammad Saiful Iqbal Abdul Rani",
+        "alternateName": "Saiful Iqbal",
+        "url": "https://saifuliqbal.io/"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://saifuliqbal.io/#website",
+        "url": "https://saifuliqbal.io/",
+        "name": "Saiful Iqbal"
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -89,10 +198,11 @@
     <article>
       <header class="cs-hero">
         <div class="container">
-          <p class="breadcrumb"><a href="../#work"><svg class="icon icon--stroke" aria-hidden="true"><use href="#i-right"/></svg>All work</a></p>
+          <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../">Saiful Iqbal</a></li><li><a href="../#work">Work</a></li><li><span aria-current="page">VERITAS</span></li></ol></nav>
           <p class="meta"><span class="num">P-01</span> · Case study · Final-year project</p>
           <h1 class="vt-veritas">VERITAS: web vulnerability assessment you can trust.</h1>
           <p class="hero-lead">A multi-tenant platform where customers prove they own a web application, run an active security assessment, and receive findings backed by evidence, confidence levels and remediation guidance, shared with their team.</p>
+          <p class="byline meta">By <a href="../about" rel="author">Saiful Iqbal</a> · Updated <time datetime="2026-11-11">11 Nov 2026</time></p>
         </div>
       </header>
 
@@ -206,8 +316,8 @@
             <p>I'm happy to walk through a live scan. <a href="../#contact">Get in touch</a>.</p>
 
             <nav class="cs-pager" aria-label="More case studies">
-              <a href="roadsense.html"><span class="meta">← Previous · P-04</span><strong>RoadSense</strong></a>
-              <a href="hrsb-one.html"><span class="meta">Next · P-02 →</span><strong>HRSB ONE</strong></a>
+              <a href="roadsense"><span class="meta">← Previous · P-04</span><strong>RoadSense</strong></a>
+              <a href="hrsb-one"><span class="meta">Next · P-02 →</span><strong>HRSB ONE</strong></a>
             </nav>
           </div>
         </div>
@@ -225,8 +335,9 @@
       <div class="footer-bottom">
         <p>© <span data-year>2026</span> Muhammad Saiful Iqbal Abdul Rani · Designed and built by hand.</p>
         <ul class="footer-links">
-          <li><a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://github.com/HarlequinCS" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="../about">About Saiful Iqbal</a></li>
+          <li><a href="https://www.linkedin.com/in/saiful-iqbal12/" target="_blank" rel="noopener me">LinkedIn</a></li>
+          <li><a href="https://github.com/HarlequinCS" target="_blank" rel="noopener me">GitHub</a></li>
           <li><a href="mailto:iqbal.intern@gmail.com">Email</a></li>
           <li><a href="#main">Back to top</a></li>
         </ul>
@@ -234,6 +345,6 @@
     </div>
   </footer>
 
-  <script type="module" src="../js/main.js"></script>
+  <script type="module" src="../js/main.js?v=a33097fa4e"></script>
 </body>
 </html>

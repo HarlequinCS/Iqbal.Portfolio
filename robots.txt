@@ -1,5 +1,9 @@
+# robots.txt for https://saifuliqbal.io
+# Everything public is crawlable. CSS, JS, fonts and images stay open so Google can render pages.
+# The CV/résumé PDFs are crawlable but carry "X-Robots-Tag: noindex" (they contain a phone number).
+
 User-agent: *
 Allow: /
-Disallow: /wip.html
+Disallow: /api/
 
 Sitemap: https://saifuliqbal.io/sitemap.xml
