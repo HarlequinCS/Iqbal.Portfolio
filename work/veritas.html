@@ -52,7 +52,7 @@
   </script>
 
   <link rel="preload" href="../fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../css/main.css?v=2a951b8e71">
+  <link rel="stylesheet" href="../css/main.css?v=fe92a5707e">
   <link rel="stylesheet" href="../css/fx.css?v=cf425059c1">
   <link rel="modulepreload" href="../js/main.js?v=a33097fa4e">
   <link rel="modulepreload" href="../js/fx/motion.js">
@@ -214,7 +214,7 @@
               <dt>Context</dt><dd>Final Year Project, BSc (Hons.) Computer Science, UiTM</dd>
               <dt>Full title</dt><dd>VERITAS: Web Vulnerability Evaluation and Real-Time Intelligence Through Automated Solution</dd>
               <dt>Status</dt><dd><span class="status status--live">Live</span></dd>
-              <dt>Scale</dt><dd>~11,000-line Python scan engine · 210,845 payloads · 65 categories</dd>
+              <dt>Scale</dt><dd>~11,000-line Python scan engine · 346,000+ payloads · 65 categories</dd>
               <dt>Stack</dt><dd>Next.js 15, TypeScript, Tailwind CSS, FastAPI, Python, Celery, Redis, Supabase (PostgreSQL), Stripe, Groq, Docker, Nginx, pytest</dd>
             </dl>
             <a class="btn btn--solid" href="https://scanwithveritas.tech" target="_blank" rel="noopener">Visit scanwithveritas.tech
@@ -248,7 +248,7 @@
               <li><div>The customer publishes a DNS TXT token to prove ownership.</div></li>
               <li><div>A scan is queued through a signed internal request and picked up by a background worker.</div></li>
               <li><div>The engine crawls the target and can sign in first, using form login, cookies, bearer tokens or custom headers.</div></li>
-              <li><div>It selects payloads from a corpus of 210,845 payloads across 65 categories, mapped to the OWASP Top 10 2025, and sends bounded probes.</div></li>
+              <li><div>It selects payloads from a corpus of over 346,000 payloads across 65 categories, mapped to the OWASP Top 10 2025, and sends bounded probes. The corpus refreshes itself daily from <a href="veritas-payloads">Veritas Payloads</a>.</div></li>
               <li><div>Each response is compared with a baseline to decide whether a finding is confirmed. Severity is derived from CVSS.</div></li>
               <li><div>Findings are stored with endpoint, parameter, category, request and response metadata, and the reason for their confidence level.</div></li>
               <li><div>Technical and executive reports are generated, plus a remediation record for each confirmed finding.</div></li>
@@ -311,13 +311,13 @@
             </ul>
 
             <h2><span class="num">06</span>Outcome</h2>
-            <p>VERITAS is live at <a href="https://scanwithveritas.tech" target="_blank" rel="noopener">scanwithveritas.tech</a>. I designed and built it alone, from the scan engine and payload corpus to billing and the admin control centre. The payload corpus is also published as its own dataset, <a href="../#work">Veritas Payloads</a>.</p>
+            <p>VERITAS is live at <a href="https://scanwithveritas.tech" target="_blank" rel="noopener">scanwithveritas.tech</a>. I designed and built it alone, from the scan engine and payload corpus to billing and the admin control centre. The payload corpus is also published as its own open, self-updating dataset, <a href="veritas-payloads">Veritas Payloads</a>, live at <a href="https://payloads.saifuliqbal.dev" target="_blank" rel="noopener">payloads.saifuliqbal.dev</a>.</p>
             <p>Building it taught me application security from the inside: how inputs are reached, how findings are proven, and how results should be reported so developers can act on them.</p>
             <p>I'm happy to walk through a live scan. <a href="../#contact">Get in touch</a>.</p>
 
             <nav class="cs-pager" aria-label="More case studies">
               <a href="roadsense"><span class="meta">← Previous · P-04</span><strong>RoadSense</strong></a>
-              <a href="hrsb-one"><span class="meta">Next · P-02 →</span><strong>HRSB ONE</strong></a>
+              <a href="veritas-payloads"><span class="meta">Next · P-05 →</span><strong>Veritas Payloads</strong></a>
             </nav>
           </div>
         </div>

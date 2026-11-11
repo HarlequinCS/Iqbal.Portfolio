@@ -857,6 +857,8 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 .prose ol.steps li { counter-increment: s; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: var(--s-2); }
 .prose ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: 0.8125rem; color: var(--accent); padding-top: 4px; }
 .prose code { font-family: var(--font-mono); font-size: 0.875em; background: var(--paper-2); padding: 1px 5px; border-radius: 2px; color: var(--ink); }
+.prose pre { background: var(--paper-2); border: 1px solid var(--rule); border-radius: 2px; padding: var(--s-3); overflow-x: auto; max-width: 100%; margin: var(--s-4) 0; }
+.prose pre code { background: none; padding: 0; font-size: 0.8125rem; line-height: 1.6; white-space: pre; }
 
 .callout {
   margin: var(--s-6) 0;
