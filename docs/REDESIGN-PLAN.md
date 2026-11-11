@@ -166,3 +166,40 @@ Motion is used only for feedback, never for decoration.
 - **Add a project:** copy a `project-row` in `index.html`, set `data-category` (`client security mobile web iot`) and its status tag. Filter counts update automatically.
 - **Mark a project live:** change its tag to `status--live` and add the link.
 - **Change colours:** edit the tokens at the top of `css/main.css` (both themes).
+
+---
+
+# v3: Experience layer (November 2026)
+
+v2 was deliberately still. v3 keeps its identity (paper and ink, one vermilion accent, IBM Plex, numbered sections, evidence next to claims) and adds motion, depth and interaction to show frontend craft. The rule changed from "no decoration" to **"every effect means something, and none of them is required"**.
+
+## What was added
+
+| Piece | What it does | Where |
+|---|---|---|
+| **WebGL terrain hero** | ~11k points displaced by noise in a vertex shader, flowing toward the viewer. A vermilion scan line sweeps the field and a few "confirmed" points keep pulsing, echoing VERITAS. Swells under the pointer. Raw WebGL, one draw call, no library. | `js/fx/terrain.js` |
+| **Intro sequence** | A ~1.2s counter and curtain on the first visit of a session. Pure CSS (`@property` counter), so it can never get stuck if JavaScript fails. | `css/fx.css` §1 |
+| **Headline reveals** | Words rise out of a mask; the accent underline then draws itself. Words (not letters) are wrapped, so screen readers still read sentences. | `js/fx/text.js` |
+| **Scroll reveals** | Elements fade and rise as they arrive, cascading when several arrive together. Section rules draw from the left. | `js/fx/motion.js` |
+| **Count-up + decrypt** | Proof numbers count up; project codes and section labels briefly scramble, then resolve. | `js/fx/text.js` |
+| **Featured project cards** | 3D tilt toward the pointer with a moving spotlight, and a living diagram per project: radar sweep (VERITAS), approval chain (HRSB ONE), browser frame (JohorSTEMHub), map with a 150 m radius (RoadSense). | `index.html`, `css/main.css` §17, `css/fx.css` §8 |
+| **Pointer layer** | Cursor follower with labels ("Read", "Visit"), magnetic buttons, a light that follows the pointer in Contact. Mouse/trackpad only. | `js/fx/pointer.js` |
+| **Scroll furniture** | Progress bar, header that steps aside on the way down, a timeline spine that fills as you read, a marquee of the working principles. | `js/fx/motion.js`, `css/fx.css` |
+| **Page transitions** | Cross-document View Transitions: pages cross-fade and the project title morphs into the case study headline. CSS only. | `css/fx.css` §12 |
+| **Footer** | Oversized wordmark that fills in on arrival, and a live Johor clock. | all pages |
+
+## Engineering rules
+
+- **No dependencies.** GSAP and Three.js were considered and left out: the effects are small enough to write directly, the Content Security Policy stays at `script-src 'self'`, and the whole experience layer is about 20 KB of source.
+- **Progressive.** `main.js` is an ES module that dynamically imports each effect only when it will be used. Without JavaScript the page is complete and static.
+- **Reduced motion.** The head script adds `motion` to `<html>` only if the visitor has not asked for reduced motion. Every animation is gated on that class, and the WebGL hero then draws a single still frame.
+- **Touch.** Cursor, magnetic and tilt effects load only for `(hover: hover) and (pointer: fine)`.
+- **Cost.** Only transform, opacity, clip-path and background-size are animated. The WebGL loop and the card diagrams pause when off screen or when the tab is hidden; device pixel ratio is capped at 1.75 and the canvas at about one screen tall.
+- **CSP.** The head script changed, so its hash in `.htaccess` (and the Nginx example in `DEPLOY.md`) was updated. If you edit that script again, recompute the hash as described in `DEPLOY.md`.
+
+## Maintenance
+
+- **Give a new section reveals:** nothing to do if it uses existing components; otherwise add its selector to `REVEAL` in `js/fx/motion.js`.
+- **Add a featured card:** copy a `<li class="case-card">` in `index.html`; add `case-card--wide` (and `case-card--flip`) for the full-width layout.
+- **Tune the terrain:** density (`cols`/`rows`), `u_size` and `u_alpha` in `js/fx/terrain.js`; speed and height are constants in the vertex shader.
+- **Turn an effect off:** remove its `import()` in the last block of `js/main.js`.

@@ -31,6 +31,12 @@
       var d = document.documentElement;
       d.className = d.className.replace('no-js', 'js');
       try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); } catch (e) {}
+      try {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          d.className += ' motion';
+          if (!sessionStorage.getItem('intro')) { d.className += ' intro'; sessionStorage.setItem('intro', '1'); }
+        }
+      } catch (e) {}
     })();
   </script>
 
@@ -38,6 +44,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/fx.css">
+  <link rel="modulepreload" href="js/main.js">
+  <link rel="modulepreload" href="js/fx/motion.js">
+  <link rel="modulepreload" href="js/fx/text.js">
 
   <script type="application/ld+json">
   {
@@ -76,6 +86,14 @@
     <symbol id="i-linkedin" viewBox="0 0 16 16"><path d="M3.6 5.6H.4V16h3.2V5.6zM2 4.2A1.85 1.85 0 1 0 2 .5a1.85 1.85 0 0 0 0 3.7zM16 16h-3.2v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V16H5.9V5.6H9V7c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5V16z"/></symbol>
   </svg>
 
+  <div class="intro-screen" aria-hidden="true">
+    <div class="intro-inner">
+      <div class="intro-row"><span class="intro-name">Saiful Iqbal<span>.</span></span><span class="intro-count"></span></div>
+      <div class="intro-bar"><i></i></div>
+      <div class="intro-meta">Software engineer / Cybersecurity developer</div>
+    </div>
+  </div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
@@ -108,21 +126,23 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" aria-labelledby="hero-title">
+      <canvas class="hero-gl" aria-hidden="true"></canvas>
+      <span class="glow glow--hero" aria-hidden="true"></span>
       <div class="container">
         <div class="hero-grid">
           <div>
-            <p class="hero-kicker meta">
+            <p class="hero-kicker meta hero-seq" style="--s:0">
               <span>Software engineer</span><span aria-hidden="true">/</span>
               <span>Cybersecurity developer</span><span aria-hidden="true">/</span>
               <span>Founder</span>
             </p>
             <h1 id="hero-title">I build software that is useful, reliable and <span class="mark">secure by design</span>.</h1>
-            <p class="hero-lead">
+            <p class="hero-lead hero-seq" style="--s:3">
               I'm Iqbal, a software engineer from Johor, Malaysia. I founded <strong>Team ChendAwan Ventures</strong>,
               which delivers production systems for government and corporate clients, and I built <strong>VERITAS</strong>,
               a live web vulnerability assessment platform, as my final-year project.
             </p>
-            <div class="hero-actions">
+            <div class="hero-actions hero-seq" style="--s:4">
               <a class="btn btn--solid" href="#work">See selected work
                 <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg>
               </a>
@@ -130,9 +150,10 @@
                 <svg class="icon icon--stroke" aria-hidden="true"><use href="#i-download"/></svg> Résumé (PDF)
               </a>
             </div>
+            <p class="scroll-cue meta hero-seq" style="--s:7" aria-hidden="true"><i></i>Scroll to explore</p>
           </div>
 
-          <aside class="hero-card" aria-label="Summary">
+          <aside class="hero-card hero-seq" style="--s:5" aria-label="Summary">
             <figure class="portrait">
               <img src="images/intro.webp" width="298" height="421" alt="Portrait of Muhammad Saiful Iqbal">
               <figcaption><strong>Muhammad Saiful Iqbal Abdul Rani</strong>Software Engineer &amp; Cybersecurity Developer</figcaption>
@@ -150,17 +171,17 @@
           </aside>
         </div>
 
-        <ul class="proof" aria-label="Highlights">
+        <ul class="proof hero-seq" style="--s:6" aria-label="Highlights">
           <li>
             <a href="work/hrsb-one.html">
-              <span class="figure">15+ modules</span>
+              <span class="figure"><span data-count="15">15</span>+ modules</span>
               <span class="label">in HRSB ONE, the HR, attendance &amp; payroll platform I lead</span>
               <span class="meta source">Case study →</span>
             </a>
           </li>
           <li>
             <a href="work/veritas.html">
-              <span class="figure">210,845</span>
+              <span class="figure"><span data-count="210845">210,845</span></span>
               <span class="label">security payloads across 65 categories in the VERITAS corpus</span>
               <span class="meta source">Case study →</span>
             </a>
@@ -174,7 +195,7 @@
           </li>
           <li>
             <a href="#about">
-              <span class="figure">3.74 CGPA</span>
+              <span class="figure"><span data-count="3.74" data-decimals="2">3.74</span> CGPA</span>
               <span class="label">BSc (Hons.) Computer Science, UiTM, expected 2027</span>
               <span class="meta source">Education →</span>
             </a>
@@ -183,10 +204,18 @@
       </div>
     </section>
 
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span>Useful</span><i></i><span>Reliable</span><i></i><span>Secure by design</span><i></i><span>AI proposes</span><i></i><span>Evidence validates</span><i></i><span>Rules decide</span><i></i>
+        </div>
+      </div>
+    </div>
+
     <!-- ============ 01 WORK ============ -->
     <section class="section" id="work" aria-labelledby="work-title">
       <div class="container section-grid">
-        <p class="section-index"><span class="num">01</span><span>Selected work</span></p>
+        <p class="section-index"><span class="num">01</span><span data-scramble>Selected work</span></p>
         <div>
           <div class="section-head">
             <h2 id="work-title">Systems in production, and the tools to test them.</h2>
@@ -204,79 +233,119 @@
 
           <div class="work-group">
             <div class="sub-head"><h3>Featured</h3><p class="meta" data-count>4 projects</p></div>
-            <ul class="case-list">
+            <ul class="case-grid">
 
-              <li class="case-row" data-category="security web">
-                <span class="case-id">P-01</span>
-                <div class="case-main">
-                  <h3><a href="work/veritas.html">VERITAS</a></h3>
-                  <p class="sub">Web vulnerability assessment platform · Final-year project · Solo</p>
-                  <p>A multi-tenant workspace where customers prove they own a web application, run an active security assessment, and get findings backed by evidence, confidence levels and remediation guidance. Its rule: <em>AI proposes, evidence validates, rules decide.</em></p>
-                  <div class="case-links">
-                    <a class="text-link" href="work/veritas.html">Read case study <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg></a>
-                    <a class="text-link" href="https://scanwithveritas.tech" target="_blank" rel="noopener">scanwithveritas.tech <svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <li class="case-card case-card--wide" data-category="security web">
+                <div class="case-tilt">
+                  <div class="case-body">
+                    <div class="case-top"><span class="case-id" data-scramble>P-01</span><span class="status status--live">Live</span></div>
+                    <h3><a class="vt-veritas" href="work/veritas.html" data-cursor="Read">VERITAS</a></h3>
+                    <p class="sub">Web vulnerability assessment platform · Final-year project · Solo</p>
+                    <p>A multi-tenant workspace where customers prove they own a web application, run an active security assessment, and get findings backed by evidence, confidence levels and remediation guidance. Its rule: <em>AI proposes, evidence validates, rules decide.</em></p>
+                    <ul class="tag-list" aria-label="Stack">
+                      <li class="tag">Next.js 15</li><li class="tag">FastAPI</li><li class="tag">Celery</li><li class="tag">Supabase</li><li class="tag">PostgreSQL RLS</li><li class="tag">Stripe</li><li class="tag">Docker</li>
+                    </ul>
+                    <div class="case-links">
+                      <a class="text-link" href="work/veritas.html">Read case study <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg></a>
+                      <a class="text-link" href="https://scanwithveritas.tech" target="_blank" rel="noopener">scanwithveritas.tech <svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                    </div>
                   </div>
-                </div>
-                <div class="case-side">
-                  <span class="status status--live">Live</span>
-                  <ul class="tag-list" aria-label="Stack">
-                    <li class="tag">Next.js 15</li><li class="tag">FastAPI</li><li class="tag">Celery</li><li class="tag">Supabase</li><li class="tag">PostgreSQL RLS</li><li class="tag">Stripe</li><li class="tag">Docker</li>
-                  </ul>
+                  <div class="case-visual" aria-hidden="true">
+                    <svg class="motif" viewBox="0 0 400 240">
+                      <g class="m-grid">
+                        <circle cx="200" cy="120" r="34"/><circle cx="200" cy="120" r="68"/><circle cx="200" cy="120" r="102"/>
+                        <path d="M200 6v228M86 120h228"/>
+                      </g>
+                      <path class="m-sweep" d="M200 120V18a102 102 0 0 1 72.1 29.9Z"/>
+                      <circle class="m-blip" cx="246" cy="84" r="4"/>
+                      <circle class="m-blip m-blip--2" cx="152" cy="152" r="4"/>
+                      <circle class="m-blip m-blip--3" cx="232" cy="172" r="4"/>
+                      <text class="m-label" x="258" y="80">CONFIRMED</text>
+                      <text class="m-label m-label--muted" x="34" y="222">210,845 PAYLOADS / 65 CATEGORIES</text>
+                    </svg>
+                  </div>
                 </div>
               </li>
 
-              <li class="case-row" data-category="client web">
-                <span class="case-id">P-02</span>
-                <div class="case-main">
-                  <h3><a href="work/hrsb-one.html">HRSB ONE</a></h3>
-                  <p class="sub">HR, attendance &amp; payroll platform · HRSB Holdings Sdn Bhd · Lead developer &amp; project manager</p>
-                  <p>One Laravel platform with 15+ modules for a multi-company corporate group: staff records, biometric attendance, leave, claims, multi-level overtime approvals and a payroll engine that produces Malaysian statutory outputs (EPF, SOCSO, EIS, PCB, zakat).</p>
-                  <div class="case-links">
-                    <a class="text-link" href="work/hrsb-one.html">Read case study <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg></a>
+              <li class="case-card case-card--wide case-card--flip" data-category="client web">
+                <div class="case-tilt">
+                  <div class="case-body">
+                    <div class="case-top"><span class="case-id" data-scramble>P-02</span><span class="status status--private">Private client work</span></div>
+                    <h3><a class="vt-hrsb" href="work/hrsb-one.html" data-cursor="Read">HRSB ONE</a></h3>
+                    <p class="sub">HR, attendance &amp; payroll platform · HRSB Holdings Sdn Bhd · Lead developer &amp; project manager</p>
+                    <p>One Laravel platform with 15+ modules for a multi-company corporate group: staff records, biometric attendance, leave, claims, multi-level overtime approvals and a payroll engine that produces Malaysian statutory outputs (EPF, SOCSO, EIS, PCB, zakat).</p>
+                    <ul class="tag-list" aria-label="Stack">
+                      <li class="tag">Laravel 9</li><li class="tag">PHP 8.1</li><li class="tag">MySQL</li><li class="tag">Redis</li><li class="tag">Docker Compose</li><li class="tag">JWT</li><li class="tag">AWS S3</li>
+                    </ul>
+                    <div class="case-links">
+                      <a class="text-link" href="work/hrsb-one.html">Read case study <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg></a>
+                    </div>
                   </div>
-                </div>
-                <div class="case-side">
-                  <span class="status status--private">Private client work</span>
-                  <ul class="tag-list" aria-label="Stack">
-                    <li class="tag">Laravel 9</li><li class="tag">PHP 8.1</li><li class="tag">MySQL</li><li class="tag">Redis</li><li class="tag">Docker Compose</li><li class="tag">JWT</li><li class="tag">AWS S3</li>
-                  </ul>
+                  <div class="case-visual" aria-hidden="true">
+                    <svg class="motif" viewBox="0 0 400 240">
+                      <text class="m-label m-label--muted" x="34" y="62">OVERTIME APPROVAL CHAIN</text>
+                      <path class="m-wire" d="M54 120h292"/>
+                      <g class="m-node" style="--k:0"><rect x="24" y="100" width="76" height="40" rx="3"/><text class="m-label" x="62" y="124" text-anchor="middle">REQUESTOR</text></g>
+                      <g class="m-node" style="--k:1"><rect x="118" y="100" width="76" height="40" rx="3"/><text class="m-label" x="156" y="124" text-anchor="middle">PM / HOD</text></g>
+                      <g class="m-node" style="--k:2"><rect x="212" y="100" width="76" height="40" rx="3"/><text class="m-label" x="250" y="124" text-anchor="middle">HBU</text></g>
+                      <g class="m-node" style="--k:3"><rect x="306" y="100" width="70" height="40" rx="3"/><text class="m-label" x="341" y="124" text-anchor="middle">VP</text></g>
+                      <circle class="m-packet" cx="54" cy="120" r="4"/>
+                      <text class="m-label m-label--muted" x="34" y="190">EPF · SOCSO · EIS · PCB · ZAKAT</text>
+                    </svg>
+                  </div>
                 </div>
               </li>
 
-              <li class="case-row" data-category="client web">
-                <span class="case-id">P-03</span>
-                <div class="case-main">
-                  <h3><a href="https://johorstemhub.com" target="_blank" rel="noopener">JohorSTEMHub.com</a></h3>
-                  <p class="sub">Statewide STEM education platform · Johor State Education Department (JPNJ) · Lead architect &amp; project manager</p>
-                  <p>A centralised platform for STEM education programmes across Johor, designed for high-concurrency traffic and complex education datasets. I worked directly with government stakeholders, resolved ISP infrastructure bottlenecks to keep it available, and protected it with Cloudflare and SSL/TLS.</p>
-                  <div class="case-links">
-                    <a class="text-link" href="https://johorstemhub.com" target="_blank" rel="noopener">johorstemhub.com <svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <li class="case-card" data-category="client web">
+                <div class="case-tilt">
+                  <div class="case-visual" aria-hidden="true">
+                    <div class="browser">
+                      <div class="browser-bar"><i></i><i></i><i></i><span>johorstemhub.com</span></div>
+                      <img src="images/jsth.webp" width="288" height="146" alt="" loading="lazy">
+                    </div>
                   </div>
-                </div>
-                <div class="case-side">
-                  <span class="status status--live">Live</span>
-                  <span class="status status--client">Client work</span>
-                  <ul class="tag-list" aria-label="Stack">
-                    <li class="tag">Laravel</li><li class="tag">PHP</li><li class="tag">MySQL</li><li class="tag">Cloudflare</li>
-                  </ul>
+                  <div class="case-body">
+                    <div class="case-top"><span class="case-id" data-scramble>P-03</span><span class="case-statuses"><span class="status status--live">Live</span><span class="status status--client">Client work</span></span></div>
+                    <h3><a href="https://johorstemhub.com" target="_blank" rel="noopener" data-cursor="Visit">JohorSTEMHub.com</a></h3>
+                    <p class="sub">Statewide STEM education platform · Johor State Education Department (JPNJ) · Lead architect &amp; project manager</p>
+                    <p>A centralised platform for STEM education programmes across Johor, designed for high-concurrency traffic and complex education datasets. I worked directly with government stakeholders, resolved ISP infrastructure bottlenecks to keep it available, and protected it with Cloudflare and SSL/TLS.</p>
+                    <ul class="tag-list" aria-label="Stack">
+                      <li class="tag">Laravel</li><li class="tag">PHP</li><li class="tag">MySQL</li><li class="tag">Cloudflare</li>
+                    </ul>
+                    <div class="case-links">
+                      <a class="text-link" href="https://johorstemhub.com" target="_blank" rel="noopener">johorstemhub.com <svg class="icon icon--stroke icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                    </div>
+                  </div>
                 </div>
               </li>
 
-              <li class="case-row" data-category="mobile">
-                <span class="case-id">P-04</span>
-                <div class="case-main">
-                  <h3><a href="work/roadsense.html">RoadSense</a></h3>
-                  <p class="sub">Crowdsourced road hazard reporting · Android app + web admin · Team of 4</p>
-                  <p>Drivers report potholes, flooding and debris with photo and GPS, see hazards on a live map, and help confirm or resolve them. A hybrid risk score gives an instant on-device result, then a Cloud Function asks Gemini to review the report and photo in the background.</p>
-                  <div class="case-links">
-                    <a class="text-link" href="work/roadsense.html">Read case study <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg></a>
+              <li class="case-card" data-category="mobile">
+                <div class="case-tilt">
+                  <div class="case-visual" aria-hidden="true">
+                    <svg class="motif" viewBox="0 0 400 240">
+                      <path class="m-road" d="M-20 206C70 196 118 122 200 120S326 64 420 38"/>
+                      <path class="m-dash" d="M-20 206C70 196 118 122 200 120S326 64 420 38"/>
+                      <circle class="m-radius" cx="200" cy="120" r="52"/>
+                      <circle class="m-ring" cx="200" cy="120" r="52"/>
+                      <circle class="m-pin m-pin--hot" cx="200" cy="120" r="6"/>
+                      <circle class="m-pin" cx="92" cy="178" r="4"/>
+                      <circle class="m-pin" cx="322" cy="70" r="4"/>
+                      <text class="m-label" x="260" y="116">150 M</text>
+                      <text class="m-label m-label--muted" x="34" y="44">STILL THERE?</text>
+                    </svg>
                   </div>
-                </div>
-                <div class="case-side">
-                  <span class="status status--demo">Demo on request</span>
-                  <ul class="tag-list" aria-label="Stack">
-                    <li class="tag">Java</li><li class="tag">Android SDK</li><li class="tag">Firestore</li><li class="tag">Cloud Functions</li><li class="tag">Gemini</li><li class="tag">Next.js</li>
-                  </ul>
+                  <div class="case-body">
+                    <div class="case-top"><span class="case-id" data-scramble>P-04</span><span class="status status--demo">Demo on request</span></div>
+                    <h3><a class="vt-roadsense" href="work/roadsense.html" data-cursor="Read">RoadSense</a></h3>
+                    <p class="sub">Crowdsourced road hazard reporting · Android app + web admin · Team of 4</p>
+                    <p>Drivers report potholes, flooding and debris with photo and GPS, see hazards on a live map, and help confirm or resolve them. A hybrid risk score gives an instant on-device result, then a Cloud Function asks Gemini to review the report and photo in the background.</p>
+                    <ul class="tag-list" aria-label="Stack">
+                      <li class="tag">Java</li><li class="tag">Android SDK</li><li class="tag">Firestore</li><li class="tag">Cloud Functions</li><li class="tag">Gemini</li><li class="tag">Next.js</li>
+                    </ul>
+                    <div class="case-links">
+                      <a class="text-link" href="work/roadsense.html">Read case study <svg class="icon icon--stroke icon--right" aria-hidden="true"><use href="#i-right"/></svg></a>
+                    </div>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -497,7 +566,7 @@
     <!-- ============ 02 EXPERIENCE ============ -->
     <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="container section-grid">
-        <p class="section-index"><span class="num">02</span><span>Experience</span></p>
+        <p class="section-index"><span class="num">02</span><span data-scramble>Experience</span></p>
         <div>
           <div class="section-head">
             <h2 id="experience-title">From first conversation to production, and support after handover.</h2>
@@ -539,7 +608,7 @@
     <!-- ============ 03 CAPABILITIES ============ -->
     <section class="section" id="capabilities" aria-labelledby="capabilities-title">
       <div class="container section-grid">
-        <p class="section-index"><span class="num">03</span><span>Capabilities</span></p>
+        <p class="section-index"><span class="num">03</span><span data-scramble>Capabilities</span></p>
         <div>
           <div class="section-head">
             <h2 id="capabilities-title">What I can do, and where I've done it.</h2>
@@ -604,7 +673,7 @@
     <!-- ============ 04 CREDENTIALS ============ -->
     <section class="section" id="credentials" aria-labelledby="credentials-title">
       <div class="container section-grid">
-        <p class="section-index"><span class="num">04</span><span>Credentials</span></p>
+        <p class="section-index"><span class="num">04</span><span data-scramble>Credentials</span></p>
         <div>
           <div class="section-head">
             <h2 id="credentials-title">Certified, and tested under competition pressure.</h2>
@@ -656,7 +725,7 @@
     <!-- ============ 05 ABOUT ============ -->
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container section-grid">
-        <p class="section-index"><span class="num">05</span><span>About</span></p>
+        <p class="section-index"><span class="num">05</span><span data-scramble>About</span></p>
         <div>
           <div class="section-head">
             <h2 id="about-title">Security is part of engineering, from the first design decision.</h2>
@@ -748,8 +817,9 @@
 
     <!-- ============ 06 CONTACT ============ -->
     <section class="section" id="contact" aria-labelledby="contact-title">
+      <span class="glow glow--contact" aria-hidden="true"></span>
       <div class="container section-grid">
-        <p class="section-index"><span class="num">06</span><span>Contact</span></p>
+        <p class="section-index"><span class="num">06</span><span data-scramble>Contact</span></p>
         <div>
           <div class="section-head">
             <h2 id="contact-title">Looking for an internship, part-time or contract role.</h2>
@@ -811,16 +881,23 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>© <span data-year>2026</span> Muhammad Saiful Iqbal Abdul Rani · Designed and built by hand.</p>
-      <ul class="footer-links">
-        <li><a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://github.com/HarlequinCS" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="mailto:iqbal.intern@gmail.com">Email</a></li>
-        <li><a href="#main">Back to top</a></li>
-      </ul>
+      <div class="footer-top">
+        <p class="footer-cta">Have a system to build or secure? <a href="#contact">Let's talk</a>.</p>
+        <p class="footer-time meta">Johor, Malaysia · <span data-clock>--:--</span> GMT+8</p>
+      </div>
+      <span class="wordmark" aria-hidden="true">Saiful Iqbal<span>.</span></span>
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> Muhammad Saiful Iqbal Abdul Rani · Designed and built by hand.</p>
+        <ul class="footer-links">
+          <li><a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/HarlequinCS" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="mailto:iqbal.intern@gmail.com">Email</a></li>
+          <li><a href="#main">Back to top</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

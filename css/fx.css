@@ -1,0 +1,455 @@
+/* =========================================================================
+   Saiful Iqbal — Portfolio v3: experience layer
+   Motion, depth and interaction on top of css/main.css.
+
+   Rules of this file:
+   - Every animation is gated behind `.motion` on <html> (set in the head
+     script only when the visitor has NOT asked for reduced motion).
+   - Nothing here is needed to read the page: without JS or motion the
+     content is fully visible and static.
+   - Only transform / opacity / clip-path / background-size are animated.
+   ========================================================================= */
+
+:root {
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --glass: color-mix(in srgb, var(--paper) 62%, transparent);
+  --glow: color-mix(in srgb, var(--accent) 26%, transparent);
+  --d: 0ms; /* extra delay while the intro screen is up */
+}
+.intro { --d: 1350ms; }
+
+/* ---------- 1. Intro screen (first visit of a session, CSS-only) ---------- */
+@property --n { syntax: "<integer>"; initial-value: 0; inherits: false; }
+
+.intro-screen { display: none; }
+.intro .intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--paper);
+  animation: intro-out .7s var(--ease-in-out) 1.15s forwards;
+}
+.intro-inner {
+  width: min(420px, 78vw);
+  display: grid;
+  gap: var(--s-4);
+}
+.intro-row { display: flex; justify-content: space-between; align-items: baseline; }
+.intro-name { font-weight: 600; font-size: 1.125rem; letter-spacing: -0.01em; }
+.intro-name span { color: var(--accent); }
+.intro-count {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: .06em;
+  counter-reset: n var(--n);
+  animation: intro-count 1s var(--ease-in-out) forwards;
+}
+.intro-count::after { content: counter(n, decimal-leading-zero) "%"; }
+.intro-bar { height: 1px; background: color-mix(in srgb, var(--paper) 25%, transparent); overflow: hidden; }
+.intro-bar i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: intro-bar 1s var(--ease-in-out) forwards;
+}
+.intro-meta { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: .08em; text-transform: uppercase; opacity: .6; }
+
+@keyframes intro-count { to { --n: 100; } }
+@keyframes intro-bar { to { transform: scaleX(1); } }
+@keyframes intro-out {
+  from { clip-path: inset(0 0 0 0); }
+  to { clip-path: inset(0 0 100% 0); visibility: hidden; }
+}
+
+/* ---------- 2. Atmosphere: grain + light ---------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: .055;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:root[data-theme="dark"] body::after { mix-blend-mode: screen; opacity: .05; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body::after { mix-blend-mode: screen; opacity: .05; }
+}
+
+.glow {
+  position: absolute;
+  width: 46vmax;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow), transparent 62%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 0;
+}
+.glow--hero { top: -18vmax; right: -14vmax; }
+.glow--contact {
+  width: 38vmax;
+  left: calc(var(--gx, 70%) - 19vmax);
+  top: calc(var(--gy, 30%) - 19vmax);
+  opacity: .9;
+  transition: left .9s var(--ease-out), top .9s var(--ease-out);
+}
+
+/* ---------- 3. Scroll progress + header ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  z-index: 60;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+  pointer-events: none;
+}
+.site-header { transition: transform .5s var(--ease-out); view-transition-name: site-header; }
+.site-header.is-hidden { transform: translateY(-101%); }
+
+.nav-list a { position: relative; }
+@media (min-width: 900px) {
+  .nav-list a::after {
+    content: "";
+    position: absolute;
+    left: 10px; right: 10px; bottom: 4px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .4s var(--ease-out);
+  }
+  .nav-list a:hover { background: transparent; }
+  .nav-list a:hover::after { transform: scaleX(1); transform-origin: left; }
+  .nav-list a[aria-current]::after { display: none; }
+}
+
+/* ---------- 4. Cursor follower (fine pointers only; native cursor stays) ---------- */
+.cursor {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 150;
+  width: 34px; height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  display: grid;
+  place-items: center;
+  font: 500 0.625rem/1 var(--font-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  transition: opacity .3s ease, width .35s var(--ease-out), height .35s var(--ease-out),
+              margin .35s var(--ease-out), background-color .3s ease, border-color .3s ease;
+  will-change: transform;
+}
+.cursor.is-on { opacity: 1; }
+.cursor.is-hover { width: 54px; height: 54px; margin: -27px 0 0 -27px; background: color-mix(in srgb, var(--accent) 14%, transparent); }
+.cursor.is-label { width: 78px; height: 78px; margin: -39px 0 0 -39px; background: var(--accent); }
+.cursor.is-down { width: 24px; height: 24px; margin: -12px 0 0 -12px; }
+.cursor.is-text { opacity: 0; }
+
+/* ---------- 5. Reveal on scroll ---------- */
+.reveal-ready .rv { opacity: 0; transform: translateY(22px); }
+.reveal-ready .rv.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity .8s var(--ease-out), transform 1s var(--ease-out);
+}
+
+/* Words that rise out of a mask */
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding: .1em 0 .14em; margin: -.1em 0 -.14em; }
+.wi { display: inline-block; transform: translateY(115%); will-change: transform; }
+.is-in > .w > .wi, .is-in .mark > .w > .wi {
+  transform: none;
+  transition: transform 1s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 42ms + var(--d));
+}
+/* Headlines wait (invisibly) for the splitter; a failsafe shows them if JS never runs */
+.motion .hero h1:not(.is-split),
+.motion .cs-hero h1:not(.is-split),
+.motion .not-found h1:not(.is-split) { opacity: 0; animation: failsafe 0s 3s forwards; }
+@keyframes failsafe { to { opacity: 1; } }
+
+/* The accent underline draws itself after the words have landed */
+.motion .hero h1 .mark { background-size: 0 0.09em; }
+.motion .hero h1.is-in .mark { background-size: 100% 0.09em; transition: background-size 1s var(--ease-in-out) calc(700ms + var(--d)); }
+
+/* Hero pieces rise in sequence (pure CSS) */
+.motion .hero-seq {
+  opacity: 0;
+  animation: rise 1s var(--ease-out) forwards;
+  animation-delay: calc(var(--d) + 420ms + var(--s, 0) * 110ms);
+}
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+
+/* Lines that draw themselves */
+.motion .reveal-ready .section { border-top-color: transparent; position: relative; }
+.motion .reveal-ready .section::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+  height: 1px;
+  background: var(--rule);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.4s var(--ease-in-out);
+}
+.motion .reveal-ready .section.is-seen::before { transform: scaleX(1); }
+
+/* ---------- 6. Hero ---------- */
+.hero { position: relative; overflow: hidden; isolation: isolate; }
+.hero > .container { position: relative; z-index: 2; }
+.hero-gl {
+  position: absolute;
+  inset: 0 0 auto 0;
+  width: 100%;
+  /* Never taller than about one screen, so tall mobile heroes don't stretch it */
+  height: min(100%, 105svh);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.6s ease calc(var(--d) + 200ms);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 34%, #000 82%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0%, #000 34%, #000 82%, transparent 100%);
+}
+.hero-gl.is-live { opacity: 1; }
+
+.hero-card {
+  padding: var(--s-5);
+  background: var(--glass);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  border-radius: 6px;
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+          backdrop-filter: blur(14px) saturate(1.3);
+}
+.hero-card .record { border-top-color: color-mix(in srgb, var(--ink) 30%, transparent); }
+.hero-card .record dt, .hero-card .record dd { border-bottom-color: color-mix(in srgb, var(--ink) 10%, transparent); }
+.hero-card .record dt:nth-last-of-type(1), .hero-card .record dd:last-of-type { border-bottom: 0; }
+
+.proof { position: relative; }
+.proof .figure { font-variant-numeric: tabular-nums; }
+.proof a { transition: transform .5s var(--ease-out); }
+.motion .proof a:hover { transform: translateY(-4px); }
+
+.scroll-cue {
+  display: none;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+}
+.scroll-cue i { width: 44px; height: 1px; background: var(--muted); position: relative; overflow: hidden; }
+.motion .scroll-cue i::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--accent);
+  animation: cue 2.2s var(--ease-in-out) infinite;
+}
+@keyframes cue { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+@media (min-width: 1000px) { .scroll-cue { display: flex; } }
+
+/* ---------- 7. Marquee band ---------- */
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+  padding-block: var(--s-5);
+  white-space: nowrap;
+  user-select: none;
+}
+.marquee-track { display: inline-flex; gap: 0; will-change: transform; }
+.motion .marquee-track { animation: marquee 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-group { display: inline-flex; align-items: center; }
+.marquee-group span {
+  font-size: clamp(1.75rem, 4.6vw, 3.75rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  padding-inline: clamp(16px, 2.4vw, 36px);
+}
+.marquee-group span:nth-child(4n + 3) {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--ink);
+}
+.marquee-group i {
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- 8. Featured work cards: tilt, spotlight, living diagrams ---------- */
+.case-card { perspective: 1200px; }
+.case-tilt {
+  position: relative;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  transition: transform .7s var(--ease-out), border-color .4s ease, box-shadow .6s ease;
+}
+.case-tilt.is-tilting { transition: transform .12s linear, border-color .4s ease, box-shadow .6s ease; }
+.case-tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 55%);
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.case-card:hover .case-tilt::after { opacity: 1; }
+.case-card:hover .case-tilt {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--rule));
+  box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.motion .case-visual > * { transform: translateZ(40px); }
+.motion .case-body { transform: translateZ(20px); }
+
+/* Diagram animations */
+.motion .m-sweep { transform-box: view-box; transform-origin: 200px 120px; animation: spin 5s linear infinite; }
+.motion .m-blip { animation: blip 5s ease-out infinite; }
+.motion .m-blip--2 { animation-delay: 1.9s; }
+.motion .m-blip--3 { animation-delay: 3.3s; }
+.motion .m-node rect { animation: node 4.8s ease-in-out infinite; animation-delay: calc(var(--k) * 1.2s); }
+.motion .m-packet { animation: packet 4.8s linear infinite; }
+.motion .m-radius { transform-box: fill-box; transform-origin: center; animation: radius 3.2s ease-out infinite; }
+.motion .m-dash { animation: dash 14s linear infinite; }
+.motion .browser img { transition: transform 1.2s var(--ease-out); }
+.motion .case-card:hover .browser img { transform: scale(1.06); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes blip { 0%, 12% { opacity: 1; r: 5px; } 60%, 100% { opacity: .25; r: 3px; } }
+@keyframes node { 0%, 20%, 100% { stroke: var(--rule); } 6%, 14% { stroke: var(--accent); } }
+@keyframes packet { from { transform: translateX(0); } to { transform: translateX(292px); } }
+@keyframes radius { from { transform: scale(.3); opacity: .9; } to { transform: scale(1); opacity: 0; } }
+@keyframes dash { to { stroke-dashoffset: -400; } }
+
+/* Diagrams only run while their card is on screen */
+.case-card:not(.is-visible) .case-visual * { animation-play-state: paused !important; }
+
+/* ---------- 9. Project index + lists: micro-interactions ---------- */
+.project-row summary { position: relative; transition: padding-left .5s var(--ease-out); }
+.project-row summary::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width .5s var(--ease-out);
+}
+@media (hover: hover) and (min-width: 640px) {
+  .motion .project-row summary:hover { padding-left: 28px; }
+  .motion .project-row summary:hover::before { width: 18px; }
+}
+.project-row { interpolate-size: allow-keywords; }
+.motion .project-row::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size .6s var(--ease-out), content-visibility .6s allow-discrete;
+}
+.motion .project-row[open]::details-content { block-size: auto; }
+
+.evidence tbody tr, .cred-table tbody tr, .plain-list li, .link-list a { transition: background-color .3s ease, padding .5s var(--ease-out); }
+@media (hover: hover) {
+  .evidence tbody tr:hover, .cred-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+  .motion .link-list a:hover { padding-left: 10px; }
+}
+.tag { transition: border-color .3s ease, color .3s ease, transform .4s var(--ease-out); }
+@media (hover: hover) {
+  .motion .tag:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-2px); }
+}
+
+/* Timeline spine that fills as you scroll */
+.timeline { position: relative; }
+@media (min-width: 900px) {
+  .motion .timeline::before, .motion .timeline::after {
+    content: "";
+    position: absolute;
+    left: 156px; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--rule);
+  }
+  .motion .timeline::after {
+    background: var(--accent);
+    transform-origin: top;
+    transform: scaleY(var(--tp, 0));
+  }
+}
+
+/* Photos: colour returns on hover, slight lift */
+.photos img { transition: filter .6s ease, transform .9s var(--ease-out); }
+@media (hover: hover) {
+  .motion .photos figure:hover img { filter: saturate(1.1); transform: scale(1.03) rotate(-.6deg); }
+}
+.photos figure { overflow: hidden; }
+.photos figcaption { background: var(--paper); position: relative; }
+
+/* ---------- 10. Contact ---------- */
+#contact { position: relative; overflow: hidden; isolation: isolate; }
+#contact > .container { position: relative; z-index: 1; }
+.contact-email a { background-image: linear-gradient(var(--accent), var(--accent)); background-repeat: no-repeat; background-position: 0 100%; background-size: 100% 2px; border-bottom: 0; transition: background-size .6s var(--ease-out), color .4s ease; padding-bottom: 4px; }
+@media (hover: hover) {
+  .motion .contact-email a:hover { background-size: 100% 100%; color: var(--accent-ink); }
+}
+.field input, .field textarea { transition: border-color .3s ease, box-shadow .4s ease, background-color .3s ease; }
+.field input:focus, .field textarea:focus { box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent); }
+
+/* ---------- 11. Footer wordmark ---------- */
+.wordmark {
+  display: block;
+  font-size: clamp(3.4rem, 17.5vw, 17rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: .86;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--ink) 55%, transparent);
+  background: linear-gradient(var(--ink), var(--ink)) no-repeat 0 0 / 0% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  transition: background-size 1.6s var(--ease-in-out);
+  user-select: none;
+  /* room for descenders, so the fill covers the whole glyph */
+  padding-bottom: 0.2em;
+  margin-bottom: -0.12em;
+}
+.wordmark span { color: var(--accent); -webkit-text-fill-color: var(--accent); -webkit-text-stroke-color: var(--accent); }
+.wordmark.is-in, .no-js .wordmark, :root:not(.motion) .wordmark { background-size: 100% 100%; }
+
+/* ---------- 12. Page transitions (cross-document View Transitions) ---------- */
+@view-transition { navigation: auto; }
+.vt-veritas { view-transition-name: case-veritas; }
+.vt-hrsb { view-transition-name: case-hrsb; }
+.vt-roadsense { view-transition-name: case-roadsense; }
+
+::view-transition-old(root) { animation: vt-out .35s var(--ease-in-out) both; }
+::view-transition-new(root) { animation: vt-in .6s var(--ease-out) both; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-14px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(22px); } }
+::view-transition-group(case-veritas),
+::view-transition-group(case-hrsb),
+::view-transition-group(case-roadsense) { animation-duration: .65s; animation-timing-function: var(--ease-out); }
+
+/* ---------- 13. Respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  .intro-screen, .cursor, .scroll-progress { display: none !important; }
+  .rv, .wi, .hero-seq { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .hero-gl { transition: none; }
+}
+
+@media print {
+  .intro-screen, .cursor, .scroll-progress, .hero-gl, .glow, .marquee { display: none !important; }
+}

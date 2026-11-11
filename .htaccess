@@ -77,7 +77,7 @@ AddType application/manifest+json .webmanifest
   #   if you change that script). JSON-LD blocks are data, not scripts.
   # - styles/fonts: this site + Google Fonts. 'unsafe-inline' styles cover a few style="" attributes.
   # - connect: only this site (the contact form posts to /api/contact.php).
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-O52GItLztnCNW2sXzQH2qLvsIwstmkO4bUiYi/Ax3ts='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-+1hJWWJuUVnAvkspFViCtOeQxjkrCQv+nU0tX0Q5W3Y='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "DENY"

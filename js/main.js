@@ -1,4 +1,4 @@
-/* Saiful Iqbal — Portfolio v2. No dependencies. Every feature is optional:
+/* Saiful Iqbal — Portfolio v3 entry module. No dependencies. Every feature is optional:
    the page works fully without JavaScript. */
 (function () {
   "use strict";
@@ -205,8 +205,38 @@
     });
   }
 
-  /* ---------- Footer year ---------- */
+  /* ---------- Footer year + local time ---------- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+
+  var clocks = document.querySelectorAll("[data-clock]");
+  if (clocks.length && window.Intl) {
+    var timeFormat = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kuala_Lumpur", hour: "2-digit", minute: "2-digit" });
+    var tickClock = function () {
+      var now = timeFormat.format(new Date());
+      clocks.forEach(function (el) { el.textContent = now; });
+    };
+    tickClock();
+    setInterval(tickClock, 30000);
+  }
+
+  /* ---------- Experience layer (loaded only when it will be used) ----------
+     `motion` is set on <html> by the head script unless the visitor prefers
+     reduced motion. Pointer effects need a mouse or trackpad. The WebGL hero
+     still draws one still frame when motion is off. */
+  var motionOK = root.classList.contains("motion");
+  var report = function (err) { if (window.console) console.warn("Effect skipped:", err); };
+
+  if (motionOK) {
+    import("./fx/motion.js").then(function (m) { m.initMotion(); }).catch(report);
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      import("./fx/pointer.js").then(function (m) { m.initPointer(); }).catch(report);
+    }
+  }
+
+  var heroCanvas = document.querySelector(".hero-gl");
+  if (heroCanvas && window.WebGLRenderingContext) {
+    import("./fx/terrain.js").then(function (m) { m.initTerrain(heroCanvas, { animate: motionOK }); }).catch(report);
+  }
 })();

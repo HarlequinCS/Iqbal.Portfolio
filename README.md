@@ -11,8 +11,10 @@ Personal portfolio of **Muhammad Saiful Iqbal Abdul Rani**, Software Engineer & 
 ```
 index.html          Homepage: hero, work, experience, capabilities, credentials, about, contact
 work/               Case studies (VERITAS, HRSB ONE, RoadSense)
-css/main.css        The whole design system (tokens at the top, light + dark themes)
-js/main.js          Theme toggle, mobile menu, active nav, project filters, copy email, contact form
+css/main.css        Design system and layout (tokens at the top, light + dark themes)
+css/fx.css          Experience layer: motion, depth, page transitions
+js/main.js          Entry module: theme, menu, filters, contact form; loads the effects below
+js/fx/              terrain.js (WebGL hero), motion.js (scroll), text.js, pointer.js
 asset/              Résumé and CV (PDF)
 images/             Portrait, photos, publication covers, icons, Open Graph image
 api/                Contact form endpoint (forwards to Telegram; secrets stay on the server)
@@ -20,7 +22,7 @@ docs/               Redesign plan, design system notes, deployment guide (DEPLOY
 404.html            "Not found" page
 ```
 
-No frameworks, no build step: plain HTML, CSS and JavaScript, plus one small PHP endpoint. The design rationale and maintenance notes are in [`docs/REDESIGN-PLAN.md`](docs/REDESIGN-PLAN.md).
+No frameworks, no libraries, no build step: plain HTML, CSS and JavaScript (including the hand-written WebGL hero), plus one small PHP endpoint. The design rationale and maintenance notes are in [`docs/REDESIGN-PLAN.md`](docs/REDESIGN-PLAN.md).
 
 ## Common edits
 

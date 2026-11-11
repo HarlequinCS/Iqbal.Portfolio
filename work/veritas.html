@@ -28,6 +28,12 @@
       var d = document.documentElement;
       d.className = d.className.replace('no-js', 'js');
       try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); } catch (e) {}
+      try {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          d.className += ' motion';
+          if (!sessionStorage.getItem('intro')) { d.className += ' intro'; sessionStorage.setItem('intro', '1'); }
+        }
+      } catch (e) {}
     })();
   </script>
 
@@ -35,6 +41,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/fx.css">
+  <link rel="modulepreload" href="../js/main.js">
+  <link rel="modulepreload" href="../js/fx/motion.js">
+  <link rel="modulepreload" href="../js/fx/text.js">
 </head>
 
 <body>
@@ -81,7 +91,7 @@
         <div class="container">
           <p class="breadcrumb"><a href="../#work"><svg class="icon icon--stroke" aria-hidden="true"><use href="#i-right"/></svg>All work</a></p>
           <p class="meta"><span class="num">P-01</span> · Case study · Final-year project</p>
-          <h1>VERITAS: web vulnerability assessment you can trust.</h1>
+          <h1 class="vt-veritas">VERITAS: web vulnerability assessment you can trust.</h1>
           <p class="hero-lead">A multi-tenant platform where customers prove they own a web application, run an active security assessment, and receive findings backed by evidence, confidence levels and remediation guidance, shared with their team.</p>
         </div>
       </header>
@@ -207,16 +217,23 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>© <span data-year>2026</span> Muhammad Saiful Iqbal Abdul Rani · Designed and built by hand.</p>
-      <ul class="footer-links">
-        <li><a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://github.com/HarlequinCS" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="mailto:iqbal.intern@gmail.com">Email</a></li>
-        <li><a href="#main">Back to top</a></li>
-      </ul>
+      <div class="footer-top">
+        <p class="footer-cta">Have a system to build or secure? <a href="../#contact">Let's talk</a>.</p>
+        <p class="footer-time meta">Johor, Malaysia · <span data-clock>--:--</span> GMT+8</p>
+      </div>
+      <span class="wordmark" aria-hidden="true">Saiful Iqbal<span>.</span></span>
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> Muhammad Saiful Iqbal Abdul Rani · Designed and built by hand.</p>
+        <ul class="footer-links">
+          <li><a href="https://linkedin.com/in/saiful-iqbal12" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/HarlequinCS" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="mailto:iqbal.intern@gmail.com">Email</a></li>
+          <li><a href="#main">Back to top</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
-  <script src="../js/main.js" defer></script>
+  <script type="module" src="../js/main.js"></script>
 </body>
 </html>
