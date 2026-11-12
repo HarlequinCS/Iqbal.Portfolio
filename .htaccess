@@ -29,7 +29,21 @@ AddType application/manifest+json .webmanifest
   RewriteRule (^|/)\.(?!well-known/) - [R=404,L]
 
   # Never serve repository-only files
-  RewriteRule ^(README\.md|LICENSE|wip\.css\.map)$ - [R=404,L,NC]
+  RewriteRule ^(README\.md|LICENSE|wip\.css\.map|tools/.*|docs/.*)$ - [R=404,L,NC]
+
+  # SEO: one URL per page. /index.html -> /, /page.html -> /page (permanent).
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/([^\s?]+)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+  # No work index page: /work and /work/ go to the homepage's work section.
+  RewriteRule ^work/?$ /#work [R=301,L,NE]
+  # The error page is never a 200 page.
+  RewriteRule ^404$ - [R=404,L]
+  # Serve clean URLs from the .html files.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L]
 
   # Hot-link protection for images: allow empty referrers (direct visits,
   # social previews) and this site's own host, whatever the domain is.
@@ -50,8 +64,8 @@ AddType application/manifest+json .webmanifest
 
 # -------------------------------------------------------------
 # 3. Caching
-#    Images/fonts rarely change: cache long. CSS/JS change with redesigns
-#    and have no version in their file names: cache for a day, then revalidate.
+#    Images/fonts rarely change: cache long. CSS and js/main.js links carry ?v=<hash>
+#    (tools/build.py), so a change is picked up at once; cache for a day, then revalidate.
 # -------------------------------------------------------------
 <IfModule mod_headers.c>
   <FilesMatch "\.(ico|jpe?g|png|gif|svg|webp|woff2?)$">
@@ -65,6 +79,8 @@ AddType application/manifest+json .webmanifest
   </FilesMatch>
   <FilesMatch "\.pdf$">
     Header set Cache-Control "public, max-age=86400"
+    # Downloadable, but kept out of search results (they contain a phone number).
+    Header set X-Robots-Tag "noindex, nofollow"
   </FilesMatch>
 </IfModule>
 
@@ -75,9 +91,9 @@ AddType application/manifest+json .webmanifest
   # Content Security Policy:
   # - scripts: this site + the one inline theme script (by hash; see docs/DEPLOY.md
   #   if you change that script). JSON-LD blocks are data, not scripts.
-  # - styles/fonts: this site + Google Fonts. 'unsafe-inline' styles cover a few style="" attributes.
+  # - styles/fonts: this site only (IBM Plex is self-hosted in /fonts). 'unsafe-inline' styles cover a few style="" attributes.
   # - connect: only this site (the contact form posts to /api/contact.php).
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-+1hJWWJuUVnAvkspFViCtOeQxjkrCQv+nU0tX0Q5W3Y='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-+1hJWWJuUVnAvkspFViCtOeQxjkrCQv+nU0tX0Q5W3Y='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "DENY"

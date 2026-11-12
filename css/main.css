@@ -1,3 +1,56 @@
+/* Self-hosted IBM Plex (SIL Open Font License 1.1), latin + latin-ext subsets from Google Fonts.
+   Sans is one variable file covering weights 400-600. */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/ibm-plex-mono-400-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/ibm-plex-mono-400-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/ibm-plex-mono-500-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/ibm-plex-mono-500-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(../fonts/ibm-plex-sans-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(../fonts/ibm-plex-sans-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* =========================================================================
    Saiful Iqbal — Portfolio v2
    Design system: "Evidence-backed". See docs/REDESIGN-PLAN.md
@@ -768,9 +821,11 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 /* ---------- 14. Case study pages ---------- */
 .cs-hero { padding-block: var(--s-8) var(--s-7); }
 .breadcrumb { margin-bottom: var(--s-6); }
-.breadcrumb a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--muted); font-size: 0.9375rem; }
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; font-size: 0.9375rem; color: var(--muted); }
+.breadcrumb li + li::before { content: "/"; margin: 0 var(--s-2); color: var(--rule); }
+.breadcrumb a { text-decoration: none; color: var(--muted); }
 .breadcrumb a:hover { color: var(--accent); }
-.breadcrumb .icon { width: 14px; height: 14px; transform: rotate(180deg); }
+.breadcrumb [aria-current] { color: var(--ink); }
 .cs-hero .meta { display: block; margin-bottom: var(--s-4); }
 .cs-hero .meta .num { color: var(--accent); }
 .cs-hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.75rem); max-width: 20ch; margin-bottom: var(--s-5); }
@@ -802,6 +857,8 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 .prose ol.steps li { counter-increment: s; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: var(--s-2); }
 .prose ol.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: 0.8125rem; color: var(--accent); padding-top: 4px; }
 .prose code { font-family: var(--font-mono); font-size: 0.875em; background: var(--paper-2); padding: 1px 5px; border-radius: 2px; color: var(--ink); }
+.prose pre { background: var(--paper-2); border: 1px solid var(--rule); border-radius: 2px; padding: var(--s-3); overflow-x: auto; max-width: 100%; margin: var(--s-4) 0; }
+.prose pre code { background: none; padding: 0; font-size: 0.8125rem; line-height: 1.6; white-space: pre; }
 
 .callout {
   margin: var(--s-6) 0;
@@ -995,3 +1052,27 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 .site-footer a { color: var(--ink-2); }
 .footer-links { display: flex; flex-wrap: wrap; gap: var(--s-4); list-style: none; }
 .wordmark { margin-inline: -0.04em; }
+
+/* ---------- Identity & search additions ---------- */
+/* Name line inside the homepage H1: the page's main heading names the person it is about. */
+.hero h1 .hero-name { display: block; font-size: 0.42em; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.35em; color: var(--ink-2); }
+.hero h1 .hero-name .dot { color: var(--accent); }
+
+/* Author line on case studies and the profile page */
+.byline { display: block; margin-top: calc(-1 * var(--s-2)); color: var(--muted); }
+.byline a { color: inherit; }
+.byline a:hover { color: var(--accent); }
+
+/* Profile page */
+.profile-hero { display: grid; gap: var(--s-7); align-items: start; }
+@media (min-width: 900px) { .profile-hero { grid-template-columns: minmax(0, 1fr) 260px; } }
+.profile-hero .portrait img { width: 100%; height: auto; border-radius: 4px; }
+.faq { border-top: 1px solid var(--ink); margin-top: var(--s-4); }
+.faq details { border-bottom: 1px solid var(--rule); }
+.faq summary { cursor: pointer; list-style: none; padding: var(--s-4) 0; font-weight: 500; display: flex; justify-content: space-between; gap: var(--s-4); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--font-mono); color: var(--muted); }
+.faq details[open] summary::after { content: "\2212"; }
+.faq summary:hover { color: var(--accent); }
+.faq details > div { padding-bottom: var(--s-4); color: var(--ink-2); }
+.prose .link-row { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); margin: var(--s-4) 0; }

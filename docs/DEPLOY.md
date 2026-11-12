@@ -100,13 +100,12 @@ If the form says *"I couldn't send that directly"*, the endpoint is missing the 
 
 ## Maintenance notes
 
-- **Content Security Policy:** `.htaccess` allows the one inline script (the theme switcher in each page's `<head>`) by its SHA-256 hash. If you edit that script, recalculate the hash or the theme toggle stops working. Browsers hash it with LF line endings:
-  ```bash
-  php -r '$h=str_replace("\r\n","\n",file_get_contents("index.html")); preg_match("#<script>(.*?)</script>#s",$h,$m); echo "sha256-",base64_encode(hash("sha256",$m[1],true)),"\n";'
-  ```
-  The browser console also prints the expected hash when it blocks the script.
+- **Before every deploy, run `python3 tools/build.py`.** It stamps `?v=<hash>` on CSS/JS links, regenerates `sitemap.xml` from the pages' canonical links, and checks the CSP hashes. `tools/deploy.sh` runs it for you, then copies the site to `/var/www/saifuliqbal.io`.
+- **Content Security Policy:** `.htaccess` and the nginx snippet allow the one inline script (the theme/motion switcher in each page's `<head>`) by its SHA-256 hash. If you edit that script, `tools/build.py` prints the new hash; update both configs, or the theme toggle and all animations stop working. The browser console also prints the expected hash when it blocks the script.
+- **Adding a page:** give it a unique `<title>`, meta description, `<link rel="canonical" href="https://saifuliqbal.io/<clean-url>">` (no `.html`) and JSON-LD, link to it from at least one existing page, then run `tools/build.py`; it appears in the sitemap automatically. Pages marked `noindex` are left out.
+- **SEO URLs:** pages are served without `.html` (`/about`, `/work/veritas`). Requests for `*.html` and `/index.html` get a 301 to the clean URL, so internal links should use the clean form.
 - **Rate limit:** 5 messages per visitor IP per 10 minutes. Change `rate_limit` / `rate_window` in `api/config.php`.
-- **Caching:** CSS and JS are cached for one day, so changes reach returning visitors within 24 hours.
+- **Caching:** CSS and `js/main.js` carry a content hash in their URL, so changes reach visitors at once. The effect modules in `js/fx/` are cached for a day; if you change one, purge the Cloudflare cache (Caching → Purge Everything).
 
 ---
 
@@ -124,6 +123,21 @@ server {
 
     location ~ /\.(?!well-known/) { return 404; }
     location ~ ^/(README\.md|LICENSE|wip\.css\.map)$ { return 404; }
+    location ^~ /tools/ { return 404; }
+    location ^~ /docs/ { return 404; }
+
+    # One URL per page: *.html and /index.html redirect to clean URLs.
+    if ($request_uri ~ "^/index\.html(\?.*)?$") { return 301 /$1; }
+    if ($request_uri ~ "^/(.+)\.html(\?.*)?$") { return 301 /$1$2; }
+    location = /404.html { internal; }
+    location = /404 { return 404; }
+    location = /work { return 301 /#work; }
+    location = /work/ { return 301 /#work; }
+    location / { try_files $uri $uri.html $uri/ =404; }
+    location ~* \.pdf$ {
+        add_header X-Robots-Tag "noindex, nofollow" always;   # repeat the security headers here too
+        try_files $uri =404;
+    }
     location ^~ /api/ {
         location = /api/contact.php {
             include fastcgi_params;
@@ -135,7 +149,7 @@ server {
         return 404;
     }
 
-    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-+1hJWWJuUVnAvkspFViCtOeQxjkrCQv+nU0tX0Q5W3Y='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-+1hJWWJuUVnAvkspFViCtOeQxjkrCQv+nU0tX0Q5W3Y='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" always;
     add_header X-Content-Type-Options "nosniff" always;
     add_header X-Frame-Options "DENY" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
